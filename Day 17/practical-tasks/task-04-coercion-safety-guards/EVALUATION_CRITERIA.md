@@ -1,0 +1,25 @@
+# Evaluation Criteria — Day 17 — Task 04 — Coercion Safety Guards
+
+## Scope
+
+Graded: `src/coercionLab.js` as locked by tests.
+
+## Weighting (100 points)
+
+| Category | Points | Description |
+|----------|-------:|-------------|
+| Correctness | 70 | Tests pass |
+| Code quality | 30 | Straight-line guards; avoid cleverness |
+
+## Pass / fail gates
+
+- Any test failure.
+
+## AI-assisted grading prompt (optional)
+
+```markdown
+## AI grading prompt (paste into your grader)
+Repository context: `Day 17/practical-tasks/task-04-coercion-safety-guards`.
+Rubric: run `npm test`.
+Return: Pass/Fail, score table, blocking issues, non-blocking suggestions.
+```

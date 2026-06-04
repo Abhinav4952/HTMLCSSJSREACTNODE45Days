@@ -1,0 +1,54 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+.site-header,
+.site-footer {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+.site-footer {
+  border-top: 1px solid #1e293b;
+  border-bottom: 0;
+  color: #94a3b8;
+}
+
+.site-title {
+  margin: 0;
+  font-weight: 650;
+}
+
+.layout {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+  }
+}
+
+.layout__main,
+.layout__aside {
+  border: 1px solid #1f2937;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.65);
+}
+
+/* TODO(Day12-task02): Style nav as horizontal on wide screens and stacked on narrow (use flex + wrap). */
+
+/* TODO(Day12-task02): Improve link colors + :focus-visible rings to meet basic contrast on dark background. */

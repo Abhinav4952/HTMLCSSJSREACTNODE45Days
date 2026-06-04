@@ -1,0 +1,28 @@
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  max-width: 60ch;
+  padding: 2rem 1.25rem;
+}
+
+label {
+  display: block;
+  margin: 0.75rem 0;
+}
+
+textarea,
+select {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+textarea {
+  min-height: 8rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}

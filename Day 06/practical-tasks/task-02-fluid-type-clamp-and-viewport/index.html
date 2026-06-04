@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Day 06 — Task 02 — Fluid type</title>
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <article class="paper">
+      <header>
+        <p class="meta"><small>Lab reading</small> · <span>Day 06</span></p>
+        <h1>Fluid typography is bounded improvisation</h1>
+        <p class="lede">
+          You are not trying to make text infinitely large on ultra-wide monitors. You are choosing a readable band that tracks viewport width gently.
+        </p>
+      </header>
+
+      <p>
+        Start from humans: short lines are easier to read, so <code>max-width</code> in <code>ch</code> still matters even when font sizes swell. Then pick minima that survive phones in portrait mode.
+      </p>
+
+      <aside class="pullquote" aria-label="Pull quote">
+        “Slope without a floor is just chaos with fonts.”
+      </aside>
+
+      <p>
+        When you finish the CSS TODOs, resize the window slowly: the headline should glide, not stair-step, because <code>clamp()</code> is continuous across widths—unlike breakpoint-only font swaps.
+      </p>
+
+      <footer>
+        <small>Verify computed font sizes at 320px and 1280px in DevTools.</small>
+      </footer>
+    </article>
+  </body>
+</html>

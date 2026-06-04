@@ -1,0 +1,16 @@
+/* TODO(Day05-task01): Set #board to max-width ~52rem, margin-inline auto, padding. */
+/* TODO(Day05-task01): Remove bullets: #board li { list-style: none; } */
+/* TODO(Day05-task01): Style .chip as inline-block with padding, rounded border-radius>=999px, border 1px solid #cbd5e1, background #f8fafc. */
+/* TODO(Day05-task01): .row .chip { font-weight: 600; } */
+/* TODO(Day05-task01): .row > .chip:first-child { border-color: #0ea5e9; } */
+/* TODO(Day05-task01): .row .chip + .chip { margin-left: 0.5rem; } */
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #0f172a;
+}
+
+.row {
+  margin: 0.75rem 0;
+}

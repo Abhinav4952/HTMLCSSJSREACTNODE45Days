@@ -1,0 +1,23 @@
+/* TODO(Day07-task01): Set global box-sizing to border-box for all elements (universal selector pattern). */
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+  padding: 2rem 1.25rem 4rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.specimen {
+  background: #ffffff;
+  margin: 1.25rem 0;
+}
+
+/* TODO(Day07-task01): Specimen A: width 280px; padding 16px each side; border 2px solid #94a3b8; margin 0. */
+/* TODO(Day07-task01): Specimen B: width 280px content area under YOUR global box-sizing choice—make outer border-box width equal 280px total (interpret carefully) + border 1px + padding 12px each side as needed—document your interpretation in HTML note. */
+/* TODO(Day07-task01): Specimen C: width min(360px, 100%); padding clamp(0.75rem, 2vw, 1.25rem); border 3px solid #0ea5e9; */

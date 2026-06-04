@@ -1,0 +1,71 @@
+/* App shell layout
+ * Requirements:
+ * - .topbar is fixed to the top of the viewport, full width, ~56px tall
+ * - body/app should not hide under the topbar (use padding-top on .app equal to topbar height)
+ * - .shell is a flex row: sidebar + main
+ * - .content is the ONLY vertical scroll container (overflow:auto) and fills remaining viewport height under topbar
+ * - .side-title is position:sticky with top: 8px INSIDE the .content scrollport
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #0f172a;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid rgb(15 23 42 / 0.12);
+  background: #ffffff;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.shell {
+  /* TODO(Day08-task03): layout shell as described in top comments */
+}
+
+.sidebar {
+  width: 240px;
+  border-right: 1px solid rgb(15 23 42 / 0.12);
+  background: #f8fafc;
+  padding: 1rem;
+}
+
+.side-title {
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+  /* TODO(Day08-task03): make sticky within the scrolling main column as specified */
+}
+
+nav a {
+  display: block;
+  margin: 0.35rem 0;
+  color: #0369a1;
+}
+
+.content {
+  padding: 1rem 1.25rem 2rem;
+  line-height: 1.6;
+}
+
+.filler {
+  color: #475569;
+}
+
+/* TODO(Day08-task03): Implement fixed topbar + scrollable main + sticky side-title per TASK_INSTRUCTIONS.md */

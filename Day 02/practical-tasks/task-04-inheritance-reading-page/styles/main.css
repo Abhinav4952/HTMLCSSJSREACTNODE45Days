@@ -1,0 +1,6 @@
+/* TODO(Day02-task04): On body, set color, font-family, line-height, and a max-width + horizontal margin auto for readability. */
+/* TODO(Day02-task04): On .note, set a different font-family, a light background-color, padding, and a left border or box-shadow for emphasis. */
+
+body {
+  padding: 2rem 1.25rem;
+}

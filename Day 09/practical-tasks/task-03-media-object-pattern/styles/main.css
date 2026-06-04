@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #f8fafc;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.mo__media {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: #0ea5e9;
+  color: #f0f9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+/* TODO(Day09-task03): Implement .mo as flex media object per TASK_INSTRUCTIONS.md */

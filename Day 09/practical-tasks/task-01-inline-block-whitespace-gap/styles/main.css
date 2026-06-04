@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #f8fafc;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.toolbar {
+  border: 1px dashed #94a3b8;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.item {
+  display: inline-block;
+  padding: 0.45rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgb(15 23 42 / 0.12);
+  text-decoration: none;
+  color: #0f172a;
+}
+
+.hint {
+  color: #475569;
+}
+
+/* TODO(Day09-task01): Remove unwanted gaps using ONE allowed strategy from TASK_INSTRUCTIONS.md. */
+/* TODO(Day09-task01): Add a comment naming the strategy. */

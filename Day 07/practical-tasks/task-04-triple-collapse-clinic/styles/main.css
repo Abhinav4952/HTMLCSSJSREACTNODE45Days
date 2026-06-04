@@ -1,0 +1,78 @@
+/* Case targets (measure between element OUTER borders as described in each case):
+ * CASE 1 TARGET: distance between .a1 bottom border and .b1 top border == 18px (±1px)
+ * CASE 2 TARGET: distance between .a2 bottom border and .b2 top border == 28px (±1px)
+ * CASE 3 TARGET: distance between .empty3 bottom margin edge and .a3 top border == 8px (±1px) (tricky: empty block margins)
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #f8fafc;
+}
+
+.page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.case {
+  border: 1px dashed #94a3b8;
+  padding: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.case h2 {
+  margin: 0 0 0.75rem;
+}
+
+.a1,
+.b1,
+.a2,
+.b2,
+.a3 {
+  border: 1px solid #0f172a;
+  background: #fff;
+  padding: 0.5rem;
+}
+
+.a1 {
+  margin: 0 0 12px;
+}
+.b1 {
+  margin: 12px 0 0;
+}
+
+.wrap2 {
+  /* wrapper exists to create extra collapse opportunities */
+  padding: 0;
+  border: 0;
+}
+
+.a2 {
+  margin: 0 0 18px;
+}
+.b2 {
+  margin: 18px 0 0;
+}
+
+.empty3 {
+  height: 0;
+  margin: 12px 0;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.a3 {
+  margin-top: 12px;
+}
+
+/* TODO(Day07-task04): Adjust rules to meet all three targets simultaneously. */
+/* TODO(Day07-task04): Add a short lessons-learned comment block at the bottom of this file. */

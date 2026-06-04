@@ -1,0 +1,12 @@
+{
+  "name": "day-29-task-03-instanceof-hierarchy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

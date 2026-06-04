@@ -1,0 +1,56 @@
+/* Base reset (do not remove) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+.page {
+  max-width: 72ch;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.page__header {
+  margin-bottom: 1.25rem;
+}
+
+.lede {
+  margin: 0.5rem 0 0;
+  color: #334155;
+}
+
+.panel {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: #fff;
+}
+
+.card {
+  border: 1px dashed #94a3b8;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+/* TODO(Day11-task01): Define --region-fg and --region-accent on :root as sensible defaults. */
+
+/* TODO(Day11-task01): For [data-region="marketing"], override the custom properties (pick distinct hex colors). */
+
+/* TODO(Day11-task01): For [data-region="ops"], override the custom properties again (different palette). */
+
+/* TODO(Day11-task01): Set .panel color using var(--region-fg) so nested content inherits the region text color. */
+
+/* TODO(Day11-task01): Style .card headings with border-left: 4px solid var(--region-accent) and a comfortable padding-left. */
+
+/* TODO(Day11-task01): Demonstrate one non-inherited property explicitly: set .card background-color to a subtle tint using color-mix or rgba based on var(--region-accent) (no opacity on the whole card). */

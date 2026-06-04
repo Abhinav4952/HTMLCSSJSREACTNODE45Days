@@ -1,0 +1,55 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1rem 1rem 2rem;
+}
+
+.lede {
+  color: #94a3b8;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.card {
+  border: 1px solid #1f2937;
+  border-radius: 0.85rem;
+  padding: 0.85rem;
+  background: rgba(15, 23, 42, 0.65);
+  width: 240px;
+  transition: box-shadow 160ms ease;
+}
+
+.card:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+/* TODO(Day15-task02): For `.card--layout`, add `:hover` and/or `:focus-visible` state that transitions `width` from 240px to 320px (and back) over ~240ms. Keep content from overflowing awkwardly (you may allow wrapping). */
+
+/* TODO(Day15-task02): For `.card--transform`, add `:hover` and/or `:focus-visible` state that transitions `transform: translateY(...)` (or scale) instead of changing layout width. Start at translateY(0), end at translateY(-6px). */
+
+/* TODO(Day15-task02): Add `@media (prefers-reduced-motion: reduce)` that removes/neutralizes the motionful transitions/animations for BOTH cards (instant snap is OK). */

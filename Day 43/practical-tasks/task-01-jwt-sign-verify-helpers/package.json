@@ -1,0 +1,18 @@
+{
+  "name": "day-43-task-01-jwt-sign-verify-helpers",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

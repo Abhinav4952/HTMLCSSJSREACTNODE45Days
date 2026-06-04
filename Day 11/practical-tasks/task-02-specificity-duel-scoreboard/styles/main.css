@@ -1,0 +1,109 @@
+/* Base reset (do not remove) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background: #020617;
+  color: #e2e8f0;
+}
+
+.arena {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.arena__head .title {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.matches {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.match {
+  border: 1px solid #1e293b;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.75rem 0.85rem;
+  background: radial-gradient(circle at 20% 20%, #0b1220, #020617 55%);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+}
+
+.champion-line {
+  margin: 0.55rem 0 0;
+  font-size: 0.95rem;
+}
+
+.notes {
+  margin-top: 1.25rem;
+  border-top: 1px dashed #334155;
+  padding-top: 1rem;
+  color: #cbd5e1;
+}
+
+.notes h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.notes ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+/* --- Duel rules: candidates are intentionally “mean”. --- */
+
+/* Match 1 baseline noise */
+#scoreboard .matches .match[data-match="1"] .champion-line {
+  color: #ef4444;
+}
+
+#scoreboard .match[data-match="1"] p.champion-line {
+  color: #22c55e;
+}
+
+/* TODO(Day11-task02): Add exactly ONE new rule (selector of your choice) so Match 1 final color wins as #7c3aed without !important and without inline styles. */
+
+/* Match 2: attribute + class warfare */
+section.arena#scoreboard .matches li[data-match="2"] p {
+  color: #a855f7;
+}
+
+/* This global champion-line rule is intentionally late so it wins ties for Match 2 unless you out-specificity it. */
+#scoreboard .champion-line {
+  color: #facc15;
+}
+
+/* TODO(Day11-task02): Add rules so Match 2 final color is #0ea5e9. You may add up to TWO rules for Match 2 only (no !important). Hint: you must beat BOTH the purple section rule and the late yellow tie-breaker. */
+
+/* Match 3 trap: ID tries to dominate */
+#scoreboard .trap {
+  color: #64748b;
+}
+
+/* TODO(Day11-task02): Win the trap using a selector that beats `#scoreboard .trap` under normal specificity rules, still without !important. Final color must be #f97316. */

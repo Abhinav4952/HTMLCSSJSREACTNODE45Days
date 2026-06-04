@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Day 11 — Task 02 — Specificity duel scoreboard</title>
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <!-- TODO(Day11-task02): Add lang-appropriate cohort banner text in this comment only if you want; primary work is CSS. -->
+
+    <main class="arena" id="scoreboard">
+      <header class="arena__head">
+        <h1 class="title">Specificity duel</h1>
+        <p class="subtitle">
+          <!-- TODO(Day11-task02): Replace with your own one-line explanation of what the highlighted champion line represents. -->
+        </p>
+      </header>
+
+      <ol class="matches">
+        <li class="match" data-match="1">
+          <span class="badge">Match 1</span>
+          <p class="champion-line">This line’s final text color must be <strong>#7c3aed</strong> (violet).</p>
+        </li>
+        <li class="match" data-match="2">
+          <span class="badge">Match 2</span>
+          <p class="champion-line">This line’s final text color must be <strong>#0ea5e9</strong> (sky).</p>
+        </li>
+        <li class="match" data-match="3">
+          <span class="badge">Match 3 (trap)</span>
+          <p class="champion-line trap" data-trap="on">
+            This line’s final text color must be <strong>#f97316</strong> (orange), even though an ID selector exists elsewhere.
+          </p>
+        </li>
+      </ol>
+
+      <section class="notes">
+        <h2>What you may not do</h2>
+        <ul>
+          <li>No inline <code>style=""</code> attributes.</li>
+          <li>No <code>!important</code>.</li>
+          <li>Do not edit element tags/classes in HTML except where a TODO explicitly allows text changes.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

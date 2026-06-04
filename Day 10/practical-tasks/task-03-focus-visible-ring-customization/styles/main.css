@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #020617;
+  color: #e2e8f0;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.panel {
+  background: #0b1220;
+  border: 1px solid rgb(148 163 184 / 0.25);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+button {
+  border-radius: 10px;
+  border: 1px solid rgb(148 163 184 / 0.35);
+  padding: 0.55rem 0.85rem;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.hint {
+  color: rgb(226 232 240 / 0.75);
+  margin: 1rem 0 0;
+}
+
+/* TODO(Day10-task03): Add focus-visible styling meeting TASK_INSTRUCTIONS.md */

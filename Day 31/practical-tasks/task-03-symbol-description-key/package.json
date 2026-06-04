@@ -1,0 +1,12 @@
+{
+  "name": "day-31-task-03-symbol-description-key",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

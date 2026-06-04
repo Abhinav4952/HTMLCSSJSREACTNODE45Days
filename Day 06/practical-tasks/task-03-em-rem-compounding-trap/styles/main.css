@@ -1,0 +1,82 @@
+/* Day06-task03 — CHALLENGE
+ * The original author tried to make each nested .module "slightly smaller" using em font-size.
+ * That compounds with em-based paddings on chips. Fix it.
+ */
+
+:root {
+  color-scheme: light;
+  --text: #0f172a;
+  --muted: #475569;
+  --bg: #f8fafc;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+/* FOOTGUN (intentionally wrong for teaching): nested modules shrink font-size in em */
+.module {
+  border: 1px solid rgb(15 23 42 / 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+  background: #ffffff;
+  margin-top: 1rem;
+  font-size: 0.95em;
+}
+
+.module .module {
+  background: #f8fafc;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  line-height: 1.1;
+}
+
+h2 {
+  margin: 0 0 0.5rem;
+  line-height: 1.15;
+}
+
+p {
+  margin: 0.5rem 0 0.75rem;
+  color: var(--muted);
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+/* FOOTGUN: em padding + em border radius scales with compounded font-size */
+.chip {
+  display: inline-block;
+  font-size: 0.95em;
+  padding: 0.55em 0.75em;
+  border-radius: 999em;
+  border: 1px solid rgb(15 23 42 / 0.14);
+  background: #e0f2fe;
+}
+
+/* TODO(Day06-task03): Fix the footgun rules above without editing index.html.
+ * Add/adjust rules so nested .module does NOT shrink text via compounding em font-size.
+ * Stabilize .chip sizing across nesting depths using rem (or another non-compounding strategy).
+ * Add a short comment block at the top explaining your approach (3–8 lines).
+ */

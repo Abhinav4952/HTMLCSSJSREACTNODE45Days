@@ -1,0 +1,12 @@
+{
+  "name": "day-24-task-04-strict-this-footgun-challenge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

@@ -1,0 +1,14 @@
+/* TODO(Day02-task03): Set body font-family with a stack of at least three fonts ending with a generic family (serif or sans-serif). */
+/* TODO(Day02-task03): Set body font-size using rem (e.g. 1rem) and a unitless line-height between 1.45 and 1.75. */
+/* TODO(Day02-task03): Style h1–h3 with distinct font-sizes and line-heights tighter than body (e.g. 1.1–1.3). */
+
+body {
+  margin: 0 auto;
+  max-width: 68ch;
+  padding: 2rem 1.25rem;
+  color: #0f172a;
+}
+
+main {
+  display: block;
+}

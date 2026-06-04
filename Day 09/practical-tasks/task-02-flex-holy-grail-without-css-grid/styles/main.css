@@ -1,0 +1,13 @@
+/* TODO(Day09-task02): Implement holy grail layout with flexbox only (no grid). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #0f172a;
+}

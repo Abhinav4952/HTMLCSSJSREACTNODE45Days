@@ -1,0 +1,58 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+.top {
+  padding: 1rem;
+}
+
+.lede {
+  margin: 0.25rem 0 0;
+  color: #94a3b8;
+}
+
+.band {
+  border-top: 1px solid #1e293b;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.tile {
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  background: rgba(15, 23, 42, 0.65);
+}
+
+/* Challenge starter: this breakpoint introduces extra horizontal padding WITHOUT adjusting the grid.
+   On many viewports between ~720px and ~980px, the three columns + gaps + NEW padding can overflow horizontally. */
+
+@media (min-width: 720px) {
+  .band {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* TODO(Day13-task02): Fix the overflow footgun using ONE of these strategies (document which in a CSS comment):
+   - move padding to a stable outer wrapper that participates in width math cleanly, OR
+   - switch gap/padding to fluid values, OR
+   - replace problematic padding with margin on an inner container, OR
+   - use minmax(0,1fr) correctly (already present) + adjust padding/gap.
+   Goal: no horizontal scrollbar for typical widths while keeping extra breathing room at larger sizes. */
+
+/* TODO(Day13-task02): Add a second breakpoint at min-width: 1100px that increases gap slightly (<= 1.25rem) without reintroducing scroll. */

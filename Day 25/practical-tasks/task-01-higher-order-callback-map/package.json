@@ -1,0 +1,12 @@
+{
+  "name": "day-25-task-01-higher-order-callback-map",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

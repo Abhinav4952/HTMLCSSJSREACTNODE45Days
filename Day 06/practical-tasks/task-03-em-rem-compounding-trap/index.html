@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Day 06 — Task 03 — em trap</title>
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="module">
+        <h1>Nested modules lab</h1>
+        <p>
+          This page is intentionally painful. Fix it with CSS only.
+        </p>
+
+        <div class="row">
+          <span class="chip">depth-1</span>
+          <span class="chip">alpha</span>
+        </div>
+
+        <section class="module">
+          <h2>Module level 2</h2>
+          <p>Notice how typography and chips behave here.</p>
+          <span class="chip">depth-2</span>
+
+          <section class="module">
+            <h2>Module level 3</h2>
+            <p>If your fix is wrong, these chips become absurd.</p>
+            <span class="chip">depth-3-A</span>
+            <span class="chip">depth-3-B</span>
+
+            <section class="module">
+              <h2>Module level 4 (bonus pain)</h2>
+              <p>Your solution should keep chips readable here too.</p>
+              <span class="chip">depth-4</span>
+            </section>
+          </section>
+        </section>
+      </header>
+    </main>
+  </body>
+</html>

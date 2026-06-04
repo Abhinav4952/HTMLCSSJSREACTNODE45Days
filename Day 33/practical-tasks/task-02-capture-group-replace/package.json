@@ -1,0 +1,12 @@
+{
+  "name": "day-33-task-02-capture-group-replace",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

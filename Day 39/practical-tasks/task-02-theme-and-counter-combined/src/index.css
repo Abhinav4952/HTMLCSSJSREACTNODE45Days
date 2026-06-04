@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.app-root {
+  min-height: 100vh;
+}
+
+[data-theme='light'].app-root {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+[data-theme='dark'].app-root {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+main {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+button {
+  font: inherit;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #64748b;
+  background: transparent;
+  cursor: pointer;
+}
+
+[data-theme='light'] button {
+  border-color: #0f172a;
+}
+
+[data-theme='dark'] button {
+  border-color: #e2e8f0;
+}

@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.page {
+  max-width: 60ch;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+/* TODO(Day08-task01): Style .tag as position:relative with small top/left offsets (2–6px range) and maybe a subtle background pill. */
+/* TODO(Day08-task01): Style .title as position:relative with a tiny top offset (-2px to 2px) and optional subtle text-shadow. */
+
+.body {
+  margin: 0.75rem 0 0;
+  color: #334155;
+}

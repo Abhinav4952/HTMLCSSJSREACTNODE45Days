@@ -1,0 +1,12 @@
+{
+  "name": "day-21-task-04-hoisting-vs-tdz-challenge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

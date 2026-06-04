@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0b1220;
+  color: #e2e8f0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+.article {
+  margin: 0 auto;
+  padding: clamp(1rem, 0.6rem + 1.2vw, 2.25rem);
+  max-width: min(72ch, 100%);
+}
+
+.kicker {
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  color: #93c5fd;
+}
+
+.article__head h1 {
+  margin: 0 0 0.5rem;
+  line-height: 1.05;
+}
+
+.deck {
+  margin: 0;
+  color: #cbd5e1;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.article__body h2 {
+  margin: 1.5rem 0 0.5rem;
+}
+
+.article__body p {
+  margin: 0 0 1rem;
+  hyphens: auto;
+}
+
+/* TODO(Day16-task02): Implement a fluid type ramp using clamp() for:
+   - .article__head h1 (big display size)
+   - .article__body h2 (section headings)
+   - .article__body p (body copy)
+   Requirements:
+   - Each must use clamp(MIN, PREFERRED, MAX) where PREFERRED uses vw-based fluidity (you choose coefficients).
+   - Body text must never go below 16px computed size.
+   - h1 max computed size should not exceed 3.25rem.
+*/
+
+/* TODO(Day16-task02): Tune line-height for headings vs paragraphs (headings tighter than body). */
+
+/* TODO(Day16-task02): Add a max-width on `.article__body` paragraphs using ch (<= 68ch) while keeping `.article` overall width comfortable on wide screens. */

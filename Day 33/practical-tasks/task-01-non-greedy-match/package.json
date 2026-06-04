@@ -1,0 +1,12 @@
+{
+  "name": "day-33-task-01-non-greedy-match",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

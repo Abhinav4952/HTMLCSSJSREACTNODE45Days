@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Day 15 — Task 02 — Transition: layout vs transform</title>
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <main class="page">
+      <h1>Two hover lifts</h1>
+      <p class="lede">
+        <!-- TODO(Day15-task02): After implementing CSS, write 2 sentences: which card feels smoother when hovered repeatedly and why (mention reflow vs transform). -->
+      </p>
+
+      <section class="grid" aria-label="Comparison cards">
+        <article class="card card--layout" tabindex="0">
+          <h2>Layout path</h2>
+          <p>Hover uses <code>width</code> transition.</p>
+        </article>
+
+        <article class="card card--transform" tabindex="0">
+          <h2>Transform path</h2>
+          <p>Hover uses <code>transform</code> transition.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

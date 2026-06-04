@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Day 12 — Task 02 — Landmarks: aside, nav, main</title>
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <p class="site-title">Courseware Console</p>
+      <!-- TODO(Day12-task02): Add a primary nav with aria-label and at least 3 links (use your own link text/hrefs with # anchors). -->
+    </header>
+
+    <div class="layout">
+      <!-- TODO(Day12-task02): Add a short HTML comment (one or two sentences) explaining why `main` is ordered before `aside` in the DOM for this page. -->
+      <main class="layout__main" id="main">
+        <h1>Lesson outline</h1>
+        <p>
+          <!-- TODO(Day12-task02): Add original paragraph copy about why landmarks help screen reader users. -->
+        </p>
+        <section aria-labelledby="modules-heading">
+          <h2 id="modules-heading">Modules</h2>
+          <ol>
+            <li>HTML foundations</li>
+            <li>CSS layout</li>
+            <li>JavaScript tooling</li>
+          </ol>
+        </section>
+      </main>
+
+      <aside class="layout__aside" aria-label="Related resources">
+        <!-- TODO(Day12-task02): Add a short list of related links + one figure/code example block using figure/pre/code. -->
+      </aside>
+    </div>
+
+    <footer class="site-footer">
+      <small>Day 12 — Task 02</small>
+    </footer>
+  </body>
+</html>

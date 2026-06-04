@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #fff7ed;
+  color: #0f172a;
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2.5rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.help {
+  margin: 0;
+  color: #334155;
+}
+
+.error {
+  margin: 0;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+/* TODO(Day12-task04): Hide `.error` by default and reveal it when the handle input is `:user-invalid` (preferred). Include a commented fallback for browsers without `:user-invalid` (e.g., rely on `:invalid` only after first form submit attempt is NOT detectable in pure CSS—document the limitation honestly in a CSS comment). */
+
+/* TODO(Day12-task04): Add `:focus-visible` ring styles for the input and button. */
+
+/* TODO(Day12-task04): Add a subtle border color shift on the input when `:user-valid` / `:user-invalid` is supported; keep normal border otherwise. */

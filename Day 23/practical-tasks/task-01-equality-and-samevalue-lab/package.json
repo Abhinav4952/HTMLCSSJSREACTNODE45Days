@@ -1,0 +1,12 @@
+{
+  "name": "day-23-task-01-equality-and-samevalue-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

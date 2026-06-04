@@ -1,0 +1,12 @@
+{
+  "name": "day-19-task-03-methods-on-plain-objects",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

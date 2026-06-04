@@ -1,0 +1,6 @@
+table {
+  border-collapse: collapse;
+  width: min(100%, 40rem);
+}
+
+/* TODO(Day03-task01): Add th, td border and padding rules (even if only td is used for now). */

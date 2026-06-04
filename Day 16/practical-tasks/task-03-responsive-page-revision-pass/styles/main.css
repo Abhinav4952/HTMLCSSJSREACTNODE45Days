@@ -1,0 +1,93 @@
+/* Starter intentionally "legacy" — do not delete class names; revise styles via completing TODOs. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #020617;
+  color: #e2e8f0;
+}
+
+.legacy-shell {
+  width: 1100px; /* intentional footgun */
+  margin: 0 auto;
+}
+
+.legacy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #1e293b;
+  gap: 0.75rem;
+}
+
+.legacy-brand {
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.legacy-nav {
+  display: flex;
+  gap: 0.75rem;
+  white-space: nowrap; /* intentional footgun on narrow screens */
+}
+
+.legacy-nav a {
+  color: #e2e8f0;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.legacy-nav a:hover {
+  border-bottom-color: #38bdf8;
+}
+
+.legacy-main {
+  padding: 1rem;
+}
+
+.legacy-hero__img {
+  width: 1200px; /* intentional footgun */
+  max-width: none;
+  display: block;
+  margin-top: 0.75rem;
+}
+
+.legacy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 320px); /* intentional footgun */
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.legacy-card {
+  border: 1px solid #1f2937;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(15, 23, 42, 0.65);
+}
+
+.changelog {
+  max-width: 900px;
+  margin: 1rem auto 2.5rem;
+  padding: 0 1rem;
+  color: #cbd5e1;
+}
+
+/* TODO(Day16-task03): Fix the page-level horizontal overflow on small screens WITHOUT removing `.legacy-shell` from HTML:
+   - make `.legacy-shell` fluid (`width:100%` + `max-width: …` pattern)
+   - ensure overall layout uses comfortable padding at mobile widths */
+
+/* TODO(Day16-task03): Fix nav wrapping/overflow: remove the footgun while keeping links usable (wrap or scroll strategy—document in changelog). */
+
+/* TODO(Day16-task03): Fix hero image sizing using responsive image rules (max-width:100%, height:auto). */
+
+/* TODO(Day16-task03): Replace fixed 3×320px grid with a responsive grid using `minmax(0, 1fr)` tracks + a media query OR auto-fit strategy. */
+
+/* TODO(Day16-task03): Add at least one fluid `font-size` improvement using clamp() on `.legacy-hero h1` OR hero paragraph. */

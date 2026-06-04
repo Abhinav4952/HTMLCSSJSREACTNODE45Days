@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Day 16 — Task 04 — Container query card rail</title>
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <main class="page">
+      <h1>Card rail</h1>
+      <p class="lede">
+        The same card component should reflow based on the <strong>rail width</strong>, not only the viewport.
+      </p>
+
+      <div class="layout">
+        <section class="rail rail--narrow" aria-label="Narrow rail demo">
+          <h2>Narrow rail</h2>
+          <div class="rail__body">
+            <article class="card">
+              <h3 class="card__title">Patch Tuesday</h3>
+              <p class="card__meta">Risk: medium</p>
+              <p class="card__copy">Same markup as wide rail—different container width.</p>
+            </article>
+            <article class="card">
+              <h3 class="card__title">Kernel bump</h3>
+              <p class="card__meta">Risk: low</p>
+              <p class="card__copy">Watch wrapping and alignment.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="rail rail--wide" aria-label="Wide rail demo">
+          <h2>Wide rail</h2>
+          <div class="rail__body">
+            <article class="card">
+              <h3 class="card__title">Patch Tuesday</h3>
+              <p class="card__meta">Risk: medium</p>
+              <p class="card__copy">Same markup as narrow rail—different container width.</p>
+            </article>
+            <article class="card">
+              <h3 class="card__title">Kernel bump</h3>
+              <p class="card__meta">Risk: low</p>
+              <p class="card__copy">Watch wrapping and alignment.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <p class="note">
+        <!-- TODO(Day16-task04): Document your @container breakpoint choice and name one browser/version where you tested container queries (or note fallback behavior). -->
+      </p>
+    </main>
+  </body>
+</html>

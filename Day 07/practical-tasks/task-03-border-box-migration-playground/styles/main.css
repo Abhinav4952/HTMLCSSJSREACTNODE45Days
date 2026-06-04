@@ -1,0 +1,40 @@
+/* Legacy author notes (confusing):
+ * "Each tile is 33.333% width with 12px padding" — written when they assumed content-box incorrectly.
+ */
+
+/* TODO(Day07-task03): Apply universal border-box sizing. */
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #f8fafc;
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.row {
+  display: flex;
+  gap: 0;
+  border: 1px dashed #94a3b8;
+}
+
+.legacy .tile {
+  box-sizing: content-box;
+  width: 33.333%;
+  padding: 12px;
+  border: 1px solid #0f172a;
+}
+
+/* TODO(Day07-task03): Replace the .legacy rules with a correct flex row implementation:
+ * - each .tile should visually share space equally
+ * - include padding inside the tile box without overflowing the row
+ * - keep a 1px border on tiles for measurement visibility
+ */
+
+.tile {
+  background: #fff;
+}

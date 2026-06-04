@@ -1,0 +1,55 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2.5rem;
+}
+
+.lede {
+  color: #334155;
+}
+
+fieldset {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.9rem 1rem;
+  margin: 1rem 0;
+  background: #fff;
+}
+
+.field {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.75rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+input {
+  border: 1px solid #94a3b8;
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.65rem;
+}
+
+/* TODO(Day12-task03): Style invalid vs valid states using :user-invalid and :user-valid where supported; provide a graceful fallback using :invalid/:valid only on fields that won't false-positive before interaction (document your approach in a short CSS comment). */
+
+/* TODO(Day12-task03): Layout fieldsets using CSS grid (1 col mobile, 2 col desktop) without breaking field order. */
+
+.form-footnote {
+  color: #475569;
+  font-size: 0.95rem;
+}
