@@ -10,6 +10,53 @@
     <main>
       <h1>Timetable lab</h1>
       <!-- TODO(Day03-task03): Build a schedule <table> with caption. Include a header area that uses colspan to group time columns. Include at least one rowspan cell representing a multi-row activity. Use th with scope where appropriate. -->
+      
+        <table>
+          <caption>Lab Timetable</caption>
+          <thead>
+            <tr>
+              <th></th>
+              <th colspan="3">FN</th>
+              <th colspan="3">AN</th>
+            </tr>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">9:00 - 10:00</th>
+              <th scope="col">10:00 - 11:00</th>
+              <th scope="col">11:00 - 12:00</th>
+              <th scope="col">14:00 - 15:00</th>
+              <th scope="col">15:00 - 16:00</th>
+              <th scope="col">16:00 - 17:00</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Monday</th>
+              <td rowspan="2">DBMS</td>
+              <td>OS</td>
+              <td>DS</td>
+              <td rowspan="2">DV</td>
+              <td>AP</td>
+              <td>CFE</td>
+            </tr>
+            <tr>
+              <th scope="row">Tuesday</th>
+              <td>PPS</td>
+              <td>BEEE</td>
+              <td>DS</td>
+              <td>AP</td>
+            </tr>
+            <tr>
+              <th scope="row">Wednesday</th>
+              <td>DBMS</td>
+              <td>OS</td>
+              <td>PPS</td>
+              <td>DS</td>
+              <td>DV</td>
+              <td>CFE</td>
+            </tr>
+          </tbody>
+        </table>
     </main>
   </body>
 </html>

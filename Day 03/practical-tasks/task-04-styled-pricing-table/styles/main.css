@@ -12,3 +12,20 @@ table {
 }
 
 /* TODO(Day03-task04): Add styles for th/td, zebra optional, and a .is-recommended (or colgroup-based) highlight with adequate contrast. */
+th,td{
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0.45rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th.is-recommended,
+td.is-recommended {
+  background-color: lightgreen;
+}
+
+td[scope="row"]{
+  font-style: italic;
+  background-color: yellow;
+}

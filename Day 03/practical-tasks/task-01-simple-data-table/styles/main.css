@@ -4,3 +4,9 @@ table {
 }
 
 /* TODO(Day03-task01): Add th, td border and padding rules (even if only td is used for now). */
+
+th,td{
+  border: 1px solid;
+  padding: 5px;
+
+}
