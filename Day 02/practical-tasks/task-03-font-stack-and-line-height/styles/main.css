@@ -4,11 +4,29 @@
 
 body {
   margin: 0 auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   max-width: 68ch;
   padding: 2rem 1.25rem;
   color: #0f172a;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 
 main {
   display: block;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+h3{
+  font-size: 1rem;
+  line-height: 1.3;
 }

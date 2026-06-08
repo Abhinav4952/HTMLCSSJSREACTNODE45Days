@@ -9,5 +9,23 @@
   <body>
     <!-- TODO(Day02-task04): Build <main> containing an <article> with <h1> and ≥120 words across <p> elements about any technical topic you like. -->
     <!-- TODO(Day02-task04): After the article content, add <aside class="note"> with ≥40 words explaining inheritance, using <code> around at least two CSS property names. -->
+      <main>
+        <article>
+          <h1>HTML - CSS</h1>
+          <p>
+            HTML is used to create the structure of a web page. It defines elements such as headings, paragraphs, images, links, and buttons. Browsers read HTML and display the content in an organized way for users.
+          </p>
+          <p>
+            CSS is used to style HTML elements. It controls colors, fonts, spacing, borders, and layouts. With CSS, developers can make websites look attractive and consistent across different devices and screen sizes.
+          </p>
+          <p>
+            Together, HTML and CSS form the foundation of web development. HTML provides the content and structure, while CSS improves the appearance. Learning these technologies is often the first step toward building modern websites and web applications.
+          </p>
+        </article>
+        <aside class="note">
+          CSS properties like <code>line-height</code>, <code>font-family</code>, <code>font-size</code> etc are inherited from their parent elements, if nothing is explicitly styled or mentioned. However, other properties like <code>border</code>, <code>margin</code>, <code>padding</code> etc do not inherit from parents but need to be explicitly mentioned by developer
+          <code>border : 2px</code> on body will not be applied to a <code><p></p></code> inside the element but <code>font-family : Arial</code> on a <code>body</code> will be applied to all elements nested in it, unless they are being applied a different font size explicitly
+        </aside>
+      </main>
   </body>
 </html>
