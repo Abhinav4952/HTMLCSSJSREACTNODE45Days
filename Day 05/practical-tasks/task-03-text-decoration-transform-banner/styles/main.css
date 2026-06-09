@@ -6,7 +6,44 @@ body {
 }
 
 /* TODO(Day05-task03): Style .banner with padding ~2rem, background #0f172a, color #f8fafc, max-width 1100px, margin-inline auto. */
+.banner{
+  padding: 2rem;
+  background: #0f172a;
+  color: #f8fafc;
+  max-width: 1100px;
+  margin-inline:auto;
+}
 /* TODO(Day05-task03): .banner .kicker { text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; opacity: .85; } */
+.banner .kicker {
+  text-transform : uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
 /* TODO(Day05-task03): .banner h2 { margin: .75rem 0; line-height: 1.15; font-size: clamp(1.5rem, 2.5vw, 2.25rem); text-transform: none; } */
+
+.banner h2 {
+  margin: .75rem 0;
+  line-height: 1.15;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  text-transform: none;
+}
+
 /* TODO(Day05-task03): .banner a { color: #e0f2fe; text-decoration: underline wavy; text-underline-offset: 3px; } */
+
+.banner a {
+  color: #e0f2fe;
+  text-decoration: underline wavy;
+  text-underline-offset: 3px;
+}
+
 /* TODO(Day05-task03): Add :hover and :focus-visible rules for the banner link (e.g. outline or stronger underline). */
+a:hover {
+  color: white;
+  text-decoration-color: white;
+}
+
+a:focus-visible{
+  color:gray;
+  text-decoration-color: gray;
+}

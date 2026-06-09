@@ -8,7 +8,47 @@ body {
 }
 
 /* TODO(Day05-task04): .gallery { display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); } */
+.gallery { 
+  display:grid; 
+  gap:1rem; 
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
 /* TODO(Day05-task04): .card { background:#fff; border:1px solid #e2e8f0; border-radius:0.9rem; padding:1rem; display:flex; flex-direction:column; gap:.75rem; } */
+
+.card {
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:0.9rem;
+  padding:1rem;
+  display:flex;
+  flex-direction:column; 
+  gap:.75rem;
+}
 /* TODO(Day05-task04): Document: child combinator example, e.g. .card > h2 { margin:0; font-size:1.15rem; } */
+.card > h2 {
+  margin:0;
+  font-size:1.15rem;
+}
 /* TODO(Day05-task04): Document: adjacent sibling example, e.g. .meta > .badge + .price { margin-left:.5rem; font-weight:700; } plus style .badge as a pill. */
+.meta > .badge+.price {
+  margin-left:.5rem;
+  font-weight:700;
+} 
+
+.badge{
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #94a3b8;
+}
 /* TODO(Day05-task04): Style a.cta as inline-block button-like link with padding, border-radius, border; include :hover and :focus-visible. */
+
+a.cta{
+  display: inline-block;
+  width: 50%;
+  border-radius: 10px;
+  background-color: rgb(0, 170, 255);
+  text-decoration: none;
+  color: white;
+  text-align:center;
+  padding: 0.25rem 0.5rem;  
+}
