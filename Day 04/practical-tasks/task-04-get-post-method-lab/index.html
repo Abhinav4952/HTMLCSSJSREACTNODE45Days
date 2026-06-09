@@ -10,8 +10,30 @@
     <main>
       <h1>HTTP method lab</h1>
       <!-- TODO(Day04-task04): Add <section><h2>Search (GET)</h2>...</section> containing a GET form action="#" with labeled search input name="q" and submit "Search". -->
+       <section>
+        <h2>Search (GET)</h2>
+        <form action="#" method="get">
+          <label for="q">Search
+            <input type="text" name="q" id="q">
+          </label>
+          <button type="submit">Search</button>
+        </form>
+       </section>
       <!-- TODO(Day04-task04): Add <section><h2>Report an issue (POST)</h2>...</section> containing a POST form action="#" with labeled summary (text) and details (textarea) fields and submit "Report". -->
+       <section>
+        <h2>Report an Issue</h2>
+        <form action="#" method="post">
+          <label for="">Summary
+            <textarea name="" id=""></textarea>
+          </label>
+          <button type="submit">Report</button>
+        </form>
+       </section>
       <!-- TODO(Day04-task04): Add <section><h2>When to use GET vs POST</h2><p> (>=60 words, original) explaining the tradeoff. -->
+        <section>
+          <h2>When to use GET vs POST</h2>
+          <p>GET method is usually preferred for searches and POST method is preferred for login screens and file uploads. GET method is not preferred for login screens because password is visible in URL,bookmarks, kigs and browser history making it less secure. Similarly search results are usually better to be shareable and bookmarkable</p>
+        </section>
     </main>
   </body>
 </html>

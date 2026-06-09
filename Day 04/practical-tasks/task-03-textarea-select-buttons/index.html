@@ -9,7 +9,24 @@
   <body>
     <main>
       <h1>Feedback form</h1>
-      <!-- TODO(Day04-task03): Add post form action="#" with labeled textarea name="message" required rows>=6 maxlength=600 and help paragraph mentioning 600 char limit. Add labeled select name="category" with disabled/selected first option "Choose a category…" plus three real categories. Add buttons: submit "Send", reset "Clear", button type="button" "Preview". -->
+      <!-- TODO(Day04-task03): Add post form action="#" with labeled textarea name="message" required rows>=6 maxlength=600 and help paragraph mentioning 600 char limit. 
+       Add labeled select name="category" with disabled/selected first option "Choose a category…" plus three real categories. 
+       Add buttons: submit "Send", reset "Clear", button type="button" "Preview". -->
+      <form action="#" method="post">
+        <textarea name="message" id="" rows="6" required maxlength="600"></textarea>
+        <p class="help">600 characters limit</p>
+
+        <select name="category" id="">
+          <option value="" selected>Choose a category...</option>
+          <option value="g">Good</option>
+          <option value="a">Average</option>
+          <option value="b">Bad</option>
+        </select>
+
+        <button type="submit">Send</button>
+        <button type="reset">Clear</button>
+        <button type="button">Preview</button>
+      </form>
     </main>
   </body>
 </html>
