@@ -9,7 +9,29 @@
   <body>
     <main>
       <h1>Conference registration (static)</h1>
-      <!-- TODO(Day04-task01): Add <form action="#" method="post"> containing: (1) fieldset/legend for ticket type with at least two labeled radio options sharing name="ticket"; (2) fieldset/legend for contact with labeled text input name="fullName" and labeled email input name="email"; (3) submit button text "Register". -->
+      <!-- TODO(Day04-task01): Add <form action="#" method="post"> containing: 
+        (1) fieldset/legend for ticket type with at least two labeled radio options sharing name="ticket"; 
+        (2) fieldset/legend for contact with labeled text input name="fullName" and labeled email input name="email"; 
+        (3) submit button text "Register". -->
+
+        <form action="#" method="post">
+          
+          <fieldset>
+            <legend>Ticket Type</legend>
+            <label><input type="radio" name="ticket" id="">One-Way</label>
+            <label><input type="radio" name="ticket" id="">Two-Way</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Contact Information</legend>
+            <label>Full Name</label>
+            <input type="text" name="fullName" id="">
+            <label for="">Email</label>
+            <input type="email" name="email" id="">
+          </fieldset>
+
+          <button type="submit">Register</button>
+        </form>
     </main>
   </body>
 </html>
