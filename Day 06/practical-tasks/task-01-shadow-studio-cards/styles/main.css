@@ -6,6 +6,9 @@
   --brand: #0ea5e9;
 
   /* TODO(Day06-task01): Define --shadow-1, --shadow-2, --shadow-3 as three distinct layered shadows (comma-separated where needed). */
+  --shadow-1: 0 1px 12px rgb(15 23 42 / 0.08);
+  --shadow-2: 0 6px 18px rgb(2 6 23 / 0.12);
+  --shadow-3: 0 18px 48px rgb(2 6 23 / 0.16);
 }
 
 *,
@@ -41,6 +44,7 @@ body {
   font-size: clamp(1.75rem, 1.1rem + 2.4vw, 3rem);
   line-height: 1.1;
   /* TODO(Day06-task01): Add a subtle text-shadow that improves readability on the bright gradient behind the title. */
+  text-shadow: var(--shadow-2);
 }
 
 .lede {
@@ -65,16 +69,19 @@ body {
   border: 1px solid rgb(15 23 42 / 0.08);
   outline: none;
   /* TODO(Day06-task01): Apply resting shadow using var(--shadow-1) OR a deliberate combination; avoid “mud”. */
+  box-shadow: var(--shadow-1);
 }
 
 .card:hover {
   /* TODO(Day06-task01): Increase elevation using var(--shadow-2) (or stronger token). */
+  box-shadow: var(--shadow-2);
 }
 
 .card:focus-visible {
   outline: 3px solid var(--brand);
   outline-offset: 3px;
   /* TODO(Day06-task01): Add a soft outer glow shadow layer that pairs with focus ring (do not remove outline). */
+  box-shadow: 0 0 5px rgb(0, 183, 255);
 }
 
 .cta-row {
@@ -94,15 +101,19 @@ body {
   background: #ffffff;
   color: var(--text);
   /* TODO(Day06-task01): Resting shadow for button. */
+  box-shadow: var(--shadow-1);
 }
 
 .btn:hover {
   /* TODO(Day06-task01): Hover shadow/elevation. */
+  box-shadow: var(--shadow-2);
+
 }
 
 .btn:active {
   transform: translateY(1px);
   /* TODO(Day06-task01): Inset/active shadow to feel “pressed”. */
+  box-shadow: inset 0 0 5px #0f172a;
 }
 
 .btn:focus-visible {

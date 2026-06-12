@@ -12,7 +12,12 @@
    * --step-3: h1-scale
    * Each MUST use clamp(MIN, preferred_with_vw_term, MAX).
    */
-}
+    --step-0: clamp(0.95rem,0.2rem + 1vw,1rem);
+    --step-1: clamp(1rem, 0.5rem + 1.5vw,320px);
+    --step-2: clamp(1.2rem, 0.6rem + 1.8vw,2rem);
+    --step-3: clamp(1.5rem, 0.6rem + 2.2vw, 2.5rem);
+    --pad-x: clamp(1rem, 4vw, 2.5rem);
+  }
 
 *,
 *::before,
@@ -37,6 +42,7 @@ body {
 
   /* TODO(Day06-task02): Set padding-inline using a new variable --pad-x defined with clamp() and a vw term. */
   padding: 1.25rem;
+  padding-inline: var(--pad-x);
 }
 
 .meta {
@@ -48,17 +54,20 @@ h1 {
   margin: 0 0 0.75rem;
   line-height: 1.08;
   /* TODO(Day06-task02): font-size: var(--step-3); */
+  font-size: var(--step-3);
 }
 
 .lede {
   margin: 0 0 1rem;
   color: #334155;
   /* TODO(Day06-task02): font-size: var(--step-1); */
+  font-size: var(--step-1);
 }
 
 p {
   margin: 0.9rem 0;
   /* TODO(Day06-task02): font-size: var(--step-1); */
+  font-size: var(--step-1);
 }
 
 .pullquote {
@@ -69,11 +78,13 @@ p {
   font-style: italic;
   color: #0f172a;
   /* TODO(Day06-task02): Give pullquote a fluid font-size using clamp() where the preferred value includes vw. */
+  font-size: clamp(0.95rem,0.2rem + 1.2vw,1rem);  
 }
 
 footer small {
   color: var(--muted);
   /* TODO(Day06-task02): font-size: var(--step-0); */
+  font-size: var(--step-0);
 }
 
 code {
