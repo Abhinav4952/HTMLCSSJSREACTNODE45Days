@@ -16,16 +16,31 @@
       <section class="specimen" data-label="A">
         <h2>Specimen A</h2>
         <!-- TODO(Day07-task01): Add <p><code>…</code></p> predicting outer border-box width for A after you finish CSS. -->
+         <p>
+          <code>
+            Predicted outer border-box width : 316px <!--Actual : 31.2px-->
+          </code>
+         </p>
       </section>
 
       <section class="specimen specimen-b" data-label="B">
         <h2>Specimen B</h2>
         <!-- TODO(Day07-task01): Add prediction note for B. -->
+         <p>As the box-sizing is border-box, then the width covers content,padding and border. So, outer border-box width = width which is 280px</p>
+         <!--Actual :280px-->
       </section>
 
       <section class="specimen specimen-c" data-label="C">
         <h2>Specimen C (hardest)</h2>
         <!-- TODO(Day07-task01): Add prediction note for C including border + padding + content math. -->
+         <p>As there is no box-sizing mentioned. It is by-default, content-box.</p>
+         <p>So, width = content area only. <br>outer border-box width = content area + padding + border</p>
+         <p>width = min(360px,100%) = 360px = Content area</p>
+         <p>padding = 2vw = 1660*2/100 = 19.84px. Total padding width = 39.68px</p>
+         <p>border = 3px + 3px = 6px</p>
+         <p>Outer border box-width = 360px + 39.68px + 6px = 405.68</p>
+         <!-- Actual - 404.4px -->
+
       </section>
     </main>
   </body>
