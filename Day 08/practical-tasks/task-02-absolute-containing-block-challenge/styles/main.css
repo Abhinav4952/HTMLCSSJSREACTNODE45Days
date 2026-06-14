@@ -13,6 +13,7 @@ body {
 
 .card {
   background: #ffffff;
+  position: relative;
   border: 1px solid rgb(15 23 42 / 0.12);
   border-radius: 14px;
   padding: 16px;
@@ -34,3 +35,5 @@ body {
 
 /* TODO(Day08-task02): Fix containing block so .badge anchors to .card padding edges as specified in TASK_INSTRUCTIONS.md. */
 /* TODO(Day08-task02): Add a short comment explaining which ancestor was the problem and why. */
+/* An absolute element moves with respect to its positioned parent elment, and in this case it moves w.r.t body, because card was a static element */
+/* So, in order for badge to move w.r.t the card it needs to be a non-static element so position : relative is applied on .card */

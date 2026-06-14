@@ -21,6 +21,7 @@ body {
 
 .app {
   min-height: 100vh;
+  padding-top: 56px;
 }
 
 .topbar {
@@ -38,6 +39,7 @@ body {
 
 .shell {
   /* TODO(Day08-task03): layout shell as described in top comments */
+  display: flex;
 }
 
 .sidebar {
@@ -51,6 +53,8 @@ body {
   margin: 0 0 0.75rem;
   font-weight: 700;
   /* TODO(Day08-task03): make sticky within the scrolling main column as specified */
+  position: sticky;
+  top: 8px;
 }
 
 nav a {
@@ -62,6 +66,9 @@ nav a {
 .content {
   padding: 1rem 1.25rem 2rem;
   line-height: 1.6;
+  height: 500px;
+  /* position: ; */
+  overflow: auto;
 }
 
 .filler {
