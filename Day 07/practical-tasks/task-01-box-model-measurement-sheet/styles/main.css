@@ -19,5 +19,27 @@ main {
 }
 
 /* TODO(Day07-task01): Specimen A: width 280px; padding 16px each side; border 2px solid #94a3b8; margin 0. */
+.specimen[data-label="A"] {
+  width: 280px;
+  padding: 16px;
+  border: 2px solid #94a3b8;
+  margin: 0;
+}
+
 /* TODO(Day07-task01): Specimen B: width 280px content area under YOUR global box-sizing choice—make outer border-box width equal 280px total (interpret carefully) + border 1px + padding 12px each side as needed—document your interpretation in HTML note. */
+.specimen[data-label="B"] {
+  box-sizing: border-box;
+  width: 280px;
+  padding : 12px;
+  border: 1px solid #94a3b8;
+}
+
+
+
 /* TODO(Day07-task01): Specimen C: width min(360px, 100%); padding clamp(0.75rem, 2vw, 1.25rem); border 3px solid #0ea5e9; */
+
+.specimen[data-label="C"] {
+  width: min(360px,100%);
+  padding: clamp(0.75rem,2vw,1.25rem);
+  border: 3px solid #0ea5e9;
+}

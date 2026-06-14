@@ -40,12 +40,12 @@ h2 {
 }
 
 #b {
-  margin-top: 24px;
+  margin-top: 8px;
   margin-bottom: 16px;
 }
 
 #c {
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 .note {
@@ -53,5 +53,4 @@ h2 {
   color: #475569;
 }
 
-/* TODO(Day07-task02): Add a brief diagnosis comment block at the top of THIS file (above selectors) explaining the collapse. */
 /* TODO(Day07-task02): Adjust rules (you may replace the margin declarations above) to hit the exact target gaps. */

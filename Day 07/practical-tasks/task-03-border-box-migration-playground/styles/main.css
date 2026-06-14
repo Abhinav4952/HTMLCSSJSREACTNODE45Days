@@ -4,6 +4,10 @@
 
 /* TODO(Day07-task03): Apply universal border-box sizing. */
 
+*{
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -13,7 +17,7 @@ body {
 .page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 1.25rem;
+  padding: 2rem 1.25rem; 
 }
 
 .row {
@@ -23,8 +27,7 @@ body {
 }
 
 .legacy .tile {
-  box-sizing: content-box;
-  width: 33.333%;
+  flex:1;
   padding: 12px;
   border: 1px solid #0f172a;
 }

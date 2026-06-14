@@ -1,8 +1,11 @@
-/* Day06-task03 — CHALLENGE
+/* Day06-task03 approach:
  * The original author tried to make each nested .module "slightly smaller" using em font-size.
  * That compounds with em-based paddings on chips. Fix it.
  */
 
+/* For nested modules, font-size must be written in rem units instead of em so, it stays consistent and doesn't shrink as nesting increases and text stays readable */
+/* Even padding and border radius must be in rem units so spacing stays consistent */
+ 
 :root {
   color-scheme: light;
   --text: #0f172a;
@@ -36,7 +39,7 @@ body {
   padding: 1rem;
   background: #ffffff;
   margin-top: 1rem;
-  font-size: 0.95em;
+  font-size: 0.95rem;
 }
 
 .module .module {
@@ -68,9 +71,9 @@ p {
 /* FOOTGUN: em padding + em border radius scales with compounded font-size */
 .chip {
   display: inline-block;
-  font-size: 0.95em;
-  padding: 0.55em 0.75em;
-  border-radius: 999em;
+  font-size: 0.95rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 999rem;
   border: 1px solid rgb(15 23 42 / 0.14);
   background: #e0f2fe;
 }

@@ -42,7 +42,7 @@ describe("parsePx", () => {
   it("parses integers and decimals", () => {
     expect(parsePx("12px")).toBe(12);
     expect(parsePx(" 12.5px ")).toBe(12.5);
-  });
+});
 
   it("returns null for invalid strings", () => {
     expect(parsePx("12")).toBeNull();
@@ -120,3 +120,5 @@ describe("vwContributionPx", () => {
     expect(vwContributionPx(NaN, 800)).toBeNaN();
   });
 });
+
+

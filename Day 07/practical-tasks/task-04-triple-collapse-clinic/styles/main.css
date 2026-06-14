@@ -46,7 +46,7 @@ body {
   margin: 0 0 12px;
 }
 .b1 {
-  margin: 12px 0 0;
+  margin: 18px 0 0;
 }
 
 .wrap2 {
@@ -59,7 +59,7 @@ body {
   margin: 0 0 18px;
 }
 .b2 {
-  margin: 18px 0 0;
+  margin: 28px 0 0;
 }
 
 .empty3 {
@@ -71,8 +71,9 @@ body {
 }
 
 .a3 {
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 /* TODO(Day07-task04): Adjust rules to meet all three targets simultaneously. */
 /* TODO(Day07-task04): Add a short lessons-learned comment block at the bottom of this file. */
+/* For two adjacent sibling elements, when margins are applied for both. The total gap b/w them won't be the sum of two margins but the maximum value of both values */
