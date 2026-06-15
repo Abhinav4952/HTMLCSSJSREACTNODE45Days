@@ -234,6 +234,7 @@ Before declaring the **entire** 45-day generation complete:
 - [ ] Each day has **theory + 3–4 tasks**.
 - [ ] Each JS task has **tests** + documented commands.
 - [ ] Each React/Node task has **EVALUATION_CRITERIA.md** with weighted rubric.
+- [ ] (Optional) Instructor numeric grading uses **`Day XX/INSTRUCTOR_GRADING_1-100.md`** (day-level) plus **`05-INSTRUCTOR-GRADING-1-100-AND-AI-EVALUATION-GUIDE.md`** (see Days **01–08** reference rollout).
 - [ ] Root `.gitignore` + root `README.md` exist per `02`.
 - [ ] No `node_modules` committed.
 
@@ -243,4 +244,6 @@ Before declaring the **entire** 45-day generation complete:
 
 | Version | Date | Notes |
 |---------|------|-------|
+| `1.0.2` | 2026-06-04 | Day-level `Day XX/INSTRUCTOR_GRADING_1-100.md` (not per-task). |
+| `1.0.1` | 2026-06-04 | Reference optional `INSTRUCTOR_GRADING_1-100.md` + guide `05-…` for instructor/AI numeric rubrics. |
 | `1.0.0` | 2026-06-03 | Initial map + authoring guide. |
