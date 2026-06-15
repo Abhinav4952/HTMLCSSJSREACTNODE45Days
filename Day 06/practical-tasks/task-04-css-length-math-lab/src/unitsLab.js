@@ -1,5 +1,3 @@
-import { L } from "vitest/dist/chunks/reporters.nr4dxCkA.js";
-
 export function clampNumber(value, min, max) {
   // TODO(Day06-task04): Implement clampNumber per TASK_INSTRUCTIONS.md
   if(Number.isNaN(min) || Number.isNaN(value) || Number.isNaN(max)) {
@@ -23,9 +21,11 @@ export function parsePx(input) {
   if(input.length==0) return null;
   else if(!input.endsWith("px")) return null;
 
-  if(Number.isNaN(Number(input.slice(0,-2)))) return null;
-  console.log("Slice value : ",input.slice(-2));
-  return Number(input.slice(0,-2));
+  const raw = input.slice(0, -2).trim();
+  if (raw.length === 0) return null;
+  const n = Number(raw);
+  if (Number.isNaN(n)) return null;
+  return n;
 }
 
 export function parseRem(input) {
@@ -36,9 +36,11 @@ export function parseRem(input) {
   input = input.trim()
   if(input.length==0) return null;
   else if(!input.endsWith("rem")) return null;
-  else if(Number.isNaN(Number(input.slice(0,-3)))) return null;
-
-  return Number(input.slice(0,-3));
+  const raw = input.slice(0, -3).trim();
+  if (raw.length === 0) return null;
+  const n = Number(raw);
+  if (Number.isNaN(n)) return null;
+  return n;
 }
 
 export function remToPx(rem, rootPx = 16) {
@@ -50,9 +52,8 @@ export function remToPx(rem, rootPx = 16) {
 }
 
 function product(arr) {
-  let pro = 0;
-
-  for(let i of arr) {
+  let prod = 1;
+  for (const i of arr) {
     prod *= i;
   }
   return prod;
@@ -79,10 +80,3 @@ export function vwContributionPx(vw, viewportWidthPx) {
 
   return vw * viewportWidthPx / 100;
 }
-
-console.log(parsePx("12"))
-console.log(parsePx("px"))
-console.log(parsePx("em"))
-console.log(parsePx("12em"))
-console.log(parsePx(""))
-console.log(parsePx("   "))
