@@ -173,6 +173,7 @@ Every task folder **must** contain:
 **Optional but welcome:**
 
 - `README.md` inside the task (only if it adds clarity beyond `TASK_INSTRUCTIONS.md`; avoid duplication).
+- `INSTRUCTOR_GRADING_1-100.md` — **optional instructor/AI-only** numeric rubric. **Recommended placement:** one file per **day** at **`Day XX/INSTRUCTOR_GRADING_1-100.md`** (not inside each `task-*` folder). See `course-generation-instructions/05-INSTRUCTOR-GRADING-1-100-AND-AI-EVALUATION-GUIDE.md` and `scripts/emit-instructor-grading-days-01-08.mjs` for the Days **01–08** reference pattern. Keep **candidate-facing** grading in each task’s `EVALUATION_CRITERIA.md`.
 
 ---
 
