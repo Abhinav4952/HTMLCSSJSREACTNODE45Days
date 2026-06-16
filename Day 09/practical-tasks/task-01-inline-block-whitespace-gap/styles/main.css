@@ -15,6 +15,7 @@ body {
   padding: 0.5rem;
   border-radius: 12px;
   background: #ffffff;
+  display: flex;
 }
 
 .item {
@@ -32,3 +33,7 @@ body {
 
 /* TODO(Day09-task01): Remove unwanted gaps using ONE allowed strategy from TASK_INSTRUCTIONS.md. */
 /* TODO(Day09-task01): Add a comment naming the strategy. */
+
+/* To remove unwanted whitespace between inline-block elements we can 
+apply display: flex on the parent element which completely removes the whitespace
+and later apply our required space using the gap property on parent element*/

@@ -12,11 +12,18 @@ body {
 
 /* TODO(Day09-task04): Implement responsive wrapping row + cards per TASK_INSTRUCTIONS.md */
 
+.row{
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 .card {
   background: #ffffff;
   border: 1px solid rgb(15 23 42 / 0.12);
   border-radius: 14px;
   padding: 0.75rem;
+  flex: 1 1 260px;
 }
 
 code {
