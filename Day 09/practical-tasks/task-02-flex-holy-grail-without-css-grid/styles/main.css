@@ -23,12 +23,9 @@ body {
   display: flex;
 }
 
-.hg-left{
-  width: 260px;
-}
-
+.hg-left,
 .hg-right {
-  width: 260px;
+  flex: 0 0 260px;
 }
 
 .hg-main{
@@ -37,4 +34,8 @@ body {
   min-height: 0;
 }
 
-
+@media(max-width:720px) {
+  .hg-middle{
+    flex-direction: column;
+  }
+}

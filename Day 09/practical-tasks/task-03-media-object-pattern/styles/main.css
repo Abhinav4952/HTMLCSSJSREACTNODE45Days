@@ -30,7 +30,7 @@ body {
   gap: 0.75rem;
 }
 
-.mo_body{
+.mo__body{
   flex: 1 1 auto;
   min-width: 0;
 }
