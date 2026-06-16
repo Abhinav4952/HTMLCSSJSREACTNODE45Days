@@ -27,10 +27,16 @@ thead th {
 }
 
 /* TRAP RULE (intentionally wrong scope): */
-tr:nth-child(even) td,
-tr:nth-child(even) th {
+tbody tr:nth-of-type(even) td,
+tbody tr:nth-of-type(even) th {
   background: #f1f5f9;
 }
 
 /* TODO(Day10-task01): Replace the trap rule with correct zebra striping for tbody rows only, keeping thead distinct. */
-/* TODO(Day10-task01): Add explanation comment per EVALUATION_CRITERIA.md */
+/* TODO(Day10-task01): Add explanation comment per EVALUATION_CRITERIA.md*/
+/*
+   Originally tr:nth-child(even) was used to entire table
+   Because it was not limited to tbody, header rows could be affected.
+   The corrected selector targets only tbody rows for zebra striping.
+   nth-of-type(even) is used to alternate table rows while keeping thead distinct.
+*/
