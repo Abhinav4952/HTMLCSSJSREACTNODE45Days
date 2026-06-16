@@ -18,6 +18,12 @@ body {
 
 .checklist li {
   margin: 0.6rem 0;
+  display: flex;
+  gap: 0.2rem;
+
 }
 
 /* TODO(Day10-task02): Add ::before icons/markers for each li (decorative), and lay out li as flex row with gap. */
+.checklist li::before{
+  content: "▢";
+}
