@@ -39,3 +39,12 @@ button {
 }
 
 /* TODO(Day10-task03): Add focus-visible styling meeting TASK_INSTRUCTIONS.md */
+.panel button:focus-visible{
+  outline: 1px solid #fbfbfb;
+  outline-offset: 5px;
+}
+
+.panel button:hover{
+  background-color: #364873;
+  transition: 0.2s;
+}
