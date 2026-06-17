@@ -10,15 +10,18 @@ body {
   padding: 2rem 1.25rem;
 }
 
+/* TODO(Day09-task01): Remove unwanted gaps using ONE allowed strategy from TASK_INSTRUCTIONS.md. */
+
 .toolbar {
   border: 1px dashed #94a3b8;
   padding: 0.5rem;
   border-radius: 12px;
   background: #ffffff;
+  display: flex;
+  gap: 0.75rem;
 }
 
 .item {
-  display: inline-block;
   padding: 0.45rem 0.65rem;
   border-radius: 999px;
   border: 1px solid rgb(15 23 42 / 0.12);
@@ -30,5 +33,8 @@ body {
   color: #475569;
 }
 
-/* TODO(Day09-task01): Remove unwanted gaps using ONE allowed strategy from TASK_INSTRUCTIONS.md. */
 /* TODO(Day09-task01): Add a comment naming the strategy. */
+
+/* To remove unwanted whitespace between inline-block elements we can 
+apply display: flex on the parent element which completely removes the whitespace
+and later apply our required space using the gap property on parent element*/
