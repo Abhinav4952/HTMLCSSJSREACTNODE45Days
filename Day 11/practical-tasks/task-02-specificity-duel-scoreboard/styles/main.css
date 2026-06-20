@@ -87,7 +87,10 @@ body {
   color: #22c55e;
 }
 
-/* TODO(Day11-task02): Add exactly ONE new rule (selector of your choice) so Match 1 final color wins as #7c3aed without !important and without inline styles. */
+
+#scoreboard .matches .match[data-match="1"] p.champion-line {
+  color: #7c3aed;
+}
 
 /* Match 2: attribute + class warfare */
 section.arena#scoreboard .matches li[data-match="2"] p {
@@ -99,11 +102,16 @@ section.arena#scoreboard .matches li[data-match="2"] p {
   color: #facc15;
 }
 
-/* TODO(Day11-task02): Add rules so Match 2 final color is #0ea5e9. You may add up to TWO rules for Match 2 only (no !important). Hint: you must beat BOTH the purple section rule and the late yellow tie-breaker. */
+
+.arena#scoreboard .matches .match[data-match="2"] p.champion-line {
+  color: #0ea5e9;
+}
 
 /* Match 3 trap: ID tries to dominate */
 #scoreboard .trap {
   color: #64748b;
 }
 
-/* TODO(Day11-task02): Win the trap using a selector that beats `#scoreboard .trap` under normal specificity rules, still without !important. Final color must be #f97316. */
+#scoreboard .match[data-match="3"] .champion-line[data-trap="on"] {
+  color: #f97316;
+}
