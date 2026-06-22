@@ -28,6 +28,9 @@ body {
 .toolbar {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: end;
+
 }
 
 .toolbar button {
@@ -36,6 +39,7 @@ body {
   color: #e2e8f0;
   padding: 0.45rem 0.65rem;
   border-radius: 0.5rem;
+  min-width: 5.5rem;
 }
 
 .hint {
@@ -44,6 +48,16 @@ body {
   color: #94a3b8;
 }
 
-/* TODO(Day14-task02): Make the toolbar wrap (`flex-wrap`) and align wrapped rows to the end on the cross axis (end/right in LTR). Keep buttons readable (min-width ~5.5rem). */
+.save{
+  order: -3;
+}
 
-/* TODO(Day14-task02): Use `order` to move "Ship" visually immediately after "Run" WITHOUT changing HTML order (document in a CSS comment how this affects focus order vs visual order). */
+.run{
+  order:-2;
+}
+
+.ship{
+  order: -1;
+}
+
+/* Using order on flex-items will not change the focus order in the DOM but it will change for screenreaders i.e., visual order depends on this order property */

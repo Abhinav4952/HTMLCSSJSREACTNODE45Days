@@ -11,10 +11,15 @@ body {
   color: #0f172a;
 }
 
+/* Challenge starter: this layout commonly overflows horizontally at phone widths because the main pane can't shrink below the long unbroken token. */
+:root{
+  --shell-bg : rgba(72, 136, 152, 0.636);
+}
 .shell {
   display: flex;
   gap: 1rem;
   padding: 1rem;
+  background-color: var(--shell-bg);
 }
 
 .rail {
@@ -31,16 +36,12 @@ body {
   border-radius: 0.75rem;
   padding: 0.75rem;
   background: #fff;
+  min-width: 0;  
 }
 
 .mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   border: 1px dashed #94a3b8;
   padding: 0.5rem;
+  overflow-wrap: anywhere;
 }
-
-/* Challenge starter: this layout commonly overflows horizontally at phone widths because the main pane can't shrink below the long unbroken token. */
-
-/* TODO(Day14-task04): Fix overflow using `min-width: 0` (or equivalent documented flex min-size fix) on the correct flex item(s), plus `overflow-wrap: anywhere` (or `break-all`) on `.mono` if needed. No horizontal page scroll at 390px wide. */
-
-/* TODO(Day14-task04): Add a subtle background on `.shell` using a CSS custom property `--shell-bg` declared on `:root` and referenced here. */

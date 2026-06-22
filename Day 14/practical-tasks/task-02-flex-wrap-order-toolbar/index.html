@@ -10,15 +10,16 @@
     <header class="app-header">
       <div class="brand">Ops</div>
       <nav class="toolbar" aria-label="Primary actions">
-        <button type="button">Save</button>
-        <button type="button">Run</button>
-        <button type="button">Diff</button>
-        <button type="button">Ship</button>
-        <button type="button">Rollback</button>
+        <button type="button" class="save">Save</button>
+        <button type="button" class="run">Run</button>
+        <button type="button" class="diff">Diff</button>
+        <button type="button" class="ship">Ship</button>
+        <button type="button" class="roll">Rollback</button>
       </nav>
     </header>
     <p class="hint">
-      <!-- TODO(Day14-task02): Describe how wrapping should behave when the viewport is narrow (your words). -->
+       When the viewport is too narrow for the elements, they should automatically move to the next line instead of overflowing or excessive squeezing of elements.
+       One way of performing this is <code>display : flex</code> and <code>flex-wrap : wrap</code>. <code>flex-wrap</code> ensures an element moves into the next line when there is not enough space available
     </p>
   </body>
 </html>
