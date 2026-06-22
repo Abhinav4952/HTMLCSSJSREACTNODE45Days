@@ -10,14 +10,22 @@
     <header class="site-header">
       <p class="site-title">Courseware Console</p>
       <!-- TODO(Day12-task02): Add a primary nav with aria-label and at least 3 links (use your own link text/hrefs with # anchors). -->
+       <nav aria-label="Primary">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+       </nav>
     </header>
 
     <div class="layout">
-      <!-- TODO(Day12-task02): Add a short HTML comment (one or two sentences) explaining why `main` is ordered before `aside` in the DOM for this page. -->
+       <!-- aside consists of the other links related to the page content and main consists of the content of the page. 
+        So, for better accessibility main is placed before aside in DOM so screen readers first encounter the main content -->
       <main class="layout__main" id="main">
         <h1>Lesson outline</h1>
         <p>
-          <!-- TODO(Day12-task02): Add original paragraph copy about why landmarks help screen reader users. -->
+           Landmarks allows screen readers to understand structure of page and jump easily between header, navigation, main content, footer etc. This recudes the need to read through every element of the page and makes navigation easier
         </p>
         <section aria-labelledby="modules-heading">
           <h2 id="modules-heading">Modules</h2>
@@ -30,7 +38,16 @@
       </main>
 
       <aside class="layout__aside" aria-label="Related resources">
-        <!-- TODO(Day12-task02): Add a short list of related links + one figure/code example block using figure/pre/code. -->
+         <h3>Related Links</h3>
+         <ul>
+          <li><a href="#">Semantic Elements</a></li>
+          <li><a href="#">HTML Landmarks</a></li>
+         </ul>
+        <figure>
+            <pre><code>&lt;main id="main"&gt;Page content&lt;/main&gt;</code></pre>
+            <figcaption>Example of a semantic main landmark.</figcaption>
+          </figure>
+
       </aside>
     </div>
 

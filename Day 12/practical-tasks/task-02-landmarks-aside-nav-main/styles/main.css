@@ -49,6 +49,27 @@ body {
   background: rgba(15, 23, 42, 0.65);
 }
 
-/* TODO(Day12-task02): Style nav as horizontal on wide screens and stacked on narrow (use flex + wrap). */
+nav ul{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
 
-/* TODO(Day12-task02): Improve link colors + :focus-visible rings to meet basic contrast on dark background. */
+nav li{
+  list-style: none;
+}
+li:hover{
+  text-decoration: underline;
+  transition: text-decoration 0.5s ease-in-out;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:focus-visible{
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
