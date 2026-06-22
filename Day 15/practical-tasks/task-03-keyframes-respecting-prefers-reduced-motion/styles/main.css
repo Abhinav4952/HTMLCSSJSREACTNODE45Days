@@ -37,8 +37,20 @@ body {
   height: 0.75rem;
   border-radius: 999px;
   background: #2563eb;
+  animation: animate 1.1s ease-in-out infinite;
 }
 
-/* TODO(Day15-task03): Create `@keyframes` that animates the dot using ONLY `transform` and/or `opacity` (no width/height/layout transitions). Loop ~1.1s, ease-in-out, infinite. */
+@keyframes animate {
+  0%,100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
 
-/* TODO(Day15-task03): Add `@media (prefers-reduced-motion: reduce)` that replaces the looping animation with a static state OR a single subtle opacity pulse no more than once (document choice in CSS comment). */
+@media(prefers-reduced-motion: reduce) {
+  .dot{
+    animation: none;
+  }
+}

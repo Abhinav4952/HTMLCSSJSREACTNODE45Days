@@ -43,12 +43,48 @@ label {
   color: #334155;
 }
 
-/* TODO(Day15-task01): Style file inputs specifically (e.g. `input[type="file"]`) with improved borders, padding, and a clear `:focus-visible` outline. */
+input[type="file"]{
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 0.25rem;
+  width: fit-content;
+  cursor: pointer;
+}
 
-/* TODO(Day15-task01): Use attribute selectors to style the three link types differently:
-   - in-app links that target hashes (`href` begins with `#`)
-   - external `https` links
-   - `mailto:` links
-   Keep text readable (contrast) and do not remove underlines entirely unless you replace with another clear affordance. */
+input[type="file"]:focus-visible{
+  outline: 2px solid black;
+  outline-offset: 2px;
+}
 
-/* TODO(Day15-task01): Add one more attribute selector rule targeting `input[accept*="zip"]` (or equivalent) to visually “tag” the picker as archive-oriented (border color is enough). */
+a[href^="#"] {
+  color: #25caeb;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+a[href^="#"]:hover {
+  color: #1d4ed8;
+}
+
+a[href^="https"] {
+  color: #1ed461;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+a[href^="https"]:hover {
+  color: #096e30;
+}
+
+a[href^="mailto:"] {
+  color: #bc8fe6;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+}
+
+a[href^="mailto:"]:hover {
+  color: #7e22ce;
+}
+input[accept*="zip"] {
+  border-color: darkgoldenrod; 
+}

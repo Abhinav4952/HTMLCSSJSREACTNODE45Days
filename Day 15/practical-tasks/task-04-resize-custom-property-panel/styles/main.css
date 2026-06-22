@@ -7,6 +7,8 @@
 :root {
   --panel-bg: #ffffff;
   --panel-border: #e2e8f0;
+  --panel-shadow: 2px 2px 6px lightgrey;
+  --panel-head-bg: rgba(233, 216, 65, 0.641);
 }
 
 body {
@@ -28,6 +30,7 @@ body {
 }
 
 .panel {
+  resize: both;
   margin-top: 1rem;
   width: min(520px, 100%);
   max-width: 100%;
@@ -36,6 +39,7 @@ body {
   background: var(--panel-bg);
   color: #0f172a;
   overflow: auto;
+  transition: box-shadow 240ms;
 }
 
 .panel__head {
@@ -43,6 +47,8 @@ body {
   border-bottom: 1px solid var(--panel-border);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-weight: 750;
+  background-color: var(--panel-head-bg);
+  box-shadow: var(--panel-shadow);
 }
 
 .panel__body {
@@ -60,8 +66,6 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* TODO(Day15-task04): Make `.panel` user-resizable using `resize` + appropriate `overflow` (document any browser limitations in the HTML note TODO). */
-
-/* TODO(Day15-task04): Add at least TWO additional custom properties on `:root` (e.g. `--panel-shadow`, `--panel-head-bg`) and use them on `.panel` / `.panel__head` to prove token wiring. */
-
-/* TODO(Day15-task04): Add a smooth `box-shadow` transition on `.panel:hover` (only shadow; do not animate layout). */
+.panel:hover{
+  box-shadow: var(--panel-shadow);
+}
