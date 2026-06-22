@@ -56,6 +56,41 @@ body {
   margin-bottom: 0.75rem;
 }
 
-/* TODO(Day13-task04): Mobile-first: default stacked layout is OK (aside above main). At min-width ~900px, switch `.shell__body` to a two-column layout with aside fixed width (260–320px) and main flexible. Use gap. */
 
-/* TODO(Day13-task04): Ensure no horizontal scroll at common mobile widths (<=430px) after your form controls are added. */
+select{
+  padding: 0.2rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.73);
+  border-radius: 0.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+label{
+  font-weight: 500;
+}
+
+@media(min-width:900px) {
+  .shell__body{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 0.5rem;
+  }
+}
+
+.shell,
+.shell__body,
+.shell__rail,
+.shell__main,
+form,
+select {
+  max-width: 100%;
+}
+
+select {
+  width: 50%;
+}

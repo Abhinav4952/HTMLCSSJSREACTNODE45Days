@@ -16,13 +16,37 @@
 
       <div class="shell__body">
         <aside class="shell__rail" aria-label="Filters">
-          <!-- TODO(Day13-task04): Add a short filter form (no submit server): label+select with 3 options, label+checkbox group (2), all properly associated. -->
+          <form action="">
+            <div class="status-field">
+              <label for="status">Device Status</label>
+                <select name="status" id="status">
+                  <option value="0" selected>All Devices</option>
+                  <option value="1">Online</option>
+                  <option value="2">Offline</option>
+                </select>
+            </div>
+            <!-- <br> -->
+            <fieldset class="dtype-field">
+              <legend>Data Type</legend>
+
+              <div>
+                <input type="checkbox" id="temp" name="data-type" value="temp">
+                <label for="temp">Temperature</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="net-act" name="data-type" value="net-act">
+                <label for="net-act">Network Activity</label>
+              </div>
+            </fieldset>
+          </form>           
         </aside>
 
         <main class="shell__main" id="main">
           <h2>Live stream</h2>
           <p>
-            <!-- TODO(Day13-task04): Add original paragraph copy (2–3 sentences) about responsive layout tradeoffs. -->
+             Responsive design layers help pages to adapt to different screen sizes and devices. The tradeoff is that we need to add more CSS rules making it harder to maintain and debug.
+             But these layers help increase usability across mobile,tablet and desktops etc.
           </p>
         </main>
       </div>

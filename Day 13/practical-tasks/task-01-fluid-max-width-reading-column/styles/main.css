@@ -7,15 +7,14 @@ body {
 
 .paper {
   margin: 0 auto;
-  padding: 1.25rem 1rem 2.5rem;
   background: #fff;
   border: 1px solid #e2e8f0;
+  max-width: 65ch;
+  padding: clamp(0.75rem,2vw,1.5rem);
+  line-height: 1.7;
+
 }
 
 .meta {
   color: #64748b;
 }
-
-/* TODO(Day13-task01): Constrain readable measure using max-width in ch (pick a value 60–75ch) and sensible padding using clamp() for gutters. */
-
-/* TODO(Day13-task01): Set line-height for comfortable reading (1.6–1.8) on .paper paragraphs. */
