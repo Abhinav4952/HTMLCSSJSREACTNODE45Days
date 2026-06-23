@@ -3,16 +3,53 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Day 12 — Task 01 — Semantic article page</title>
+    <title>Day 12 — Task 01 — Semantic Article Page</title>
     <link rel="stylesheet" href="styles/main.css">
   </head>
+
   <body>
-    <!-- TODO(Day12-task01): Add a skip link as the first focusable element targeting #main (text in your own words). -->
+    <!-- Skip link: first focusable element -->
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-    <!-- TODO(Day12-task01): Wrap the page in a landmark structure: header (site title), nav (primary), main (id="main"), aside (related), footer. Use real headings (h1–h3) with sane levels. -->
+    <header>
+      <h1>Semantic Article Page</h1>
+    </header>
 
-    <p class="placeholder">
-      Replace this placeholder paragraph with your finished semantic layout in HTML (delete this paragraph when done).
-    </p>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Articles</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+
+    <main id="main">
+      <article>
+        <h2>Understanding Semantic HTML</h2>
+
+        <p>
+          Semantic HTML elements are contractual communication between your UI, browsers, assistive technologies, search engines, and future maintainers.
+        </p>
+        <section>
+          <h3>Why It Matters?</h3>
+          <p>
+              Landmarks let screen reader users jump efficiently (“go to main”). Search engines infer page intent. CSS selectors become clearer: main article h1 reads like English.          </p>
+        </section>
+      </article>
+    </main>
+
+    <aside aria-label="Related Docs">
+      <h2>Related Documents</h2>
+
+      <ul>
+        <li><a href="#">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+      </ul>
+    </aside>
+
+    <footer>
+      <p><small>Day 12 - Task 01</small></p>
+    </footer>
   </body>
 </html>

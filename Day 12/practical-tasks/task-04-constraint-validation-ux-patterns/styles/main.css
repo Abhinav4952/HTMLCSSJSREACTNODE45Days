@@ -33,8 +33,28 @@ body {
   font-weight: 600;
 }
 
-/* TODO(Day12-task04): Hide `.error` by default and reveal it when the handle input is `:user-invalid` (preferred). Include a commented fallback for browsers without `:user-invalid` (e.g., rely on `:invalid` only after first form submit attempt is NOT detectable in pure CSS—document the limitation honestly in a CSS comment). */
+.error {
+  display: none;
+}
 
-/* TODO(Day12-task04): Add `:focus-visible` ring styles for the input and button. */
+input:user-invalid ~ .error {
+  display: block;
+}
 
-/* TODO(Day12-task04): Add a subtle border color shift on the input when `:user-valid` / `:user-invalid` is supported; keep normal border otherwise. */
+
+input:focus-visible,
+button:focus-visible{
+  outline: 2px solid black;
+  outline-offset: 2px;
+}
+
+/* CSS alone cannot determine the first form submit attempt. So, using :invalid will apply the styles before the user even interacts with the form.
+By using :user-invalid, we can ensure that the form will go to invalid state only after first submit attempt */
+
+input:user-invalid{
+  border-color: red;
+}
+
+input:user-valid{
+  border-color: green;
+}

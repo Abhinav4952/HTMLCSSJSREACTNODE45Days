@@ -19,15 +19,17 @@
             autocomplete="username"
             minlength="3"
             maxlength="15"
-            pattern="[a-z][a-z0-9_-]{2,14}"
+            pattern="/^[a-z][a-z0-9_-]{2,14}$/"
             required
             aria-describedby="handle-help handle-error"
           >
           <p id="handle-help" class="help">
-            <!-- TODO(Day12-task04): Replace with human-readable rules (your wording) that match the pattern. -->
-          </p>
+            Start your username with a lowercase letter (a–z).<br>
+            After the first letter, you may use lowercase letters, numbers, underscores (_), or hyphens (-).<br>
+            Your username must be between 3 and 15 characters long in total.<br>
+            </p>
           <p id="handle-error" class="error" role="alert">
-            <!-- TODO(Day12-task04): Put a short, friendly invalid message here (plain text). -->
+             Invalid Username. Please use the above rules to create a handle              
           </p>
         </div>
 
@@ -35,4 +37,5 @@
       </form>
     </main>
   </body>
+  
 </html>

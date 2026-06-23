@@ -45,11 +45,58 @@ input {
   padding: 0.55rem 0.65rem;
 }
 
-/* TODO(Day12-task03): Style invalid vs valid states using :user-invalid and :user-valid where supported; provide a graceful fallback using :invalid/:valid only on fields that won't false-positive before interaction (document your approach in a short CSS comment). */
+/* Used :user-valid/:user-invalid when supported.
+   Fallback to :valid/:invalid for older browsers. */
 
-/* TODO(Day12-task03): Layout fieldsets using CSS grid (1 col mobile, 2 col desktop) without breaking field order. */
+input:user-valid,
+input:valid {
+  border: 2px solid green;
+}
+
+input:user-invalid,
+input:invalid {
+  border: 2px solid red;
+}
+
+
+fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  fieldset {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
 
 .form-footnote {
   color: #475569;
   font-size: 0.95rem;
+}
+
+.btn-group{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+button{
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: rgb(24, 193, 24);
+}
+
+button[type="reset"] {
+  background-color: rgb(24, 151, 193);
 }
