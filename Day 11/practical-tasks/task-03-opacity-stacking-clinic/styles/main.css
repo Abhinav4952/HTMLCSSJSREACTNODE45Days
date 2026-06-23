@@ -56,11 +56,14 @@ body {
   max-width: 52ch;
 }
 
-/* TODO(Day11-task03): For `.stack--opacity`, create a translucent “sheet” feel using `opacity` on a wrapper element you add via CSS only... BUT the instructions forbid changing HTML structure, so use the existing `.stack__media` + `.stack__content` layering: apply opacity on `.stack--opacity .stack__content` OR `.stack--opacity` as a whole per your design goal. The observable requirement: text inside Stack A must look *more faded* than Stack B text when both backgrounds are similarly strong. */
+.stack--opacity .stack__content{
+  opacity: 0.8;
+}
 
-/* TODO(Day11-task03): For `.stack--rgba`, keep text at full foreground strength while tinting only the overlay layer using `background-color` with alpha (rgb(... / ...) syntax is OK). The stripy background should remain partially visible. */
-
-/* TODO(Day11-task03): Add a subtle `backdrop-filter` ONLY on Stack B (optional). If unsupported, page should still look acceptable. */
+.stack--rgba .stack__content {
+  background-color: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(2px);
+}
 
 .checklist {
   margin-top: 1.25rem;
