@@ -48,8 +48,36 @@ body {
   outline-offset: 3px;
 }
 
-/* TODO(Day15-task02): For `.card--layout`, add `:hover` and/or `:focus-visible` state that transitions `width` from 240px to 320px (and back) over ~240ms. Keep content from overflowing awkwardly (you may allow wrapping). */
+.card--layout{
+  transition: width 240ms;
+  display: flex;
+  flex-wrap: wrap;
+}
 
-/* TODO(Day15-task02): For `.card--transform`, add `:hover` and/or `:focus-visible` state that transitions `transform: translateY(...)` (or scale) instead of changing layout width. Start at translateY(0), end at translateY(-6px). */
+.card--layout:hover{
+  width: 320px;
+}
 
-/* TODO(Day15-task02): Add `@media (prefers-reduced-motion: reduce)` that removes/neutralizes the motionful transitions/animations for BOTH cards (instant snap is OK). */
+.card--layout:focus-visible{
+  width: 320px;
+}
+
+.card--transform{
+  transform: translateY(0);
+  transition: transform 240ms ease;
+}
+
+.card--transform:hover {
+  transform: translateY(-6px);
+}
+
+.card--transform:focus-visible {
+  transform: translateY(-6px);
+}
+
+@media(prefers-reduced-motion: reduce) {
+  .card--layout,
+  .card--transform {
+    transition: none;
+  }
+}
