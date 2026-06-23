@@ -44,6 +44,21 @@ body {
   color: #334155;
 }
 
-/* TODO(Day14-task01): Make `.flex` a flex container. `.flex--row` should be row direction with space-between on main axis and center on cross axis. `.flex--col` should be column direction with center on main axis and stretch on cross axis (override box widths if needed). */
+.flex{
+  display: flex;
+}
 
-/* TODO(Day14-task01): Add `gap` in both demos (different values OK) without breaking alignment goals. */
+.flex--row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flex--col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: stretch;
+}

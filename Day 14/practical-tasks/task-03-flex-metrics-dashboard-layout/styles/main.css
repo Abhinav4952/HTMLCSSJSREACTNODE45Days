@@ -47,8 +47,36 @@ body {
   font-weight: 750;
 }
 
-/* TODO(Day14-task03): Lay out `.dash__metrics` as a row flex on wide screens with wrapping disabled (nowrap) and horizontal scroll allowed if needed OR prefer shrinking metrics using flex properties—pick ONE approach and document in a CSS comment. */
+/* To allow horizontal scrolling, I applied flex-wrap : nowrap on the flexbox so that even if item's content length exceeds it's width, it won't be wrapped into the next line
+And added overflow:auto so the scroll bar appears only in case of overflow*/
 
-/* TODO(Day14-task03): Make metric A flex-grow largest, B medium, C smallest (use `flex` shorthand on `.metric--a/b/c`). */
+.dash__metrics{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+}
 
-/* TODO(Day14-task03): At max-width ~720px, switch metrics to a column stack with equal-stretch cards. */
+.metric--a{
+  flex: 3 0 0 ;
+}
+
+.metric--b{
+  flex: 2 0 0;
+}
+
+.metric--c{
+  flex: 1 0 0;
+}
+
+@media(max-width: 720px) {
+  .dash__metrics{
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .metric--a,
+  .metric--b,
+  .metric--c{
+    flex: 1 1 auto;
+  }
+}
