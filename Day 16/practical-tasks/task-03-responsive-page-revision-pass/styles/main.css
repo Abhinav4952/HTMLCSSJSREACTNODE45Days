@@ -1,4 +1,3 @@
-/* Starter intentionally "legacy" — do not delete class names; revise styles via completing TODOs. */
 
 *,
 *::before,
@@ -14,8 +13,10 @@ body {
 }
 
 .legacy-shell {
-  width: 1100px; /* intentional footgun */
+  width: 100%;
+  max-width: 1100px; /* intentional footgun */
   margin: 0 auto;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
 }
 
 .legacy-header {
@@ -34,8 +35,9 @@ body {
 
 .legacy-nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
-  white-space: nowrap; /* intentional footgun on narrow screens */
+  min-width: 0;
 }
 
 .legacy-nav a {
@@ -49,19 +51,31 @@ body {
 }
 
 .legacy-main {
-  padding: 1rem;
+  padding: clamp(0.75rem, 2vw, 1rem);
+}
+
+.legacy-hero h1 {
+  font-size: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.legacy-hero p {
+  max-width: 65ch;
+  line-height: 1.6;
 }
 
 .legacy-hero__img {
-  width: 1200px; /* intentional footgun */
-  max-width: none;
+  width: 100%;
   display: block;
   margin-top: 0.75rem;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
 }
 
 .legacy-grid {
   display: grid;
-  grid-template-columns: repeat(3, 320px); /* intentional footgun */
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
   margin-top: 1rem;
 }
@@ -80,14 +94,14 @@ body {
   color: #cbd5e1;
 }
 
-/* TODO(Day16-task03): Fix the page-level horizontal overflow on small screens WITHOUT removing `.legacy-shell` from HTML:
-   - make `.legacy-shell` fluid (`width:100%` + `max-width: …` pattern)
-   - ensure overall layout uses comfortable padding at mobile widths */
+@media (min-width: 640px) {
+  .legacy-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-/* TODO(Day16-task03): Fix nav wrapping/overflow: remove the footgun while keeping links usable (wrap or scroll strategy—document in changelog). */
-
-/* TODO(Day16-task03): Fix hero image sizing using responsive image rules (max-width:100%, height:auto). */
-
-/* TODO(Day16-task03): Replace fixed 3×320px grid with a responsive grid using `minmax(0, 1fr)` tracks + a media query OR auto-fit strategy. */
-
-/* TODO(Day16-task03): Add at least one fluid `font-size` improvement using clamp() on `.legacy-hero h1` OR hero paragraph. */
+@media (min-width: 900px) {
+  .legacy-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
