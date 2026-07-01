@@ -44,3 +44,4 @@ describe("typeLabel", () => {
     expect(typeLabel({ a: 1 })).toBe("object");
   });
 });
+

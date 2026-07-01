@@ -13,7 +13,30 @@
  * - strings that are not valid integer strings after trim (e.g. `"12px"`, `"12.3"`)
  */
 export function toIntegerOrNull(value) {
-  // TODO(Day17-task04): Implement per TASK_INSTRUCTIONS.md
+  if (value===null || value === undefined) {
+    return null;
+  }
+
+  if (value=== true) return 1;
+  if (value=== false) return 0;
+
+  if (typeof value ==="number") {
+    if (!Number.isFinite(value)) return null;
+    return Math.trunc(value);
+  }
+
+  if (typeof value === "string") {
+  value = value.trim();
+
+  if (value==="") return null;
+
+  const num = Number(value);
+
+  if (!Number.isInteger(num)) return null;
+
+  return num;
+}
+
   return null;
 }
 
@@ -22,6 +45,6 @@ export function toIntegerOrNull(value) {
  * - `undefined` alone should stringify as `"undefined"` (use String)
  */
 export function stringifyForLog(value) {
-  // TODO(Day17-task04): Implement per TASK_INSTRUCTIONS.md
-  return "";
+  if(typeof value==="object") return JSON.stringify(value);
+  return String(value);
 }
