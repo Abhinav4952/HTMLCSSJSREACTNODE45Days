@@ -3,8 +3,14 @@
  * @returns {number[]}
  */
 export function varLoopClosureMappedValues() {
-  // TODO(Day17-task02): Implement per TASK_INSTRUCTIONS.md
-  return [];
+  const funcs=[];
+
+  for(var i=0;i<3;i++) {
+    funcs.push(function(){
+      return i;
+    })
+  }
+  return funcs.map((fn)=> fn())
 }
 
 /**
@@ -12,8 +18,15 @@ export function varLoopClosureMappedValues() {
  * @returns {number[]}
  */
 export function letLoopClosureMappedValues() {
-  // TODO(Day17-task02): Implement per TASK_INSTRUCTIONS.md
-  return [];
+  const funcs=[];
+
+  for(let i=0;i<3;i++) {
+    funcs.push(function(){
+      return i;
+    })
+  }
+  return funcs.map((fn)=> fn())
+
 }
 
 /**
@@ -21,8 +34,11 @@ export function letLoopClosureMappedValues() {
  * @returns {number}
  */
 export function blockShadowValue() {
-  // TODO(Day17-task02): Implement per TASK_INSTRUCTIONS.md
-  return 0;
+  let x=1;
+  {
+    let x=2;
+    return x;
+  }
 }
 
 /**
@@ -30,6 +46,7 @@ export function blockShadowValue() {
  * @returns {number}
  */
 export function constObjectPropertyMutation() {
-  // TODO(Day17-task02): Implement per TASK_INSTRUCTIONS.md
-  return 0;
+  const o = {n:3};
+  o.n=7;
+  return o.n;
 }

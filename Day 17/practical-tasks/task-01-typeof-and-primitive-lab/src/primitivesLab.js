@@ -3,8 +3,9 @@
  * @returns {boolean} true if value is a primitive (including null)
  */
 export function isPrimitiveValue(value) {
-  // TODO(Day17-task01): Implement per TASK_INSTRUCTIONS.md
-  return false;
+  if(value === null) return true;
+  else if(typeof value==="object" || typeof value==="function") return false;
+  return true;
 }
 
 /**
@@ -17,6 +18,10 @@ export function isPrimitiveValue(value) {
  * - otherwise return `typeof value` as string (e.g. `"string"`, `"number"`, `"undefined"`, `"boolean"`, `"bigint"`, `"symbol"`)
  */
 export function typeLabel(value) {
-  // TODO(Day17-task01): Implement per TASK_INSTRUCTIONS.md
-  return "object";
+  if(value===null) return "null";
+  else if(Array.isArray(value)) return "array";
+  else if(typeof value==="function") return "function";
+  else if(typeof value==="object") return "object";
+
+  return typeof value;
 }
