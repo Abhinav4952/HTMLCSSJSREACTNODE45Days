@@ -8,6 +8,9 @@
  * - `"falsy"` otherwise
  */
 export function triClassifyBooleaniness(value) {
-  // TODO(Day18-task04): Implement per TASK_INSTRUCTIONS.md
+  
+  if(typeof value==="boolean") return `strict-${value}`
+  if(value) return "truthy";
+
   return "falsy";
 }
