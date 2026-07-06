@@ -8,6 +8,5 @@
  * - If the first element cannot be added without exceeding `cap`, return `0`.
  */
 export function sumPrefixUntilCap(nums, cap) {
-  // TODO(Day18-task02): Implement per TASK_INSTRUCTIONS.md
   return 0;
 }

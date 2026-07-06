@@ -8,6 +8,5 @@
  * - `"falsy"` otherwise
  */
 export function triClassifyBooleaniness(value) {
-  // TODO(Day18-task04): Implement per TASK_INSTRUCTIONS.md
   return "falsy";
 }

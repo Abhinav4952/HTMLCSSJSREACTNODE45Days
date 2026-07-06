@@ -10,6 +10,5 @@
  * - negative -> `"negative"`
  */
 export function signCategory(n) {
-  // TODO(Day18-task01): Implement per TASK_INSTRUCTIONS.md
   return "other";
 }

@@ -10,6 +10,5 @@
  * - 500-599 -> `"server_error"`
  */
 export function httpStatusFamily(code) {
-  // TODO(Day18-task03): Implement per TASK_INSTRUCTIONS.md
   return "invalid";
 }

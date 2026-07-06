@@ -8,6 +8,11 @@
  * - Otherwise return `{ writable, enumerable, configurable }` booleans from the descriptor.
  */
 export function summarizeOwnDataDescriptor(obj, key) {
-  // TODO(Day19-task04): Implement per TASK_INSTRUCTIONS.md
+  if(typeof obj === "object" && obj!==null) {
+    const d = Object.getOwnPropertyDescriptor(obj,key);
+
+    if(d===undefined || d.set || d.get) return null;
+    return { writable: d.writable, enumerable: d.enumerable, configurable: d.configurable};
+  }
   return null;
 }

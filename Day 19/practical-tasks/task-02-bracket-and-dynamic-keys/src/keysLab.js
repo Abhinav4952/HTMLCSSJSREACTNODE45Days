@@ -7,8 +7,25 @@
  * - For each key in `keys` (in order), if `Object.prototype.hasOwnProperty.call(source, key)`, copy `source[key]`.
  * - Ignore keys not present as own properties.
  */
+
+function isPlainObject(x){
+  if(x===null) {
+    return false;
+  }
+  let p= Object.getPrototypeOf(x)
+  return p===Object.prototype || p===null;
+}
+
 export function pickOwn(source, keys) {
-  // TODO(Day19-task02): Implement per TASK_INSTRUCTIONS.md
+  let res={}
+  if(isPlainObject(source) && Array.isArray(keys)) {
+    for(const key of keys) {
+      if(Object.prototype.hasOwnProperty.call(source,key)) {
+        res[key]=source[key];
+      }
+    }
+    return res;
+  }
   return null;
 }
 
@@ -21,6 +38,16 @@ export function pickOwn(source, keys) {
  * - For each row `[k, v]` where `k` is a non-empty string, set `out[k] = v` (later duplicates win).
  */
 export function objectFromEntries(entries) {
-  // TODO(Day19-task02): Implement per TASK_INSTRUCTIONS.md
+  if(Array.isArray(entries)) {
+    let res = {};
+    for(const pair of entries) {
+      if(!Array.isArray(pair)) continue;
+      let k = pair[0],v=pair[1]
+      if(typeof k==="string" && k.length>0) {
+        res[k] = v
+      }
+    }
+    return res;
+  }
   return null;
 }
