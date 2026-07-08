@@ -7,7 +7,15 @@
  * - If `n === 0`, return `[]`.
  */
 export function tail(arr, n) {
-  // TODO(Day20-task04): Implement per TASK_INSTRUCTIONS.md
+
+  if(Array.isArray(arr) && Number.isFinite(n) && Number.isInteger(n) && n>=0) {
+    console.log("Entered first if")
+    if(n>arr.length) return arr;
+    console.log("Bypassed second if")
+
+    return arr.splice(arr.length-n,n);
+  }
+
   return null;
 }
 
@@ -21,6 +29,11 @@ export function tail(arr, n) {
  * - Ignore non-finite elements while scanning (treat them as not `> threshold`).
  */
 export function firstIndexGreaterThan(arr, threshold) {
-  // TODO(Day20-task04): Implement per TASK_INSTRUCTIONS.md
+  if(Array.isArray(arr) && Number.isFinite(threshold)) {
+    let res = arr.findIndex(x=>Number.isFinite(x) && x>threshold);
+    return res;
+  }
   return null;
 }
+
+console.log(tail(null,1))
