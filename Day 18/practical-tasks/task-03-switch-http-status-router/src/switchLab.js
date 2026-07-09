@@ -1,5 +1,5 @@
 /**
- * Bucket HTTP status codes into coarse families using `switch(true)` (or equivalent switch logic).
+ * Bucket HTTP code codes into coarse families using `switch(true)` (or equivalent switch logic).
  *
  * Rules:
  * - `code` must be an integer in [100, 599]; otherwise return `"invalid"`.
@@ -10,6 +10,22 @@
  * - 500-599 -> `"server_error"`
  */
 export function httpStatusFamily(code) {
-  // TODO(Day18-task03): Implement per TASK_INSTRUCTIONS.md
+  if(!Number.isInteger(code)) return "invalid"
+  switch (true) {
+    case code>=100 && code < 200:
+      return "informational";
+
+    case code >= 200 && code < 300:
+      return "success";
+
+    case code >= 300 && code < 400:
+      return "redirect";
+
+    case code >= 400 && code < 500:
+      return "client_error";
+
+    case code >= 500 && code < 600:
+      return "server_error";
+  }
   return "invalid";
 }
