@@ -8,12 +8,12 @@
  * - Initial total is `start` if it is a finite number, else `0`.
  */
 export function createCounter(start = 0) {
-  // TODO(Day19-task03): Implement per TASK_INSTRUCTIONS.md
+  let total = (Number.isFinite(start)? start:0);
   return {
     read() {
-      return 0;
+      return total;
     },
-    add() {},
-    reset() {},
+    add(delta=1) {total+=delta;},
+    reset(value) {total = (Number.isFinite(value))? value : 0;},
   };
 }
