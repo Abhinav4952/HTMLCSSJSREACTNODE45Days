@@ -8,5 +8,9 @@
  * - `"falsy"` otherwise
  */
 export function triClassifyBooleaniness(value) {
+  
+  if(typeof value==="boolean") return `strict-${value}`
+  if(value) return "truthy";
+
   return "falsy";
 }

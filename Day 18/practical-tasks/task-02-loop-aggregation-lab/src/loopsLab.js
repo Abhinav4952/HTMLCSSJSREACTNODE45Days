@@ -8,5 +8,16 @@
  * - If the first element cannot be added without exceeding `cap`, return `0`.
  */
 export function sumPrefixUntilCap(nums, cap) {
+  if(Number.isFinite(cap) && Array.isArray(nums)) {
+    let sum=0;
+    for(const i of nums)  {
+      if(Number.isNaN(i) || !Number.isFinite(i) || sum+i>cap) {
+        return sum;
+      }
+      sum= sum+i;
+
+    }
+    return sum;
+  }
   return 0;
 }
