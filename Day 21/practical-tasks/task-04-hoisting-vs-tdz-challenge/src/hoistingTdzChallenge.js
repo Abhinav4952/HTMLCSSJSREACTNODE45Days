@@ -3,17 +3,29 @@
  * inside a nested function body (classic `var` hoisting demonstration).
  */
 export function varBindingBeforeInit() {
-  // TODO(Day21-task04): Implement per TASK_INSTRUCTIONS.md
-  return ["wrong", "wrong"];
-}
+    function inner() {
+        return [typeof x, x];
+        var x = 1;
+    }
 
+    return inner();
+}
 /**
  * Return `true` if probing a `let` binding in its TDZ throws `ReferenceError`, else `false`.
  *
  * Implement by declaring a nested function that touches `y` before `let y = 1`, invoking it inside `try/catch`.
  */
 export function letBindingThrowsInTdz() {
-  // TODO(Day21-task04): Implement per TASK_INSTRUCTIONS.md
+    function inner() {
+        console.log(y);
+        let y = 1;
+    }
+    try {
+        inner();
+        return false;
+    } catch (e) {
+        return true;
+    }
   return false;
 }
 
@@ -28,9 +40,16 @@ export function letBindingThrowsInTdz() {
  * This is a **pattern** exercise: build a tiny test seam around async scheduling.
  */
 export function createTimeoutHarness(fn, ms = 0) {
-  // TODO(Day21-task04): Implement per TASK_INSTRUCTIONS.md
-  return {
-    schedule: () => {},
-    flush: () => {},
-  };
+    let callback;
+
+    return {
+        schedule() {
+          callback= ()=> fn()
+            setTimeout(() => fn(), ms);
+        },
+
+        flush() {
+            if (callback) callback();
+        }
+    };
 }
