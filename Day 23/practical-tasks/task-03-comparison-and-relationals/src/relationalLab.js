@@ -3,7 +3,7 @@
  * Return `null` if either operand is not a string.
  */
 export function isLexicographicGreater(a, b) {
-  // TODO(Day23-task03): Implement per TASK_INSTRUCTIONS.md
+  if(typeof a==="string" && typeof b==="string") return a>b;
   return null;
 }
 
@@ -12,6 +12,6 @@ export function isLexicographicGreater(a, b) {
  * Return `null` if either coercion is not a finite number.
  */
 export function isNumericGreater(a, b) {
-  // TODO(Day23-task03): Implement per TASK_INSTRUCTIONS.md
+  if(Number.isFinite(Number(a)) && Number.isFinite(Number(b))) return Number(a)>Number(b);
   return null;
 }

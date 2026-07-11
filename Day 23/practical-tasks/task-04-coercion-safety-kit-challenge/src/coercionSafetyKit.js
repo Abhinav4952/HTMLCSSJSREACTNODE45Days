@@ -4,7 +4,12 @@
  * - Reject `Infinity` / `NaN` results.
  */
 export function parsePercentToFraction(input) {
-  // TODO(Day23-task04): Implement per TASK_INSTRUCTIONS.md
+  input = input.trim();
+  if(input.endsWith("%")) {
+    let parts = input.split("%");
+    if(parts.length===2 && parts[1]==="") var [res,]=parts;
+    if(Number.isFinite(Number(res))) return Number(res)/100;
+  }
   return null;
 }
 
@@ -14,6 +19,14 @@ export function parsePercentToFraction(input) {
  * - Return a **new** plain object; do not mutate inputs.
  */
 export function mergeCountObjects(left, right) {
-  // TODO(Day23-task04): Implement per TASK_INSTRUCTIONS.md
-  return null;
+  let res = {}
+  for(const [key,value] of Object.entries(left)) {
+    if(typeof value==="number" && Number.isFinite(value))
+      res[key] = value;
+  }
+  for(const [key,value] of Object.entries(right)) {
+    if(typeof value==="number" && Number.isFinite(value))
+      res[key] = (res[key] || 0) + value;
+  }
+  return res;
 }

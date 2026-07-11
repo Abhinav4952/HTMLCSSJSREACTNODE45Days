@@ -3,8 +3,8 @@
  * Must use **nullish coalescing** (`??`), not `||`.
  */
 export function defaultPort(port) {
-  // TODO(Day23-task02): Implement per TASK_INSTRUCTIONS.md
-  return null;
+  
+  return port??3000;
 }
 
 /**
@@ -12,6 +12,5 @@ export function defaultPort(port) {
  * Empty string is a valid title and must be preserved.
  */
 export function defaultTitle(title) {
-  // TODO(Day23-task02): Implement per TASK_INSTRUCTIONS.md
-  return null;
+  return title??"Untitled";
 }

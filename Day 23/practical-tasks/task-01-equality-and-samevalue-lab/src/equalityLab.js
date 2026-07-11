@@ -6,6 +6,6 @@
  * - `"different"` otherwise
  */
 export function classifyEquality(a, b) {
-  // TODO(Day23-task01): Implement per TASK_INSTRUCTIONS.md
-  return "different";
+
+  return Object.is(a,b)? "same-value" : (a===b? "strict" : (a==b? "loose" : "different"))
 }

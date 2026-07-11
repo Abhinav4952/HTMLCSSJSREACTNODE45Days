@@ -5,7 +5,14 @@
  * - Must use a **rest parameter** (`...rest`) in the function signature.
  */
 export function firstAndRestSum(first, ...rest) {
-  // TODO(Day22-task02): Implement per TASK_INSTRUCTIONS.md
+  if(Number.isFinite(first)) {
+    let restSum=0;
+    for(let val of rest) {
+      if(typeof val==="number" && Number.isFinite(val))
+        restSum+=val;
+    }
+    return {first,restSum}
+  }
   return null;
 }
 
@@ -15,6 +22,9 @@ export function firstAndRestSum(first, ...rest) {
  * - If any arg is not a finite number, ignore it.
  */
 export function maxFinite(...values) {
-  // TODO(Day22-task02): Implement per TASK_INSTRUCTIONS.md
+  values.filter(val=> Number.isFinite(val));
+  if(values.length!==0) {
+    return Math.max(...values);
+  } 
   return Number.NaN;
 }
