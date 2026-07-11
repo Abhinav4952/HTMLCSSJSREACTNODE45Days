@@ -8,7 +8,14 @@
  * - If `email` is missing, not a string, or empty after trim, return `null`.
  */
 export function normalizeProfile(profile) {
-  // TODO(Day22-task03): Implement per TASK_INSTRUCTIONS.md
+
+  let {email,displayName = "",role="viewer"} = profile
+  if(typeof email!=="string") return null;
+  let primaryEmail = email.trim()
+  displayName = displayName.trim()
+  
+  if(primaryEmail && typeof primaryEmail==="string" && primaryEmail!=="") return {primaryEmail,displayName,role}
+
   return null;
 }
 
@@ -19,6 +26,13 @@ export function normalizeProfile(profile) {
  * - Trim both sides.
  */
 export function parsePair(pairString) {
-  // TODO(Day22-task03): Implement per TASK_INSTRUCTIONS.md
+  
+  if(typeof pairString==="string") {
+    let [left,right = ""] = pairString.trim().split(":")
+    return { left: left.trim(), right: right.trim() };
+  }
+  
+
+
   return null;
 }
