@@ -5,6 +5,19 @@
  * - `reset()` sets total back to `initial` (the value passed when `createCounter` was called).
  */
 export function createCounter(initial = 0) {
-  // TODO(Day26-task01): Implement per TASK_INSTRUCTIONS.md
-  return null;
+  let val = initial;
+
+  return {
+    read() {return val;},
+
+    inc(delta = 1) {
+      if(Number.isFinite(delta))
+        val+=delta
+      return val;
+    },
+
+    reset(){
+      val = initial;
+    }
+  }
 }
