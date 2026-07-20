@@ -6,15 +6,24 @@
  * - Implement using `Array.prototype.map` and an **arrow function** callback (no `function` keyword inside `map`).
  */
 export function sumPairs(pairs) {
-  // TODO(Day21-task02): Implement per TASK_INSTRUCTIONS.md
-  return null;
-}
+  if (!Array.isArray(pairs)) {
+    return null;
+  }
 
+  return pairs.map(pair => {
+    const a = Number.isFinite(pair?.[0]) ? pair[0] : 0;
+    const b = Number.isFinite(pair?.[1]) ? pair[1] : 0;
+
+    return a + b;
+  });
+}
 /**
  * Returns `(x) => x + scale` as an arrow function.
  * - If `x` is not a finite number, return `NaN`.
  */
 export function makeScaledAdder(scale) {
-  // TODO(Day21-task02): Implement per TASK_INSTRUCTIONS.md
+
+  if(Number.isFinite(scale)) return (x)=> x+scale;
+
   return () => Number.NaN;
 }

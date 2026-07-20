@@ -4,8 +4,17 @@
  *   (Treat only objects where `Object.getPrototypeOf(x) === Object.prototype || x` is `Object.create(null)` as plain—tests only use `{}` literals.)
  * - Use object spread at least once.
  */
+
+function isPlainObject(x){
+  if(x===null) return false;
+  let p= Object.getPrototypeOf(x)
+  return p===Object.prototype || p===null;
+}
+
 export function shallowMerge(base, patch) {
-  // TODO(Day22-task01): Implement per TASK_INSTRUCTIONS.md
+  if(isPlainObject(base)  && isPlainObject(patch)) {
+    return {...base,...patch}
+  }
   return null;
 }
 
@@ -13,6 +22,8 @@ export function shallowMerge(base, patch) {
  * Return `[value, ...list]` when `list` is an array; otherwise return `null`.
  */
 export function prepend(list, value) {
-  // TODO(Day22-task01): Implement per TASK_INSTRUCTIONS.md
+  if(Array.isArray(list)) {
+    return [value,...list]
+  }
   return null;
 }
