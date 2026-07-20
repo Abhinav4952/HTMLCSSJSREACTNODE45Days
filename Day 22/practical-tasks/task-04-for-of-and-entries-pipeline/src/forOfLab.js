@@ -4,7 +4,17 @@
  * - If there are no finite numeric values, return `null`.
  */
 export function productOfNumericValues(record) {
-  // TODO(Day22-task04): Implement per TASK_INSTRUCTIONS.md
+  if(record!==null && typeof record==="object") {
+    let res=1;
+    let flag=false;
+    for(const val of Object.values(record)) {
+      if(Number.isFinite(val)) {
+        flag=true;
+        res *=val;
+      }
+    }
+    if(flag) return res;
+  }
   return null;
 }
 
@@ -15,6 +25,18 @@ export function productOfNumericValues(record) {
  * - If nothing contributed to the sum, return `null`.
  */
 export function sumPairValues(entries) {
-  // TODO(Day22-task04): Implement per TASK_INSTRUCTIONS.md
-  return null;
+  if (!Array.isArray(entries)) return null;
+  let sum =0;
+  let found= false;
+  for (const entry of entries) {
+    if (!Array.isArray(entry) || entry.length<2) continue;
+    const [,value] = entry;
+
+    if (Number.isFinite(value)) {
+      sum += value;
+      found = true;
+    }
+  }
+
+  return found? sum:null;
 }
