@@ -4,6 +4,15 @@
  * - Each function must close over the correct index (no shared `var` bug).
  */
 export function createIndexHandlers(count) {
-  // TODO(Day26-task03): Implement per TASK_INSTRUCTIONS.md
+
+  if(Number.isInteger(count) && count>=0 && count<=20) {
+    let res = [];
+
+    for(let i = 0;i<count;i++){
+      res.push(()=>i);
+    }
+    return res;
+  }
+
   return null;
 }
