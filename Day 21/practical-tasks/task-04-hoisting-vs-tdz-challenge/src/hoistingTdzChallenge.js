@@ -24,7 +24,7 @@ export function letBindingThrowsInTdz() {
         inner();
         return false;
     } catch (e) {
-        return true;
+        return e instanceof ReferenceError;
     }
   return false;
 }
@@ -45,7 +45,7 @@ export function createTimeoutHarness(fn, ms = 0) {
     return {
         schedule() {
           callback= ()=> fn()
-            setTimeout(() => fn(), ms);
+            setTimeout(callback, ms);
         },
 
         flush() {
