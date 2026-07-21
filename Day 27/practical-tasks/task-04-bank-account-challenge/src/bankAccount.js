@@ -2,17 +2,20 @@ export class BankAccount {
   #balance = 0;
   static count = 0;
 
-  constructor(opening = 0) {
-    // TODO(Day27-task04): initialize #balance (finite number else 0); increment static count
+  constructor(opening = 0) {    if(Number.isFinite(opening)) this.#balance=opening;
+    BankAccount.count++;
   }
 
   withdraw(amount) {
-    // TODO(Day27-task04): finite positive; cannot go below 0; return amount actually withdrawn
-    return 0;
+    if(Number.isFinite(amount) && amount>0) {
+      if(amount>this.#balance) amount= this.#balance
+      this.#balance-= amount;  
+    } 
+    return amount;
   }
 
   static created() {
-    // TODO(Day27-task04): return how many accounts were constructed
+    return BankAccount.count;
     return 0;
   }
 }
