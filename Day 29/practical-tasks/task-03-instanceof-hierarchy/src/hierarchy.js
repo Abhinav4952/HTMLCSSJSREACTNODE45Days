@@ -12,6 +12,10 @@ export class Dog extends Animal {
 }
 
 export function classifyPet(x) {
-  // TODO(Day29-task03): return "dog" if Dog, else "animal" if Animal, else "unknown" (most specific first)
+  if (x instanceof Dog) {
+    return "dog";
+  } else if (x instanceof Animal) {
+    return "animal";
+  }
   return "unknown";
 }
