@@ -3,11 +3,11 @@ export class StepCounter {
   step = 1;
 
   constructor(step = 1) {
-    // TODO(Day27-task01): assign this.step if step is a finite number > 0, else keep default 1
+    if(Number.isFinite(step) && step>0) this.step=step;
   }
 
   tick(times = 1) {
-    // TODO(Day27-task01): increment count by step * times when times is a finite integer >= 0
+    if(Number.isFinite(times) && times>=0) this.count+= this.step*times;
     return this.count;
   }
 }

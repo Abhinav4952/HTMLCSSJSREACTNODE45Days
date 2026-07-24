@@ -2,16 +2,15 @@ export class Vault {
   #balance = 0;
 
   constructor(opening = 0) {
-    // TODO(Day27-task02): set #balance to opening if finite number, else 0
+    if(Number.isFinite(opening)) this.#balance=opening;
   }
 
   get balance() {
-    // TODO(Day27-task02): return #balance
-    return Number.NaN;
+    return this.#balance;
   }
 
   deposit(amount) {
-    // TODO(Day27-task02): add finite positive amount; return new balance
+    if(Number.isFinite(amount) && amount>0) this.#balance += amount;
     return this.#balance;
   }
 }
