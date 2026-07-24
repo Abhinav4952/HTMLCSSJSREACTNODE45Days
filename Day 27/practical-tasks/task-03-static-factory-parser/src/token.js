@@ -1,6 +1,10 @@
 export class Token {
   static fromString(s) {
-    // TODO(Day27-task03): if s is string "kind:value", return new Token(kind, value) trimmed; else null
+    if(typeof s==="string") {
+      s = s.trim();
+      let parts = s.split(":")
+      if(parts.length===2 && parts[0].trim()!=="" && parts[1].trim()!=="") return new Token(parts[0].trim(),parts[1].trim());
+    }
     return null;
   }
 
