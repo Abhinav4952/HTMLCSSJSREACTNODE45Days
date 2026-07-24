@@ -1,14 +1,12 @@
 import { Animal } from "./animal.js";
 
 export class Dog extends Animal {
-  constructor(name, breed) {
-    // TODO(Day29-task02): super(name); store breed string (default "mixed")
-    super("");
-    this.breed = "mixed";
+  constructor(name, breed="mixed") {
+    super(name);
+    this.breed = breed;
   }
 
   speak() {
-    // TODO(Day29-task02): return super.speak() + " (" + this.breed + ")"
-    return "";
+    return super.speak() + ` (${this.breed})`;
   }
 }
