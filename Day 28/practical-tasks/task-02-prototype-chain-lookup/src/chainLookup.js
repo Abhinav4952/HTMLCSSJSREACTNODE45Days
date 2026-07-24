@@ -1,4 +1,9 @@
 export function readInherited(obj, key) {
-  // TODO(Day28-task02): walk prototype chain (Object.getPrototypeOf) until own property key found or null proto; return value or undefined
+  let p = obj;
+
+  while(p!==null){
+    if(Object.hasOwn(p,key)) return p[key];
+    p = Object.getPrototypeOf(p);
+  }
   return undefined;
 }
