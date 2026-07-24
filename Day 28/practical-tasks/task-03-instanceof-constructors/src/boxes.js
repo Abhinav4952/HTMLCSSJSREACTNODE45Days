@@ -6,6 +6,5 @@ export function Box(value) {
 }
 
 export function isBox(x) {
-  // TODO(Day28-task03): return boolean instanceof Box
-  return false;
+  return x instanceof Box;
 }

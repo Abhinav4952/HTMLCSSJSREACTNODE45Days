@@ -5,6 +5,7 @@ const noiseMethods = {
 };
 
 export function createNoisyThing(kind) {
-  // TODO(Day28-task01): return Object.create(noiseMethods) with own property kind (string)
-  return null;
+  const res = Object.create(noiseMethods);
+  res.kind = kind;
+  return res;
 }
