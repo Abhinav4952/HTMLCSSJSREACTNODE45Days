@@ -4,14 +4,13 @@ export class Rectangle {
     this.h = h;
   }
   area() {
-    // TODO(Day29-task04): return w*h if finite positives else 0
-    return 0;
+    if(Number.isFinite(this.w) && this.w>0 && Number.isFinite(this.h) && this.h>0) return this.w*this.h;
+    return 0; 
   }
 }
 
 export class Square extends Rectangle {
   constructor(side) {
-    // TODO(Day29-task04): super(side, side)
-    super(0, 0);
+    super(side,side);
   }
 }
