@@ -1,6 +1,6 @@
 # 05 — Instructor Grading (1–100), Graduate Learner Lens, and AI Evaluation Reference
 
-**Instruction set version:** `1.1.0`  
+**Instruction set version:** `1.2.0`  
 **Use with:** `03-DAY-FOLDER-TASK-STRUCTURE-AND-NAMING-CONVENTIONS.md` (per-task `EVALUATION_CRITERIA.md` for candidates) and `04-AUTHORING-GUIDE-…` (task design).
 
 This document is for **instructors** and **AI grading agents**. It standardizes how to assign **1–100** scores for **Days 01–08 style** work (mostly **static HTML/CSS**; occasional **Vitest** labs), and how to give **constructive** feedback appropriate for **second-year graduate students** who are **not** expected to ship production systems.
@@ -30,7 +30,8 @@ That file:
 
 - **Reward:** meeting the **task instructions** and **learning goals**; clear structure; sensible naming; obvious debugging effort.
 - **Do not penalize heavily for:** missing “enterprise” patterns (build pipelines, design systems, exhaustive cross-browser QA, Lighthouse 100, etc.) unless the task explicitly requires them.
-- **Do penalize meaningfully for:** skipping stated requirements; inaccessible or misleading markup where the task taught semantics; copying without understanding (if evidence exists); leaving `TODO` markers “completed” but non-functional.
+- **Do penalize meaningfully for:** skipping stated requirements; inaccessible or misleading markup where the task taught semantics; copying without understanding (if evidence exists); required behavior that is missing or non-functional.
+- **Do NOT deduct for leftover `TODO` / instructional comments** when the required behavior is actually implemented. Comments (including scaffold `TODO(...)` markers) are cosmetic and never cost points on their own. Score only the **missing or broken work itself** — a `TODO` that marks genuinely unimplemented behavior is graded under **Requirements coverage** for the missing work, not for the comment.
 - **Default feedback style:** “Here is what works → here is the smallest next step to level up,” citing **MDN**/**spec** links from the day’s theory where possible.
 
 ---
@@ -44,7 +45,7 @@ Use this **within each task’s /25 slice** (see `Day XX/INSTRUCTOR_GRADING_1-10
 | **Requirements coverage** | **40** | Map each bullet in `TASK_INSTRUCTIONS.md` “What you will implement” / manual checklist to yes/partial/no. |
 | **Correctness in context** | **30** | For static tasks: renders as intended in a modern browser; no broken paths; forms/tables behave as described. |
 | **Semantics, accessibility, maintainability** | **20** | Headings order, labels on controls, table headers/scope where taught, class names readable, CSS not overly specific “magic”. |
-| **Process & polish** | **10** | Git hygiene if visible; removes stale TODOs; comments only where helpful; minor consistency (indentation, file organization). |
+| **Process & polish** | **10** | Git hygiene if visible; file organization and naming; minor consistency (indentation, structure). Do **not** deduct for leftover `TODO`/instructional comments — see Section 2. |
 
 **Day file scaling:** For a **/25 per task** row, use **10 + 8 + 5 + 2** (sums to 25) as proportional weights of the above.
 
@@ -162,5 +163,6 @@ Output:
 
 | Version | Date | Notes |
 |---------|------|-------|
+| `1.2.0` | 2026-07-25 | No-TODO-penalty policy: leftover `TODO`/instructional comments never cost points when the required behavior is implemented; only missing/broken work is scored (Requirements coverage). Updated Section 2 and Section 3 Process & polish note. |
 | `1.1.0` | 2026-06-04 | Day-level `Day XX/INSTRUCTOR_GRADING_1-100.md`; remove per-task default; script emits day files. |
 | `1.0.0` | 2026-06-04 | Initial instructor numeric rubric + AI reference. |
