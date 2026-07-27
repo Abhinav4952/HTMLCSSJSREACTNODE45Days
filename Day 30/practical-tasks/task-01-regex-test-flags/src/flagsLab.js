@@ -1,4 +1,4 @@
 export function hasCaseInsensitiveYes(text) {
-  // TODO(Day30-task01): return true if /yes/i matches text (string input else false)
-  return false;
+  const regex = /yes/i;
+  return regex.test(text);
 }
