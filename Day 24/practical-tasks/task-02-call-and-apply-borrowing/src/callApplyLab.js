@@ -13,14 +13,12 @@ export const labeler = {
  * Must use `.call`.
  */
 export function renderWithHost(host) {
-  // TODO(Day24-task02): Implement per TASK_INSTRUCTIONS.md
-  return null;
+  return labeler.render.call(host);
 }
 
 /**
  * Compute max of an array using `Math.max` via `.apply` (not spread).
  */
 export function maxWithApply(numbers) {
-  // TODO(Day24-task02): Implement per TASK_INSTRUCTIONS.md
-  return Number.NaN;
+  return Math.max.apply(null,numbers);
 }
