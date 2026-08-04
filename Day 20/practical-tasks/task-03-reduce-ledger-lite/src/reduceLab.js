@@ -17,7 +17,7 @@ function isPlainObject(x){
 
 export function ledgerBalance(rows) {
   if(Array.isArray(rows)) {
-  return rows.filter(row => isPlainObject(row) && (row.kind === "credit" || row.kind === "debit") && Number.isFinite(row.amount) && row.amount > 0).reduce((sum, row) => sum + (row.kind === "credit" ? row.amount : -row.amount),0);
-}
+    return rows.filter(row => isPlainObject(row) && (row.kind === "credit" || row.kind === "debit") && Number.isFinite(row.amount) && row.amount > 0).reduce((sum, row) => sum + (row.kind === "credit" ? row.amount : -row.amount),0);
+  }
   return null;
 }
