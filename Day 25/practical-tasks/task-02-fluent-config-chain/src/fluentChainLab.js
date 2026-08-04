@@ -6,16 +6,22 @@
  * - If `build()` called before both are set, return empty string.
  */
 export function createQueryBuilder() {
-  // TODO(Day25-task02): Implement per TASK_INSTRUCTIONS.md
   return {
-    select() {
+    fields:null,
+    table:null,
+    select(fields) {
+      if(Array.isArray(fields) && fields.length>0 && fields.every(field=> typeof field==="string" && field.trim()!=="")) {
+        this.fields=fields.map(field=>field.trim())
+      }
       return this;
     },
-    from() {
+    from(table) {
+      if(typeof table==="string" && table.trim()!=="") this.table=table.trim();
       return this;
     },
     build() {
-      return "INVALID";
+      if(this.fields===null || this.table===null) return "";
+      return `SELECT ${this.fields.join(', ')} FROM ${this.table}`;
     },
   };
 }
