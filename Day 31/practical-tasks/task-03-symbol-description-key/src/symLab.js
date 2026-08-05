@@ -1,4 +1,13 @@
 export function buildSecretBag() {
-  // TODO(Day31-task03): return { set(kind, value){...}, get(kind){...}} using a Map keyed by Symbol.for("kind:" + kind)
-  return null;
+  const map = new Map()
+  return {
+    set(kind,value) {
+      const key = Symbol.for("kind: " + kind);
+      map[key]=value
+    },
+    get(kind) {
+      const key = Symbol.for("kind: " + kind);
+      return map[key];
+    }
+  };
 }
