@@ -3,14 +3,12 @@
  * Must be implemented using `fn.bind(...)`.
  */
 export function bindFirstArg(fn, first) {
-  // TODO(Day24-task03): Implement per TASK_INSTRUCTIONS.md
-  return fn;
+  return fn.bind(null,first);
 }
 
 /**
  * Return `obj.method` bound to `obj` so it can be passed as a callback without losing `this`.
  */
 export function bindMethod(obj, methodName) {
-  // TODO(Day24-task03): Implement per TASK_INSTRUCTIONS.md
-  return () => null;
+  return obj[methodName].bind(obj);
 }

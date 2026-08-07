@@ -5,13 +5,13 @@
  * Methods must use `this` to read/write the internal counter field `total` on the object.
  */
 export function createCounter(initial = 0) {
-  // TODO(Day24-task01): Implement per TASK_INSTRUCTIONS.md
   return {
-    total: Number.NaN,
+    total: initial,
     read() {
       return this.total;
     },
-    inc() {
+    inc(delta=1) {
+      this.total +=(Number.isFinite(delta))?delta:0;
       return this.total;
     },
   };
