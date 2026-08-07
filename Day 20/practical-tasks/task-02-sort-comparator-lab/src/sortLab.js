@@ -7,6 +7,7 @@
  * - Sort using `String.prototype.localeCompare` with `{ sensitivity: "base" }`.
  */
 export function sortCaseInsensitive(words) {
-  // TODO(Day20-task02): Implement per TASK_INSTRUCTIONS.md
+  if(Array.isArray(words)) return words.filter(word => typeof word==="string").sort((a,b)=>a.localeCompare(b,undefined,{sensitivity: "base"}))
+
   return null;
 }

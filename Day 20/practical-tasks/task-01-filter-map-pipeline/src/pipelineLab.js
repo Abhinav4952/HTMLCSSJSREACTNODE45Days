@@ -6,6 +6,7 @@
  * - Ignore non-numbers and non-finite numbers.
  */
 export function doublePositives(nums) {
-  // TODO(Day20-task01): Implement per TASK_INSTRUCTIONS.md
-  return null;
+  if(Array.isArray(nums))
+    return nums.filter(x=> typeof x==="number" && Number.isFinite(x) && x>0).map(x=>2*x);
+  return null
 }
