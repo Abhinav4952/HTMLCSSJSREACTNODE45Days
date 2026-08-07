@@ -1,4 +1,10 @@
 export function createDeferred() {
-  // TODO(Day33-task03): return { promise, resolve, reject } wrapping new Promise((res,rej)=>{...})
-  return null;
+  let resolve, reject;
+
+  const promise=new Promise((res, rej) => {
+    resolve=res;
+    reject=rej;
+  });
+
+  return { promise, resolve, reject };
 }
