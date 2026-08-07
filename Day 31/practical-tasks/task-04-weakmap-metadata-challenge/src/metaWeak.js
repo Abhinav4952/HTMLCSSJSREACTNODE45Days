@@ -1,4 +1,9 @@
 export function createObjectMetadata() {
-  // TODO(Day31-task04): return { tag(obj, label){...}, read(obj){...}} backed by WeakMap (label string)
-  return null;
+  const wm = new WeakMap()
+  return {
+    tag(obj,label) {
+      wm[obj] = label;
+    },
+    read(obj) {return wm[obj]}
+  };
 }

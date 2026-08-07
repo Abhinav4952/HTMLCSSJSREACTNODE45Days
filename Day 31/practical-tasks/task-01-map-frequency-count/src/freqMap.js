@@ -1,4 +1,10 @@
 export function countTokens(tokens) {
-  // TODO(Day31-task01): tokens is string[]; return Map from lowercased trimmed token -> count (ignore empty strings)
-  return null;
+  let res = new Map();
+  for(const token of tokens) {
+    if(token.trim()!=="") {
+      const key = token.trim().toLowerCase()
+      res.set(key,(res.get(key) || 0) + 1);
+    }
+  }
+  return res;
 }
