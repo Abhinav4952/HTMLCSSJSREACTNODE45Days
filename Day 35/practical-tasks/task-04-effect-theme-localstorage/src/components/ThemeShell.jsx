@@ -1,16 +1,15 @@
 import { useState } from 'react'
-
+import { useEffect } from 'react'
 const STORAGE_KEY = 'day35-task04-theme'
 
-// TODO(Day35-task04): Import `useEffect` from `react`.
-// TODO(Day35-task04): On initial mount, read `localStorage.getItem(STORAGE_KEY)`.
-//       If the stored value is exactly `'light'` or `'dark'`, use it as the initial theme via `useState(initializer)` **or** by setting state once in an effect (pick one approach—avoid infinite loops).
-//       If missing/invalid, default to `'light'`.
-// TODO(Day35-task04): Whenever `theme` changes after interactions, persist with `localStorage.setItem(STORAGE_KEY, theme)`.
-//       Ensure this runs for user toggles (and also covers the initial load case if you hydrate from storage).
 export default function ThemeShell() {
-  const [theme, setTheme] = useState('light')
-
+  const [theme, setTheme] = useState(()=>{
+    const storedTheme = localStorage.getItem(STORAGE_KEY);
+    return storedTheme==='light' || storedTheme==='right'? storedTheme : 'light';
+  })
+  useEffect(()=>{
+    localStorage.setItem(STORAGE_KEY,theme);
+  },[theme])
   return (
     <div className={`shell shell--${theme}`}>
       <header style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
