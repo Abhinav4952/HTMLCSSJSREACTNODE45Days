@@ -1,0 +1,7 @@
+.layout-main {
+  min-height: calc(100vh - 8rem);
+}
+
+.layout-footer {
+  border-top: 1px solid #dee2e6;
+}

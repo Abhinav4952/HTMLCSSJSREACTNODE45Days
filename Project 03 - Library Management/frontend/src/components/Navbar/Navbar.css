@@ -1,0 +1,14 @@
+/* Component-scoped styles for Navbar.
+ * Prefer Bootstrap utility/layout classes in JSX.
+ * Use a component prefix (navbar-) for custom rules so styles do not leak.
+ */
+.navbar-brand-logo {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.navbar-link-active {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
