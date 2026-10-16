@@ -1,5 +1,0 @@
-;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="784057b1-7979-906b-a9f4-4eb51b04b6af")}catch(e){}}();
-(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,613252,e=>{"use strict";var t=e.i(572646),o=e.i(541764),r=e.i(920635);let n=["page","p"],a=()=>()=>{},i=()=>window.location.search,s=()=>"";function c(e){return!n.includes(e.toLowerCase())}e.s(["RobotsMetaOverride",0,()=>{let e,n=(0,o.c)(2),l=Array.from(new URLSearchParams((0,r.useSyncExternalStore)(a,i,s)).keys()).filter(c).length>0?"noindex":"index, follow";return n[0]!==l?(e=(0,t.jsx)("meta",{name:"robots",content:l}),n[0]=l,n[1]=e):e=n[1],e},"getClientSnapshot",0,i,"getServerSnapshot",0,s])}]);
-
-//# debugId=784057b1-7979-906b-a9f4-4eb51b04b6af
-//# sourceMappingURL=712467e676257cba.js.map
