@@ -1,0 +1,4 @@
+-- TODO(Day32-task03): write the DDL for table "products" so that Hibernate's ddl-auto=validate accepts the Product entity.
+-- Columns: id (bigint, identity primary key), name (varchar(100) not null), sku (varchar(30) not null unique),
+--          price (numeric(10,2) not null), active (boolean not null), created_at (timestamp(6) not null)
+-- Statements end with a semicolon. Spring runs this file at startup (spring.sql.init.mode=always).

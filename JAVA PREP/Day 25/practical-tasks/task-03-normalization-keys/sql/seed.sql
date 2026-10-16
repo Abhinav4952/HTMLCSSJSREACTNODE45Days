@@ -1,0 +1,5 @@
+-- Migrate raw_orders into the normalized tables (run after schema.sql). Use INSERT ... SELECT DISTINCT.
+-- TODO(Day25-task03): INSERT INTO customers (email, name) SELECT DISTINCT ... FROM raw_orders
+-- TODO(Day25-task03): INSERT INTO products (sku, name, unit_price_cents) SELECT DISTINCT ... FROM raw_orders
+-- TODO(Day25-task03): INSERT INTO orders (id, customer_id) SELECT DISTINCT r.order_id, c.id ... JOIN customers
+-- TODO(Day25-task03): INSERT INTO order_lines (order_id, product_id, qty) SELECT ... JOIN products

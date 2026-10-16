@@ -1,0 +1,635 @@
+from common import *
+
+LAB = sqllab(25)
+PHASE = "SQL/JDBC"
+TIME = "2–3 h theory + 3–5 h tasks"
+
+TEST_HEAD = r'''package %PKG%;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+'''
+
+# ---------------------------------------------------------------- task 1
+T1_TEST = TEST_HEAD + r'''
+class SchemaConstraintsTest {
+
+    private Connection c;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        c = SqlLab.open();
+        SqlLab.runScript(c, "sql/schema.sql", "%TAG%");
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        c.close();
+    }
+
+    private void exec(String sql) throws SQLException {
+        try (Statement st = c.createStatement()) {
+            st.execute(sql);
+        }
+    }
+
+    @Test
+    void tablesExist() throws Exception {
+        DatabaseMetaData md = c.getMetaData();
+        List<String> names = new ArrayList<>();
+        try (ResultSet rs = md.getTables(null, null, "%", new String[] {"TABLE"})) {
+            while (rs.next()) {
+                names.add(rs.getString("TABLE_NAME").toLowerCase());
+            }
+        }
+        assertThat(names).contains("customers", "products", "orders");
+    }
+
+    @Test
+    void emailMustBeUnique() throws Exception {
+        exec("insert into customers(email, full_name) values ('a@x.io', 'A')");
+        assertThatThrownBy(() -> exec("insert into customers(email, full_name) values ('a@x.io', 'B')"))
+                .isInstanceOf(SQLException.class);
+    }
+
+    @Test
+    void fullNameIsRequired() {
+        assertThatThrownBy(() -> exec("insert into customers(email, full_name) values ('n@x.io', null)"))
+                .isInstanceOf(SQLException.class);
+    }
+
+    @Test
+    void createdAtDefaultsToNow() throws Exception {
+        exec("insert into customers(email, full_name) values ('d@x.io', 'D')");
+        assertThat(SqlLab.scalar(c, "select count(*) from customers where created_at is not null")).isEqualTo(1);
+    }
+
+    @Test
+    void priceCannotBeNegativeAndSkuIsUnique() throws Exception {
+        assertThatThrownBy(() -> exec("insert into products(sku, name, price_cents) values ('S1', 'Bad', -1)"))
+                .isInstanceOf(SQLException.class);
+        exec("insert into products(sku, name, price_cents) values ('S1', 'Ok', 0)");
+        assertThatThrownBy(() -> exec("insert into products(sku, name, price_cents) values ('S1', 'Dup', 5)"))
+                .isInstanceOf(SQLException.class);
+    }
+
+    @Test
+    void orderForeignKeyAndStatusRules() throws Exception {
+        assertThatThrownBy(() -> exec("insert into orders(customer_id) values (999)")).isInstanceOf(SQLException.class);
+        exec("insert into customers(email, full_name) values ('o@x.io', 'O')");
+        exec("insert into orders(customer_id) values (1)");
+        assertThat(SqlLab.query(c, "select status from orders").get(0).get(0)).isEqualTo("NEW");
+        assertThatThrownBy(() -> exec("insert into orders(customer_id, status) values (1, 'BOGUS')"))
+                .isInstanceOf(SQLException.class);
+    }
+
+    @Test
+    void seedAndAnswersWork() throws Exception {
+        SqlLab.runScript(c, "sql/seed.sql", "%TAG%");
+        Map<String, String> answers = SqlLab.namedBlocks("sql/answers.sql", "%TAG%");
+        assertThat(SqlLab.scalar(c, answers.get("q_customer_count"))).isEqualTo(3);
+        assertThat(SqlLab.query(c, answers.get("q_cheapest_product")).get(0).get(0)).isEqualTo("Mouse");
+    }
+}
+'''
+
+t1 = task("create-tables-constraints", "Create Tables and Constraints", "Warm-up", "SQL script + JDBC test",
+    "Write PostgreSQL-style DDL for a small shop schema (customers, products, orders) with PK, FK, UNIQUE, CHECK, NOT NULL and defaults, then prove each constraint with violating inserts.",
+    "h2",
+    {
+        "main/SqlLab.java": LAB,
+        "sql/schema.sql": """-- Day 25 / task 01 — DDL. Executed first by the test (H2, MODE=PostgreSQL).
+-- TODO(%TAG%): CREATE TABLE customers (id BIGINT identity PK, email VARCHAR(120) NOT NULL UNIQUE,
+--              full_name VARCHAR(100) NOT NULL, created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
+-- TODO(%TAG%): CREATE TABLE products (id BIGINT identity PK, sku VARCHAR(30) NOT NULL UNIQUE,
+--              name VARCHAR(100) NOT NULL, price_cents INT NOT NULL CHECK (price_cents >= 0))
+-- TODO(%TAG%): CREATE TABLE orders (id BIGINT identity PK, customer_id BIGINT NOT NULL REFERENCES customers(id),
+--              status VARCHAR(12) NOT NULL DEFAULT 'NEW' CHECK (status IN ('NEW','PAID','SHIPPED','CANCELLED')),
+--              placed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
+-- Hint: BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY
+""",
+        "sql/seed.sql": """-- PROVIDED: valid once schema.sql is complete.
+INSERT INTO customers (email, full_name) VALUES ('ana@x.io', 'Ana');
+INSERT INTO customers (email, full_name) VALUES ('bob@x.io', 'Bob');
+INSERT INTO customers (email, full_name) VALUES ('cy@x.io', 'Cy');
+INSERT INTO products (sku, name, price_cents) VALUES ('SKU-1', 'Keyboard', 4999);
+INSERT INTO products (sku, name, price_cents) VALUES ('SKU-2', 'Mouse', 1999);
+INSERT INTO orders (customer_id) VALUES (1);
+""",
+        "sql/answers.sql": """-- Named query blocks: keep the "-- @name" marker lines. One statement per block.
+-- @q_customer_count
+-- TODO(%TAG%): count the rows in customers (after seed.sql)
+
+-- @q_cheapest_product
+-- TODO(%TAG%): return only the NAME of the cheapest product (one column, one row)
+""",
+        "test/SchemaConstraintsTest.java": T1_TEST,
+    },
+    ["Create `customers`, `products`, `orders` in `sql/schema.sql` with the exact column names from the TODO comments.",
+     "Use identity primary keys, a UNIQUE email and sku, NOT NULL where specified, a CHECK on price and order status, and defaults for `created_at`, `status`, `placed_at`.",
+     "Add the foreign key `orders.customer_id -> customers.id`.",
+     "Fill the two blocks in `sql/answers.sql` (keep the `-- @name` markers)."],
+    ["Constraint violations must raise `SQLException` (never silently coerce).", "Status default must be exactly `NEW`.",
+     "Seed data must load cleanly after your schema (no extra columns required)."],
+    ["`id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY` works in H2 PostgreSQL mode.",
+     "Inline `REFERENCES customers(id)` is enough for the FK."])
+
+# ---------------------------------------------------------------- task 2
+T2_TEST = TEST_HEAD + r'''
+class DmlTest {
+
+    private Connection c;
+    private Map<String, String> answers;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        c = SqlLab.open();
+        SqlLab.runScript(c, "sql/schema.sql", "%TAG%");
+        SqlLab.runScript(c, "sql/seed.sql", "%TAG%");
+        answers = SqlLab.namedBlocks("sql/answers.sql", "%TAG%");
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        c.close();
+    }
+
+    @Test
+    void seedHasExactlyTheFourAccounts() throws Exception {
+        List<List<Object>> rows = SqlLab.query(c,
+                "select concat(owner, ':', balance_cents, ':', status) from accounts order by id");
+        assertThat(rows).extracting(r -> r.get(0))
+                .containsExactly("ana:10000:ACTIVE", "bob:2500:ACTIVE", "cleo:0:ACTIVE", "dan:700:FROZEN");
+    }
+
+    @Test
+    void raiseActiveBalancesByFiveHundred() throws Exception {
+        assertThat(SqlLab.update(c, answers.get("raise_active"))).isEqualTo(3);
+        assertThat(SqlLab.scalar(c, "select balance_cents from accounts where owner = 'ana'")).isEqualTo(10500);
+        assertThat(SqlLab.scalar(c, "select balance_cents from accounts where owner = 'dan'")).isEqualTo(700);
+    }
+
+    @Test
+    void closeZeroBalanceThenPurge() throws Exception {
+        assertThat(SqlLab.update(c, answers.get("close_zero"))).isEqualTo(1);
+        assertThat(SqlLab.scalar(c, "select count(*) from accounts where status = 'CLOSED'")).isEqualTo(1);
+        assertThat(SqlLab.update(c, answers.get("purge_closed"))).isEqualTo(1);
+        assertThat(SqlLab.scalar(c, "select count(*) from accounts")).isEqualTo(3);
+    }
+
+    @Test
+    void insertEveUsesDefaultStatus() throws Exception {
+        assertThat(SqlLab.update(c, answers.get("insert_eve"))).isEqualTo(1);
+        assertThat(SqlLab.query(c, "select status from accounts where owner = 'eve'").get(0).get(0)).isEqualTo("ACTIVE");
+    }
+
+    @Test
+    void totalBalance() throws Exception {
+        assertThat(SqlLab.scalar(c, answers.get("q_total_balance"))).isEqualTo(13200);
+    }
+}
+'''
+
+t2 = task("insert-update-delete", "Insert, Update, Delete", "Core", "SQL script + JDBC test",
+    "Given a finished `accounts` table, write the seed INSERTs and the UPDATE / DELETE statements that return the exact affected-row counts the tests expect.",
+    "h2",
+    {
+        "main/SqlLab.java": LAB,
+        "sql/schema.sql": """-- PROVIDED (do not edit)
+CREATE TABLE accounts (
+    id            BIGINT PRIMARY KEY,
+    owner         VARCHAR(50) NOT NULL,
+    balance_cents BIGINT NOT NULL CHECK (balance_cents >= 0),
+    status        VARCHAR(10) NOT NULL DEFAULT 'ACTIVE'
+);
+""",
+        "sql/seed.sql": """-- TODO(%TAG%): INSERT exactly these four rows (id, owner, balance_cents, status):
+--   (1, 'ana', 10000, 'ACTIVE'), (2, 'bob', 2500, 'ACTIVE'), (3, 'cleo', 0, 'ACTIVE'), (4, 'dan', 700, 'FROZEN')
+""",
+        "sql/answers.sql": """-- Each block is one statement executed on a freshly seeded database.
+-- @raise_active
+-- TODO(%TAG%): UPDATE: add 500 to balance_cents of every ACTIVE account
+
+-- @close_zero
+-- TODO(%TAG%): UPDATE: set status = 'CLOSED' where balance_cents = 0
+
+-- @purge_closed
+-- TODO(%TAG%): DELETE every CLOSED account (the test runs close_zero first)
+
+-- @insert_eve
+-- TODO(%TAG%): INSERT account id 5, owner 'eve', balance 100 — omit status so the DEFAULT applies
+
+-- @q_total_balance
+-- TODO(%TAG%): SELECT the sum of all balance_cents
+""",
+        "test/DmlTest.java": T2_TEST,
+    },
+    ["Write `seed.sql` with exactly the four specified rows.", "Write the four DML blocks and one SELECT block in `answers.sql`.",
+     "Use WHERE clauses precisely — the tests check the affected-row counts returned by `executeUpdate`."],
+    ["An UPDATE/DELETE without WHERE would affect all rows — tests catch this.", "Rely on the column DEFAULT in `insert_eve` rather than repeating the literal.",
+     "`close_zero` must run before `purge_closed` in the test, never in your script."],
+    ["`executeUpdate` returns the number of rows changed; think what each WHERE should match.", "`SELECT SUM(balance_cents) FROM accounts` yields a single value."])
+
+# ---------------------------------------------------------------- task 3
+RAW = """-- PROVIDED: the flat, denormalized source data (do not edit)
+CREATE TABLE raw_orders (
+    order_id INT, customer_email VARCHAR(120), customer_name VARCHAR(100),
+    sku VARCHAR(30), product_name VARCHAR(100), qty INT, unit_price_cents INT
+);
+INSERT INTO raw_orders VALUES (1, 'ana@x.io', 'Ana', 'SKU-A', 'Keyboard', 1, 5000);
+INSERT INTO raw_orders VALUES (1, 'ana@x.io', 'Ana', 'SKU-B', 'Mouse', 2, 2000);
+INSERT INTO raw_orders VALUES (2, 'bob@x.io', 'Bob', 'SKU-A', 'Keyboard', 1, 5000);
+INSERT INTO raw_orders VALUES (2, 'bob@x.io', 'Bob', 'SKU-C', 'Monitor', 1, 20000);
+INSERT INTO raw_orders VALUES (3, 'ana@x.io', 'Ana', 'SKU-C', 'Monitor', 2, 20000);
+"""
+
+T3_TEST = TEST_HEAD + r'''
+class NormalizationTest {
+
+    private Connection c;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        c = SqlLab.open();
+        SqlLab.runScript(c, "sql/raw.sql", "%TAG%");
+        SqlLab.runScript(c, "sql/schema.sql", "%TAG%");
+        SqlLab.runScript(c, "sql/seed.sql", "%TAG%");
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        c.close();
+    }
+
+    private void exec(String sql) throws SQLException {
+        try (Statement st = c.createStatement()) {
+            st.execute(sql);
+        }
+    }
+
+    @Test
+    void dataWasSplitWithoutDuplicates() throws Exception {
+        assertThat(SqlLab.scalar(c, "select count(*) from customers")).isEqualTo(2);
+        assertThat(SqlLab.scalar(c, "select count(*) from products")).isEqualTo(3);
+        assertThat(SqlLab.scalar(c, "select count(*) from orders")).isEqualTo(3);
+        assertThat(SqlLab.scalar(c, "select count(*) from order_lines")).isEqualTo(5);
+    }
+
+    @Test
+    void ordersKeepOriginalIdsAndLinkToCustomers() throws Exception {
+        assertThat(SqlLab.scalar(c, "select count(*) from orders o join customers c on c.id = o.customer_id "
+                + "where o.id = 3 and c.email = 'ana@x.io'")).isEqualTo(1);
+    }
+
+    @Test
+    void compositeKeyPreventsDuplicateLines() throws Exception {
+        long skuA = SqlLab.scalar(c, "select id from products where sku = 'SKU-A'");
+        assertThatThrownBy(() -> exec("insert into order_lines(order_id, product_id, qty) values (1, " + skuA + ", 1)"))
+                .isInstanceOf(SQLException.class);
+    }
+
+    @Test
+    void quantityMustBePositiveAndKeysEnforced() throws Exception {
+        long skuA = SqlLab.scalar(c, "select id from products where sku = 'SKU-A'");
+        assertThatThrownBy(() -> exec("insert into order_lines(order_id, product_id, qty) values (3, " + skuA + ", 0)"))
+                .isInstanceOf(SQLException.class);
+        assertThatThrownBy(() -> exec("insert into order_lines(order_id, product_id, qty) values (99, " + skuA + ", 1)"))
+                .isInstanceOf(SQLException.class);
+        assertThatThrownBy(() -> exec("insert into customers(email, name) values ('ana@x.io', 'Dup')"))
+                .isInstanceOf(SQLException.class);
+    }
+
+    @Test
+    void totalsPerCustomer() throws Exception {
+        String sql = SqlLab.namedBlocks("sql/answers.sql", "%TAG%").get("q_total_by_customer");
+        List<List<Object>> rows = SqlLab.query(c, sql);
+        assertThat(rows).hasSize(2);
+        assertThat(rows.get(0).get(0)).isEqualTo("ana@x.io");
+        assertThat(((Number) rows.get(0).get(1)).longValue()).isEqualTo(49000);
+        assertThat(rows.get(1).get(0)).isEqualTo("bob@x.io");
+        assertThat(((Number) rows.get(1).get(1)).longValue()).isEqualTo(25000);
+    }
+}
+'''
+
+t3 = task("normalization-keys", "Normalization and Keys", "Core", "SQL script + JDBC test",
+    "Decompose the flat `raw_orders` table into 3NF tables (customers, products, orders, order_lines) with surrogate and composite keys, migrate the data with INSERT ... SELECT, and report per-customer totals.",
+    "h2",
+    {
+        "main/SqlLab.java": LAB,
+        "sql/raw.sql": RAW,
+        "sql/schema.sql": """-- TODO(%TAG%): customers(id identity PK, email UNIQUE NOT NULL, name NOT NULL)
+-- TODO(%TAG%): products(id identity PK, sku UNIQUE NOT NULL, name NOT NULL, unit_price_cents INT NOT NULL)
+-- TODO(%TAG%): orders(id BIGINT PK  -- reuse the raw order_id, customer_id FK -> customers NOT NULL)
+-- TODO(%TAG%): order_lines(order_id FK, product_id FK, qty INT CHECK (qty > 0), PRIMARY KEY (order_id, product_id))
+""",
+        "sql/seed.sql": """-- Migrate raw_orders into the normalized tables (run after schema.sql). Use INSERT ... SELECT DISTINCT.
+-- TODO(%TAG%): INSERT INTO customers (email, name) SELECT DISTINCT ... FROM raw_orders
+-- TODO(%TAG%): INSERT INTO products (sku, name, unit_price_cents) SELECT DISTINCT ... FROM raw_orders
+-- TODO(%TAG%): INSERT INTO orders (id, customer_id) SELECT DISTINCT r.order_id, c.id ... JOIN customers
+-- TODO(%TAG%): INSERT INTO order_lines (order_id, product_id, qty) SELECT ... JOIN products
+""",
+        "sql/answers.sql": """-- @q_total_by_customer
+-- TODO(%TAG%): customer email and SUM(qty * unit_price_cents) per customer, ordered by email (2 columns)
+""",
+        "test/NormalizationTest.java": T3_TEST,
+    },
+    ["Create the four normalized tables with the exact column names listed in `schema.sql`.", "Migrate all five raw rows with SELECT-based INSERTs (no hard-coded literals).",
+     "Write the per-customer revenue query joining the new tables."],
+    ["Duplicated customers/products must collapse to one row each.", "`order_lines` has a composite primary key `(order_id, product_id)`.",
+     "A line with qty 0 or an unknown order must be rejected."],
+    ["`SELECT DISTINCT customer_email, customer_name FROM raw_orders` gives the customer rows.", "Join `raw_orders` back to `customers` on email to find `customer_id`."])
+
+# ---------------------------------------------------------------- task 4
+ACID_MAIN = r'''package %PKG%;
+
+/** Interview-style helpers about transactions. */
+public final class AcidNotes {
+
+    private AcidNotes() {
+    }
+
+    /** 'A' -> "Atomicity", 'C' -> "Consistency", 'I' -> "Isolation", 'D' -> "Durability" (case-insensitive). */
+    public static String propertyFor(char letter) {
+        // TODO(%TAG%): map the ACID letter to its property name; throw IllegalArgumentException for any other letter
+        throw new UnsupportedOperationException("TODO(%TAG%): implement propertyFor");
+    }
+
+    /**
+     * Minimal SQL-standard isolation level that prevents the anomaly:
+     * "dirty read" -> READ_COMMITTED, "non-repeatable read" -> REPEATABLE_READ, "phantom read" -> SERIALIZABLE.
+     */
+    public static String isolationFor(String anomaly) {
+        // TODO(%TAG%): implement (case-insensitive, trimmed); unknown anomaly -> IllegalArgumentException
+        throw new UnsupportedOperationException("TODO(%TAG%): implement isolationFor");
+    }
+}
+'''
+
+T4_TEST = TEST_HEAD + r'''
+class AcidTransactionTest {
+
+    private Connection c;
+    private Map<String, String> answers;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        c = SqlLab.open();
+        SqlLab.runScript(c, "sql/schema.sql", "%TAG%");
+        SqlLab.runScript(c, "sql/seed.sql", "%TAG%");
+        answers = SqlLab.namedBlocks("sql/answers.sql", "%TAG%");
+        c.setAutoCommit(false);
+        c.commit();
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        c.close();
+    }
+
+    private long ana() throws Exception {
+        return SqlLab.scalar(c, "select balance_cents from accounts where owner = 'ana'");
+    }
+
+    @Test
+    void commitedTransferMovesMoneyAndKeepsTotal() throws Exception {
+        SqlLab.update(c, answers.get("debit_ana_3000"));
+        SqlLab.update(c, answers.get("credit_bob_3000"));
+        c.commit();
+        assertThat(ana()).isEqualTo(7000);
+        assertThat(SqlLab.scalar(c, answers.get("q_total"))).isEqualTo(15000);
+    }
+
+    @Test
+    void rollbackUndoesTheDebit() throws Exception {
+        SqlLab.update(c, answers.get("debit_ana_3000"));
+        assertThat(ana()).isEqualTo(7000);
+        c.rollback();
+        assertThat(ana()).isEqualTo(10000);
+    }
+
+    @Test
+    void overdraftViolatesCheckConstraintAndRollsBack() throws Exception {
+        assertThatThrownBy(() -> SqlLab.update(c, answers.get("overdraft_ana")))
+                .isInstanceOf(SQLException.class);
+        c.rollback();
+        assertThat(ana()).isEqualTo(10000);
+        assertThat(SqlLab.scalar(c, answers.get("q_total"))).isEqualTo(15000);
+    }
+
+    @Test
+    void acidLetters() {
+        assertThat(AcidNotes.propertyFor('A')).isEqualTo("Atomicity");
+        assertThat(AcidNotes.propertyFor('c')).isEqualTo("Consistency");
+        assertThat(AcidNotes.propertyFor('I')).isEqualTo("Isolation");
+        assertThat(AcidNotes.propertyFor('d')).isEqualTo("Durability");
+        assertThatThrownBy(() -> AcidNotes.propertyFor('x')).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void isolationLevels() {
+        assertThat(AcidNotes.isolationFor("Dirty Read")).isEqualTo("READ_COMMITTED");
+        assertThat(AcidNotes.isolationFor(" non-repeatable read ")).isEqualTo("REPEATABLE_READ");
+        assertThat(AcidNotes.isolationFor("phantom read")).isEqualTo("SERIALIZABLE");
+        assertThatThrownBy(() -> AcidNotes.isolationFor("lost dreams")).isInstanceOf(IllegalArgumentException.class);
+    }
+}
+'''
+
+t4 = task("acid-transaction-demo", "ACID Transaction Demo", "Challenge", "SQL script + JDBC test",
+    "Write the debit/credit/overdraft statements for a money transfer, prove atomicity with COMMIT and ROLLBACK, and implement two small ACID helper methods.",
+    "h2",
+    {
+        "main/SqlLab.java": LAB,
+        "main/AcidNotes.java": ACID_MAIN,
+        "sql/schema.sql": """-- PROVIDED (do not edit)
+CREATE TABLE accounts (
+    id            BIGINT PRIMARY KEY,
+    owner         VARCHAR(50) NOT NULL UNIQUE,
+    balance_cents BIGINT NOT NULL CHECK (balance_cents >= 0)
+);
+""",
+        "sql/seed.sql": """-- PROVIDED
+INSERT INTO accounts (id, owner, balance_cents) VALUES (1, 'ana', 10000);
+INSERT INTO accounts (id, owner, balance_cents) VALUES (2, 'bob', 5000);
+""",
+        "sql/answers.sql": """-- The test opens a transaction (autocommit off) and runs these statements, then commits or rolls back.
+-- @debit_ana_3000
+-- TODO(%TAG%): UPDATE: subtract 3000 from ana's balance
+
+-- @credit_bob_3000
+-- TODO(%TAG%): UPDATE: add 3000 to bob's balance
+
+-- @overdraft_ana
+-- TODO(%TAG%): UPDATE: subtract 999999 from ana's balance (must be rejected by the CHECK constraint)
+
+-- @q_total
+-- TODO(%TAG%): SELECT the sum of all balances (the money supply invariant)
+""",
+        "test/AcidTransactionTest.java": T4_TEST,
+    },
+    ["Complete the four named blocks in `sql/answers.sql`.", "Implement `AcidNotes.propertyFor` and `AcidNotes.isolationFor`.",
+     "Be able to explain why the total of 15000 is invariant after commit and after rollback (atomicity + consistency)."],
+    ["Unknown ACID letters or anomalies -> `IllegalArgumentException`.", "Anomaly names are case-insensitive and trimmed.",
+     "The overdraft block must fail with a constraint error, not succeed with a negative balance."],
+    ["Atomicity: all statements in the transaction apply or none do.", "`SELECT SUM(balance_cents) FROM accounts` is the invariant to check."])
+
+# ---------------------------------------------------------------- theory
+topics = [
+    T("Relational model, DDL, and constraints",
+      "A relational database stores facts in **tables** (relations) made of typed columns and rows. **DDL** (`CREATE`, `ALTER`, `DROP`) defines the shape; **constraints** (`PRIMARY KEY`, `FOREIGN KEY`, `UNIQUE`, `NOT NULL`, `CHECK`, `DEFAULT`) let the database itself reject impossible data. Think of constraints as *executable business rules that no application bug can bypass*.",
+      "Application code has bugs, multiple services write to the same database, and people run ad-hoc scripts. Only the database sees every write, so integrity rules belong there. PostgreSQL also gives rich types (`BIGINT`, `NUMERIC`, `TIMESTAMPTZ`, `UUID`, `JSONB`) so values are validated at the storage layer.",
+      ["Integrity is enforced for every writer, not just your service", "Constraints document the model and help the query planner", "Fail-fast: a bad insert fails immediately instead of corrupting reports months later", "Identity/serial columns give stable surrogate keys"],
+      ["DDL changes are heavy in production (locks, rewrites) and need migrations (Flyway/Liquibase)", "Over-constraining early can slow prototyping", "Cross-row rules (e.g. 'max 3 active orders') need triggers or application logic"],
+      "Without NOT NULL/UNIQUE/FK, you get orphan rows (`orders` with no customer), duplicate emails, negative prices and `NullPointerException`s far from the cause. Typical symptom in Java: a `SQLIntegrityConstraintViolationException` at runtime — or worse, no exception and silently inconsistent data.",
+      "```sql\nCREATE TABLE t (\n  id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\n  email VARCHAR(120) NOT NULL UNIQUE,\n  qty INT NOT NULL CHECK (qty > 0),\n  parent_id BIGINT REFERENCES parent(id)\n);\n```\nGotchas: `NULL` is not equal to anything, so `UNIQUE` allows many NULLs; `CHECK` passes when the expression is NULL (unknown); PostgreSQL folds unquoted identifiers to lower case (hence `DATABASE_TO_LOWER=TRUE` in H2).",
+      [("Table with CHECK and DEFAULT", "sql", "CREATE TABLE products (\n  id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\n  sku VARCHAR(30) NOT NULL UNIQUE,\n  price_cents INT NOT NULL CHECK (price_cents >= 0),\n  active BOOLEAN NOT NULL DEFAULT TRUE\n);"),
+       ("Foreign key with ON DELETE", "sql", "CREATE TABLE orders (\n  id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\n  customer_id BIGINT NOT NULL REFERENCES customers(id) ON DELETE RESTRICT\n);\n-- DELETE FROM customers WHERE id = 1  => error while orders reference it"),
+       ("Proving a constraint from JDBC", "java", "try (Statement st = c.createStatement()) {\n    st.execute(\"insert into customers(email, full_name) values ('a@x.io','A')\");\n    st.execute(\"insert into customers(email, full_name) values ('a@x.io','B')\"); // throws SQLException (unique)\n}")],
+      [("Why does `UNIQUE(email)` still allow two rows with NULL email?", "In SQL NULL means unknown, and NULL = NULL is not true, so no two NULLs are considered duplicates."),
+       ("Which constraint stops an order pointing at a missing customer?", "A FOREIGN KEY (`REFERENCES customers(id)`)."),
+       ("Why put a CHECK on `price_cents` if the service validates it already?", "Other writers and future bugs bypass the service; the database is the last line of defence.")]),
+    T("DML: INSERT, UPDATE, DELETE and RETURNING",
+      "**DML** changes data. `INSERT` adds rows, `UPDATE ... SET ... WHERE` changes matching rows, `DELETE ... WHERE` removes them. PostgreSQL adds `RETURNING` to get generated values back in the same statement; JDBC reports affected rows via `executeUpdate`.",
+      "Every write path of a backend ends in one of these statements. Knowing exactly how many rows each touches (and that the WHERE decides) prevents the classic 'updated the whole table' incident.",
+      ["Set-based: one statement changes thousands of rows atomically", "Affected-row counts give cheap optimistic checks", "`RETURNING` avoids a second round trip for generated ids", "DEFAULT values keep inserts short and consistent"],
+      ["A missing WHERE is silent and catastrophic", "Large updates hold locks and bloat tables (MVCC dead tuples in PostgreSQL)", "`DELETE` is not recoverable without a backup or a soft-delete column"],
+      "Forgetting WHERE changes every row; updating by a non-unique column changes more rows than intended; relying on column order in `INSERT INTO t VALUES (...)` breaks when a column is added. Symptom: `executeUpdate` returns a number you did not expect.",
+      "```sql\nINSERT INTO t (a, b) VALUES (1, 'x');            -- always list columns\nUPDATE t SET b = 'y' WHERE a = 1;\nDELETE FROM t WHERE a = 1;\nINSERT INTO t (b) VALUES ('z') RETURNING id;      -- PostgreSQL\n```\nRun risky statements first as `SELECT` with the same WHERE; in psql wrap them in `BEGIN; ... ROLLBACK;` while rehearsing.",
+      [("Targeted update", "sql", "UPDATE accounts SET balance_cents = balance_cents + 500 WHERE status = 'ACTIVE';"),
+       ("Insert relying on defaults", "sql", "INSERT INTO accounts (id, owner, balance_cents) VALUES (5, 'eve', 100);\n-- status becomes 'ACTIVE' from the column DEFAULT"),
+       ("Affected rows in JDBC", "java", "int n = st.executeUpdate(\"delete from accounts where status = 'CLOSED'\");\nSystem.out.println(n + \" row(s) deleted\");")],
+      [("How do you preview what an UPDATE will touch?", "Run `SELECT * FROM t WHERE <same predicate>` first (or `BEGIN` ... `ROLLBACK`)."),
+       ("Why list the columns in INSERT?", "The statement keeps working when columns are added or reordered and is self-documenting."),
+       ("What does `executeUpdate` return for `DELETE`?", "The number of rows deleted.")]),
+    T("Keys and normalization (1NF–3NF)",
+      "A **primary key** uniquely identifies a row; a **foreign key** references another table's key; a **composite key** uses several columns. **Normalization** removes redundancy: **1NF** atomic values and no repeating groups, **2NF** every non-key column depends on the whole key, **3NF** no non-key column depends on another non-key column.",
+      "Redundant data must be updated in many places and drifts out of sync (update anomalies). Normalized schemas store each fact once, which keeps writes cheap and correct; reads then join tables.",
+      ["Each fact stored once => no update/insert/delete anomalies", "Smaller rows, better cache usage", "Constraints become simple and exact", "Easier schema evolution"],
+      ["More joins on reads (mitigated by indexes and views)", "Over-normalization hurts readability and performance for reporting", "Surrogate keys hide natural uniqueness unless you add UNIQUE on the natural key"],
+      "A flat table `orders(customer_name, customer_email, product_name, ...)` renames a customer in 1,000 rows; one is missed and reports show two spellings. Other symptom: `UPDATE` anomalies, orphaned detail rows, impossible-to-delete data.",
+      "Rules of thumb: choose a stable surrogate PK (`BIGINT` identity or `UUID`), add UNIQUE on natural keys (email, sku), model many-to-many with a join table whose PK is the pair, keep money in integer cents or `NUMERIC`.\n```text\nflat(order_id, cust_email, cust_name, sku, prod_name, qty, price)\n -> customers(id, email, name)\n -> products(id, sku, name, unit_price)\n -> orders(id, customer_id)\n -> order_lines(order_id, product_id, qty)   PK(order_id, product_id)\n```",
+      [("Detect a 2NF violation", "text", "order_lines(order_id, product_id, qty, product_name)\nproduct_name depends only on product_id (part of the key) -> move it to products"),
+       ("Migrating data with INSERT ... SELECT", "sql", "INSERT INTO customers (email, name)\nSELECT DISTINCT customer_email, customer_name FROM raw_orders;"),
+       ("Join table", "sql", "CREATE TABLE student_course (\n  student_id BIGINT REFERENCES student(id),\n  course_id  BIGINT REFERENCES course(id),\n  PRIMARY KEY (student_id, course_id)\n);")],
+      [("What problem does 3NF remove?", "Transitive dependencies: non-key columns that depend on other non-key columns, causing redundancy."),
+       ("Why does a many-to-many relation need a third table?", "A single column cannot hold multiple foreign keys atomically (1NF); the join table stores one row per pair."),
+       ("When is denormalization acceptable?", "For measured read-performance needs (reporting, caches), accepting duplicated data and the responsibility to keep it in sync.")]),
+    T("ACID transactions",
+      "A **transaction** groups statements into one logical unit. **A**tomicity: all or nothing. **C**onsistency: constraints hold before and after. **I**solation: concurrent transactions do not see each other's half-done work (to a configurable degree). **D**urability: once committed, data survives crashes (write-ahead log).",
+      "Money transfers, order placement and inventory updates need several statements to succeed together. Without transactions a crash between debit and credit destroys money.",
+      ["Correctness under failure (atomicity + durability)", "Concurrency without corrupting data (isolation)", "Simple mental model: `BEGIN` ... `COMMIT`/`ROLLBACK`", "PostgreSQL MVCC lets readers not block writers"],
+      ["Longer transactions hold locks/snapshots and hurt throughput", "Higher isolation levels cost performance and can abort with serialization failures", "Distributed transactions across services are hard (later: sagas/outbox)"],
+      "Autocommit on + two UPDATEs: the first commits alone; an exception before the second leaves money debited but not credited. Isolation issues: dirty read (uncommitted data), non-repeatable read, phantom read, lost update.",
+      "```sql\nBEGIN;\nUPDATE accounts SET balance_cents = balance_cents - 3000 WHERE owner = 'ana';\nUPDATE accounts SET balance_cents = balance_cents + 3000 WHERE owner = 'bob';\nCOMMIT;   -- or ROLLBACK;\n```\nJDBC: `c.setAutoCommit(false)` ... `c.commit()` / `c.rollback()`. Isolation (SQL standard): READ_COMMITTED stops dirty reads, REPEATABLE_READ also non-repeatable reads, SERIALIZABLE also phantoms. PostgreSQL default is READ COMMITTED.",
+      [("Atomic transfer", "sql", "BEGIN;\nUPDATE accounts SET balance_cents = balance_cents - 3000 WHERE owner = 'ana';\nUPDATE accounts SET balance_cents = balance_cents + 3000 WHERE owner = 'bob';\nCOMMIT;"),
+       ("Constraint-driven rollback", "java", "c.setAutoCommit(false);\ntry {\n    st.executeUpdate(\"update accounts set balance_cents = balance_cents - 999999 where owner = 'ana'\"); // CHECK fails\n} catch (SQLException e) {\n    c.rollback();\n}"),
+       ("Isolation anomaly table", "text", "dirty read           -> prevented by READ COMMITTED\nnon-repeatable read  -> prevented by REPEATABLE READ\nphantom read         -> prevented by SERIALIZABLE (standard)")],
+      [("Which ACID property does the write-ahead log mainly provide?", "Durability (and it enables atomic rollback/recovery)."),
+       ("What happens to partial work on ROLLBACK?", "It is discarded; the database returns to the state at BEGIN."),
+       ("Which anomaly does READ COMMITTED still allow?", "Non-repeatable reads and phantoms.")]),
+]
+
+day(25, "PostgreSQL and RDBMS Fundamentals", PHASE, "Relational design, DDL/DML, keys, normalization, and ACID — verified through H2 in PostgreSQL mode",
+    ["Design tables with PK, FK, UNIQUE, CHECK, NOT NULL and DEFAULT constraints", "Write INSERT/UPDATE/DELETE statements and reason about affected rows",
+     "Normalize a flat dataset to 3NF with surrogate and composite keys", "Explain ACID and demonstrate COMMIT/ROLLBACK atomicity", "Run SQL scripts from Java via JDBC against H2 (MODE=PostgreSQL)"],
+    ["Day 16–24 core Java background (collections, exceptions)", "Optional: `setup/POSTGRESQL_SETUP.md` to try the same scripts in psql"],
+    topics,
+    [t1, t2, t3, t4],
+    [("Difference between PRIMARY KEY and UNIQUE?", "Both enforce uniqueness; a table has one primary key (implies NOT NULL) but can have many UNIQUE constraints."),
+     ("What is a foreign key and what does ON DELETE CASCADE do?", "A FK references a parent key; CASCADE deletes dependent rows automatically when the parent is deleted (use deliberately)."),
+     ("Explain 1NF, 2NF, 3NF briefly.", "1NF atomic columns; 2NF no partial dependency on part of a composite key; 3NF no transitive dependency between non-key columns."),
+     ("What does ACID stand for and which is hardest in distributed systems?", "Atomicity, Consistency, Isolation, Durability; atomicity/isolation across services is hardest (sagas, outbox)."),
+     ("Why store money as integer cents or NUMERIC, not DOUBLE?", "Binary floating point cannot represent decimal fractions exactly; rounding errors accumulate.")],
+    ["Forgetting that H2 `MODE=PostgreSQL` is only an approximation — verify final scripts in real PostgreSQL 17.", "Splitting scripts on `;` while a string contains a semicolon (`SqlLab` is intentionally simple).",
+     "Using autocommit for multi-statement business operations.", "Running `UPDATE`/`DELETE` without WHERE; always preview with SELECT."],
+    ["PostgreSQL docs: Data Definition, Data Manipulation, Transaction Isolation", "H2 docs: Compatibility modes (PostgreSQL)", "Markus Winand, *Use The Index, Luke* (for Day 26)"],
+    [("DDL/DML", "Data Definition / Data Manipulation Language"), ("Surrogate key", "Artificial identifier with no business meaning"), ("MVCC", "Multi-version concurrency control used by PostgreSQL"),
+     ("3NF", "Third normal form: no transitive dependencies"), ("Atomicity", "A transaction applies fully or not at all")],
+    TIME)
+
+# ---------------------------------------------------------------- reference solutions (maintainers only; used by verify_solutions.py)
+t1["sol"] = {
+    "sql/schema.sql": """
+CREATE TABLE customers (id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY, email VARCHAR(120) NOT NULL UNIQUE,
+  full_name VARCHAR(100) NOT NULL, created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE products (id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY, sku VARCHAR(30) NOT NULL UNIQUE,
+  name VARCHAR(100) NOT NULL, price_cents INT NOT NULL CHECK (price_cents >= 0));
+CREATE TABLE orders (id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY, customer_id BIGINT NOT NULL REFERENCES customers(id),
+  status VARCHAR(12) NOT NULL DEFAULT 'NEW' CHECK (status IN ('NEW','PAID','SHIPPED','CANCELLED')),
+  placed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);
+""",
+    "sql/answers.sql": "-- @q_customer_count\nSELECT COUNT(*) FROM customers;\n-- @q_cheapest_product\nSELECT name FROM products ORDER BY price_cents LIMIT 1;\n",
+}
+t2["sol"] = {
+    "sql/seed.sql": "INSERT INTO accounts VALUES (1,'ana',10000,'ACTIVE'),(2,'bob',2500,'ACTIVE'),(3,'cleo',0,'ACTIVE'),(4,'dan',700,'FROZEN');",
+    "sql/answers.sql": """-- @raise_active
+UPDATE accounts SET balance_cents = balance_cents + 500 WHERE status = 'ACTIVE';
+-- @close_zero
+UPDATE accounts SET status = 'CLOSED' WHERE balance_cents = 0;
+-- @purge_closed
+DELETE FROM accounts WHERE status = 'CLOSED';
+-- @insert_eve
+INSERT INTO accounts (id, owner, balance_cents) VALUES (5, 'eve', 100);
+-- @q_total_balance
+SELECT SUM(balance_cents) FROM accounts;
+""",
+}
+t3["sol"] = {
+    "sql/schema.sql": """
+CREATE TABLE customers (id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY, email VARCHAR(120) NOT NULL UNIQUE, name VARCHAR(100) NOT NULL);
+CREATE TABLE products (id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY, sku VARCHAR(30) NOT NULL UNIQUE, name VARCHAR(100) NOT NULL, unit_price_cents INT NOT NULL);
+CREATE TABLE orders (id BIGINT PRIMARY KEY, customer_id BIGINT NOT NULL REFERENCES customers(id));
+CREATE TABLE order_lines (order_id BIGINT NOT NULL REFERENCES orders(id), product_id BIGINT NOT NULL REFERENCES products(id),
+  qty INT NOT NULL CHECK (qty > 0), PRIMARY KEY (order_id, product_id));
+""",
+    "sql/seed.sql": """
+INSERT INTO customers (email, name) SELECT DISTINCT customer_email, customer_name FROM raw_orders;
+INSERT INTO products (sku, name, unit_price_cents) SELECT DISTINCT sku, product_name, unit_price_cents FROM raw_orders;
+INSERT INTO orders (id, customer_id) SELECT DISTINCT r.order_id, c.id FROM raw_orders r JOIN customers c ON c.email = r.customer_email;
+INSERT INTO order_lines (order_id, product_id, qty) SELECT r.order_id, p.id, r.qty FROM raw_orders r JOIN products p ON p.sku = r.sku;
+""",
+    "sql/answers.sql": """-- @q_total_by_customer
+SELECT c.email, SUM(l.qty * p.unit_price_cents) FROM customers c JOIN orders o ON o.customer_id = c.id
+JOIN order_lines l ON l.order_id = o.id JOIN products p ON p.id = l.product_id GROUP BY c.email ORDER BY c.email;
+""",
+}
+t4["sol"] = {
+    "sql/answers.sql": """-- @debit_ana_3000
+UPDATE accounts SET balance_cents = balance_cents - 3000 WHERE owner = 'ana';
+-- @credit_bob_3000
+UPDATE accounts SET balance_cents = balance_cents + 3000 WHERE owner = 'bob';
+-- @overdraft_ana
+UPDATE accounts SET balance_cents = balance_cents - 999999 WHERE owner = 'ana';
+-- @q_total
+SELECT SUM(balance_cents) FROM accounts;
+""",
+    "main/AcidNotes.java": r'''package %PKG%;
+public final class AcidNotes {
+    public static String propertyFor(char l) {
+        return switch (Character.toUpperCase(l)) {
+            case 'A' -> "Atomicity"; case 'C' -> "Consistency"; case 'I' -> "Isolation"; case 'D' -> "Durability";
+            default -> throw new IllegalArgumentException("bad " + l);
+        };
+    }
+    public static String isolationFor(String a) {
+        return switch (a.trim().toLowerCase()) {
+            case "dirty read" -> "READ_COMMITTED"; case "non-repeatable read" -> "REPEATABLE_READ";
+            case "phantom read" -> "SERIALIZABLE"; default -> throw new IllegalArgumentException(a);
+        };
+    }
+}
+''',
+}

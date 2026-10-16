@@ -1,0 +1,5 @@
+-- PROVIDED
+CREATE TABLE sales (
+    id INT PRIMARY KEY, region VARCHAR(10) NOT NULL, rep VARCHAR(20) NOT NULL,
+    amount_cents INT NOT NULL, sold_on DATE NOT NULL
+);

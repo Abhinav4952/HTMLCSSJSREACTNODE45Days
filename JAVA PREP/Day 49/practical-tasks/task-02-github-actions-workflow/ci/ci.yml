@@ -1,0 +1,4 @@
+# Learner workflow (this file is validated by WorkflowCheckerTest).
+# TODO(Day49-task02): write a complete GitHub Actions workflow for a Maven + Java 21 project.
+# Use ../../../samples/github-actions-ci.yml (Day 49/samples) ONLY as a reference; type it yourself to understand each key.
+name: CI

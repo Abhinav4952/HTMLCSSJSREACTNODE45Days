@@ -1,0 +1,2 @@
+-- TODO(Day25-task02): INSERT exactly these four rows (id, owner, balance_cents, status):
+--   (1, 'ana', 10000, 'ACTIVE'), (2, 'bob', 2500, 'ACTIVE'), (3, 'cleo', 0, 'ACTIVE'), (4, 'dan', 700, 'FROZEN')

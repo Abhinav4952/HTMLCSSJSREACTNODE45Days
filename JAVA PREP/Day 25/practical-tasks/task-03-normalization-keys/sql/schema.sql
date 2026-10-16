@@ -1,0 +1,4 @@
+-- TODO(Day25-task03): customers(id identity PK, email UNIQUE NOT NULL, name NOT NULL)
+-- TODO(Day25-task03): products(id identity PK, sku UNIQUE NOT NULL, name NOT NULL, unit_price_cents INT NOT NULL)
+-- TODO(Day25-task03): orders(id BIGINT PK  -- reuse the raw order_id, customer_id FK -> customers NOT NULL)
+-- TODO(Day25-task03): order_lines(order_id FK, product_id FK, qty INT CHECK (qty > 0), PRIMARY KEY (order_id, product_id))

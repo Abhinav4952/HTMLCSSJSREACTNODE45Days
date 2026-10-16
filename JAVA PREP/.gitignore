@@ -1,0 +1,24 @@
+# Build output
+target/
+out/
+*.class
+
+# IDEs
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+
+# Local secrets / configuration (never commit)
+application-local.yml
+application-local.properties
+.env
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Maven wrapper: keep the wrapper jar if present (explicitly NOT ignored)
+!.mvn/wrapper/maven-wrapper.jar

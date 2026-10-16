@@ -1,0 +1,23 @@
+# Main configuration. Secrets and connection details come from the ENVIRONMENT (or application-local.yml, see README).
+spring:
+  application:
+    name: stayeasy
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate        # the schema is owned by database/*.sql; Hibernate only VERIFIES it
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+server:
+  port: 8080
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

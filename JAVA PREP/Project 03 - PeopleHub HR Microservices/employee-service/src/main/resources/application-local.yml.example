@@ -1,0 +1,7 @@
+# Copy this file to application-local.yml (git-ignored) and adjust the values to YOUR machine.
+# Activate it with: SPRING_PROFILES_ACTIVE=local   (or -Dspring-boot.run.profiles=local)
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/peoplehub_employee
+    username: course_user
+    password: change_me

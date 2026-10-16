@@ -1,0 +1,3 @@
+# Shared defaults. Profile files application-dev.yml / application-prod.yml override them.
+greeting:
+  suffix: "!"

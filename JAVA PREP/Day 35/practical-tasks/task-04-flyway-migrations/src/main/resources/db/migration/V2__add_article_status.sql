@@ -1,0 +1,2 @@
+-- TODO(Day35-task04): migration V2 - add column status varchar(20) not null default 'DRAFT' to articles (ALTER TABLE ... ADD COLUMN).
+--              Existing rows must get DRAFT. Never edit V1 once applied: add a NEW migration instead.

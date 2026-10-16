@@ -1,0 +1,2 @@
+-- @q_total_by_customer
+-- TODO(Day25-task03): customer email and SUM(qty * unit_price_cents) per customer, ordered by email (2 columns)

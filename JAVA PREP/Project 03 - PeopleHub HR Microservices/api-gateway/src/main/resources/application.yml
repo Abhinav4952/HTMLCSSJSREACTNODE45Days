@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: employees
+          uri: ${EMPLOYEE_SERVICE_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/employees/**
+        - id: leaves
+          uri: ${LEAVE_SERVICE_URL:http://localhost:8082}
+          predicates:
+            - Path=/api/leaves/**
+        - id: notifications
+          uri: ${NOTIFICATION_SERVICE_URL:http://localhost:8083}
+          predicates:
+            - Path=/api/notifications/**
+      # TODO (Milestone E): validate the JWT at the edge (global filter) and forward X-User-Id / X-User-Role to the services.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway

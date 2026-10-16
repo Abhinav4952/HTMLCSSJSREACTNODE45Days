@@ -1,0 +1,8 @@
+# Sample configuration the class is designed to bind (documentation only)
+app:
+  name: demo
+  max-users: 5
+  features: [a, b]
+  security:
+    enabled: true
+    token: change-me
