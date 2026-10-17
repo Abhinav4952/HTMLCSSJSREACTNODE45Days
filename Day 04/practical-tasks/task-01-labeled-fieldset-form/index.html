@@ -9,7 +9,48 @@
   <body>
     <main>
       <h1>Conference registration (static)</h1>
+      <form action="#" method="post">
+        <fieldset>
+          <legend>Ticket Type</legend>
+          <label for="standard">Standard</label>
+          <input type="radio" id="standard" name="ticket" value="standard">
+          <label for="vip">VIP</label>
+          <input type="radio" id="vip" name="ticket" value="vip">
+        </fieldset>
+
+        <fieldset>
+          <legend>Contact Information</legend>
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" required>
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </fieldset>
+
+        <button type="submit">Register</button>
+      </form>
+
       <!-- TODO(Day04-task01): Add <form action="#" method="post"> containing: (1) fieldset/legend for ticket type with at least two labeled radio options sharing name="ticket"; (2) fieldset/legend for contact with labeled text input name="fullName" and labeled email input name="email"; (3) submit button text "Register". -->
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Ticket Type</legend>
+            <label for="standard">Standard</label>
+            <input type="radio" id="standard" name="ticket" value="standard">
+            <label for="vip">VIP</label>
+            <input type="radio" id="vip" name="ticket" value="vip">
+          </fieldset>
+
+          <fieldset>
+            <legend>Contact Information</legend>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </fieldset>
+
+          <button type="submit">Register</button>
+        </form>
     </main>
   </body>
 </html>

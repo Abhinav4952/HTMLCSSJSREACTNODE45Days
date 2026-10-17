@@ -12,7 +12,22 @@ body {
 }
 
 /* TODO(Day08-task01): Style .tag as position:relative with small top/left offsets (2–6px range) and maybe a subtle background pill. */
+.tag {
+  position: relative;
+  top: 4px;
+  left: 4px;
+  background-color: #e0f2fe;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px; /* Makes it pill-shaped */
+  font-size: 0.875rem; /* Optional smaller font size */
+  color: #0369a1; /* Optional text color */
+}
 /* TODO(Day08-task01): Style .title as position:relative with a tiny top offset (-2px to 2px) and optional subtle text-shadow. */
+.title {
+  position: relative;
+  top: 1px; /* Tiny top offset */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Optional subtle text-shadow */
+}
 
 .body {
   margin: 0.75rem 0 0;

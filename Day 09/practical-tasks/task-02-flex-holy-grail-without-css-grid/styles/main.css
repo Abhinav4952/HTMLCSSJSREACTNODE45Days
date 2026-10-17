@@ -1,4 +1,9 @@
 /* TODO(Day09-task02): Implement holy grail layout with flexbox only (no grid). */
+holy-grail {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 *,
 *::before,

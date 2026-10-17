@@ -25,3 +25,12 @@ body {
 }
 
 /* TODO(Day10-task04): Add CSS counters so each .outline-link shows a numeric prefix like "3. " automatically. */
+.outline-nav {
+  counter-reset: outline-counter;
+}
+.outline-link {
+  counter-increment: outline-counter;
+}
+.outline-link::before {
+  content: counter(outline-counter) ". ";
+}

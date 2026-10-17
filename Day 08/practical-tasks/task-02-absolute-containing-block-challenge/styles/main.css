@@ -33,4 +33,12 @@ body {
 }
 
 /* TODO(Day08-task02): Fix containing block so .badge anchors to .card padding edges as specified in TASK_INSTRUCTIONS.md. */
+.card {
+  position: relative; /* This makes .card the containing block for .badge */
+  background: #ffffff;
+  border: 1px solid rgb(15 23 42 / 0.12);
+  border-radius: 14px;
+  padding: 16px;
+  max-width: 420px;
+}
 /* TODO(Day08-task02): Add a short comment explaining which ancestor was the problem and why. */

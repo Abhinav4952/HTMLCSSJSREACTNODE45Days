@@ -38,6 +38,8 @@ body {
 
 .shell {
   /* TODO(Day08-task03): layout shell as described in top comments */
+  display: flex;
+  height: calc(100vh - 56px);
 }
 
 .sidebar {
@@ -51,6 +53,8 @@ body {
   margin: 0 0 0.75rem;
   font-weight: 700;
   /* TODO(Day08-task03): make sticky within the scrolling main column as specified */
+  position: sticky;
+  top: 8px;
 }
 
 nav a {
@@ -69,3 +73,4 @@ nav a {
 }
 
 /* TODO(Day08-task03): Implement fixed topbar + scrollable main + sticky side-title per TASK_INSTRUCTIONS.md */
+

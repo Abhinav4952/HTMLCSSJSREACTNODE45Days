@@ -9,7 +9,44 @@
   <body>
     <main>
       <h1>Feedback form</h1>
+
+      <form method="post" action="#">
+        <label for="message">Your Feedback:</label>
+        <textarea id="message" name="message" required rows="6" maxlength="600"></textarea>
+        <p class="hint">Please limit your feedback to 600 characters.</p>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+          <option value="" disabled selected>Choose a category…</option>
+          <option value="bug">Bug Report</option>
+          <option value="feature">Feature Request</option>
+          <option value="general">General Feedback</option>
+        </select>
+
+        <button type="submit">Send</button>
+        <button type="reset">Clear</button>
+        <button type="button">Preview</button>
+      </form>
+
+
       <!-- TODO(Day04-task03): Add post form action="#" with labeled textarea name="message" required rows>=6 maxlength=600 and help paragraph mentioning 600 char limit. Add labeled select name="category" with disabled/selected first option "Choose a category…" plus three real categories. Add buttons: submit "Send", reset "Clear", button type="button" "Preview". -->
+       <form method="post" action="#">
+        <label for="message">Your Feedback:</label>
+        <textarea id="message" name="message" required rows="6" maxlength="600"></textarea>
+        <p class="hint">Please limit your feedback to 600 characters.</p>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+          <option value="" disabled selected>Choose a category…</option>
+          <option value="bug">Bug Report</option>
+          <option value="feature">Feature Request</option>
+          <option value="general">General Feedback</option>
+        </select>
+
+        <button type="submit">Send</button>
+        <button type="reset">Clear</button>
+        <button type="button">Preview</button>
+      </form>
     </main>
   </body>
 </html>

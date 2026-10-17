@@ -39,3 +39,7 @@ button {
 }
 
 /* TODO(Day10-task03): Add focus-visible styling meeting TASK_INSTRUCTIONS.md */
+button:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
