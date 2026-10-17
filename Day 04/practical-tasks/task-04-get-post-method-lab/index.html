@@ -9,9 +9,30 @@
   <body>
     <main>
       <h1>HTTP method lab</h1>
-      <!-- TODO(Day04-task04): Add <section><h2>Search (GET)</h2>...</section> containing a GET form action="#" with labeled search input name="q" and submit "Search". -->
-      <!-- TODO(Day04-task04): Add <section><h2>Report an issue (POST)</h2>...</section> containing a POST form action="#" with labeled summary (text) and details (textarea) fields and submit "Report". -->
-      <!-- TODO(Day04-task04): Add <section><h2>When to use GET vs POST</h2><p> (>=60 words, original) explaining the tradeoff. -->
+      <section>
+        <h2>Search (GET)</h2>
+        <form method="get" action="#">
+          <label for="q">Search query:</label>
+          <input type="search" id="q" name="q" required>
+          <button type="submit">Search</button>
+        </form>
+      </section>
+      <section>
+        <h2>Report an issue (POST)</h2>
+        <form method="post" action="#">
+          <label for="summary">Summary:</label>
+          <input type="text" id="summary" name="summary" required>
+
+          <label for="details">Details:</label>
+          <textarea id="details" name="details" required></textarea>
+
+          <button type="submit">Report</button>
+        </form>
+      </section>
+      <section>
+        <h2>When to use GET vs POST</h2>
+        <p>GET is used for retrieving data from a server, while POST is used for submitting data to a server. GET requests are visible in the URL and have limitations on the amount of data that can be sent, whereas POST requests are not visible in the URL and can handle larger amounts of data. Additionally, GET requests can be cached and bookmarked, while POST requests cannot.</p>
+      </section>
     </main>
   </body>
 </html>

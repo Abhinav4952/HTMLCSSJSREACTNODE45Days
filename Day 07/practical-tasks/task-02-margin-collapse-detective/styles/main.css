@@ -4,6 +4,8 @@
  * - Distance from #b bottom border to #c top border == 24px
  */
 
+
+
 *,
 *::before,
 *::after {
@@ -53,5 +55,22 @@ h2 {
   color: #475569;
 }
 
+ /*
+ * Diagnosis:
+ * The vertical margins between #a and #b, and between #b and #c,
+ * collapse because they are adjacent block-level elements in the
+ * normal document flow. When vertical margins collapse, they do not
+ * add together—the browser uses only the larger margin, so the gaps
+ * are smaller than the combined margin values.
+ */
+h2 {
+  margin-bottom: 24px;
+}
+
+p {
+  margin-top: 16px;
+}
+
 /* TODO(Day07-task02): Add a brief diagnosis comment block at the top of THIS file (above selectors) explaining the collapse. */
+
 /* TODO(Day07-task02): Adjust rules (you may replace the margin declarations above) to hit the exact target gaps. */

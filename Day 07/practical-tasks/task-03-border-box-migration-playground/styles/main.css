@@ -3,7 +3,17 @@
  */
 
 /* TODO(Day07-task03): Apply universal border-box sizing. */
+/* Universal border-box sizing:
+ * Width and height include padding and borders, making layouts
+ * more predictable and preventing elements from growing beyond
+ * their specified dimensions.
+ */
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -22,12 +32,20 @@ body {
   border: 1px dashed #94a3b8;
 }
 
-.legacy .tile {
+/*.legacy .tile {
   box-sizing: content-box;
   width: 33.333%;
   padding: 12px;
   border: 1px solid #0f172a;
+}*/
+
+.legacy .tile {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #0f172a;
 }
+
+
 
 /* TODO(Day07-task03): Replace the .legacy rules with a correct flex row implementation:
  * - each .tile should visually share space equally

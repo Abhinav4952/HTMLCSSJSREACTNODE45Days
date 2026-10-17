@@ -22,4 +22,13 @@ body {
   font-weight: 800;
 }
 
+.mo_body {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 /* TODO(Day09-task03): Implement .mo as flex media object per TASK_INSTRUCTIONS.md */
+.mo__media {
+  flex-shrink: 0;
+}

@@ -3,6 +3,7 @@
  * That compounds with em-based paddings on chips. Fix it.
  */
 
+
 :root {
   color-scheme: light;
   --text: #0f172a;
@@ -80,3 +81,4 @@ p {
  * Stabilize .chip sizing across nesting depths using rem (or another non-compounding strategy).
  * Add a short comment block at the top explaining your approach (3–8 lines).
  */
+ 

@@ -6,6 +6,9 @@
   --brand: #0ea5e9;
 
   /* TODO(Day06-task01): Define --shadow-1, --shadow-2, --shadow-3 as three distinct layered shadows (comma-separated where needed). */
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-3: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 *,

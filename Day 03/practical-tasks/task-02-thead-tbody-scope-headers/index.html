@@ -9,7 +9,38 @@
   <body>
     <main>
       <h1>Inventory table</h1>
-      <!-- TODO(Day03-task02): Replace this comment with a complete table: caption; thead with 3 col headers (Item, Qty, Unit price); tbody with ≥4 rows where first column cells are th scope="row"; tfoot totals row that sums qty or price logically. -->
+      <caption>Inventory of items</caption>
+      <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Unit price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Widget A</th>
+          <td>100</td>
+          <td>$10.00</td>
+        </tr>
+        <tr>
+          <th scope="row">Widget B</th>
+          <td>150</td>
+          <td>$15.00</td>
+        </tr>
+        <tr>
+          <th scope="row">Widget C</th>
+          <td>200</td>
+          <td>$20.00</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row">Total</th>
+          <td>450</td>
+          <td>$45.00</td>
+        </tr>
+      </tfoot>
     </main>
   </body>
 </html>

@@ -42,16 +42,17 @@ body {
   padding: 0.5rem;
 }
 
+
 .a1 {
-  margin: 0 0 12px;
+  margin: 0 0 24px;
 }
 .b1 {
-  margin: 12px 0 0;
+  margin: 0;
 }
 
 .wrap2 {
   /* wrapper exists to create extra collapse opportunities */
-  padding: 0;
+  padding: 1px 0;
   border: 0;
 }
 
@@ -71,8 +72,19 @@ body {
 }
 
 .a3 {
-  margin-top: 12px;
+  margin-top: 24px;
 }
+
+/*
+ * Lessons learned:
+ * - Adjacent vertical margins collapse, so they do not add together.
+ * - A parent can allow child margins to collapse unless it establishes
+ *   separation (for example with padding, a border, or overflow).
+ * - Empty elements can also participate in margin collapsing.
+ * - When an exact gap is required, prefer assigning the spacing to one
+ *   element or use padding, flexbox gap, or grid gap instead.
+ */
+
 
 /* TODO(Day07-task04): Adjust rules to meet all three targets simultaneously. */
 /* TODO(Day07-task04): Add a short lessons-learned comment block at the bottom of this file. */

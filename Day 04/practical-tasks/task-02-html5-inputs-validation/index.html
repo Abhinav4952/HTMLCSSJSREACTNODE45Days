@@ -9,7 +9,41 @@
   <body>
     <main>
       <h1>Profile inputs</h1>
+      <form method="post" action="#">
+        <label for="homepage">Homepage:</label>
+        <input type="url" id="homepage" name="homepage">
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="18" max="120">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" pattern="^[a-z0-9_]{3,15}$" required>
+        <p class="hint">Username must be 3-15 characters long and can only contain lowercase letters, digits, and underscores.</p>
+
+        <button type="submit">Submit</button>
+      </form>
+
+
       <!-- TODO(Day04-task02): Add form method="post" action="#". Include labeled inputs: homepage (type url), phone (type tel), age (type number min=18 max=120), username (type text) with pattern="^[a-z0-9_]{3,15}$" and required. Add <p class="hint">...</p> explaining lowercase letters, digits, underscore, length 3-15. Add submit button. -->
+       <form method="post" action="#">
+        <label for="homepage">Homepage:</label>
+        <input type="url" id="homepage" name="homepage">
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="18" max="120">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" pattern="^[a-z0-9_]{3,15}$" required>
+        <p class="hint">Username must be 3-15 characters long and can only contain lowercase letters, digits, and underscores.</p>
+
+        <button type="submit">Submit</button>
+      </form>
     </main>
   </body>
 </html>
