@@ -57,5 +57,21 @@ body {
 }
 
 /* TODO(Day13-task04): Mobile-first: default stacked layout is OK (aside above main). At min-width ~900px, switch `.shell__body` to a two-column layout with aside fixed width (260–320px) and main flexible. Use gap. */
+@media (min-width: 900px) {
+  .shell__body {
+    flex-direction: row;
+  }
+  .shell__rail {
+    flex: 0 0 280px; 
+  }
+  .shell__main {
+    flex: 1; 
+  }
+}
 
 /* TODO(Day13-task04): Ensure no horizontal scroll at common mobile widths (<=430px) after your form controls are added. */
+@media screen and (max-width: 430px) {
+  .shell__body {
+    padding: 0.5rem;
+  } 
+}

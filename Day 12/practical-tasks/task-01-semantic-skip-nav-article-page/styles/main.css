@@ -20,5 +20,118 @@ body {
 }
 
 /* TODO(Day12-task01): Style .skip-link as visually hidden until keyboard focus, then high-contrast on focus (pattern from Day 10 focus work is OK). */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: #f97316;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 1000;
+}
 
 /* TODO(Day12-task01): Add layout CSS for header/nav/main/aside/footer using simple flow (no flex/grid required). Ensure :focus-visible outlines remain visible. */
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid #facc15;
+  outline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+header {
+  padding: 1.5rem;
+  color: #ffffff;
+  background: #1e293b;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  margin-bottom: 0;
+  color: #cbd5e1;
+}
+
+nav {
+  padding: 1rem 1.5rem;
+  background: #dbeafe;
+  border-bottom: 1px solid #bfdbfe;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  color: #1e40af;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+article {
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+}
+
+article h2 {
+  margin-top: 0;
+  color: #1e3a8a;
+}
+
+article p {
+  max-width: 70ch;
+}
+
+aside {
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  padding: 1rem 1.5rem;
+  background: #eff6ff;
+  border-left: 4px solid #2563eb;
+}
+
+aside h2 {
+  margin-top: 0;
+}
+
+aside li {
+  margin-bottom: 0.5rem;
+}
+
+aside a {
+  color: #1d4ed8;
+}
+
+footer {
+  padding: 1.25rem;
+  color: #e2e8f0;
+  background: #1e293b;
+  text-align: center;
+}
+
+footer small {
+  font-size: 0.875rem;
+}

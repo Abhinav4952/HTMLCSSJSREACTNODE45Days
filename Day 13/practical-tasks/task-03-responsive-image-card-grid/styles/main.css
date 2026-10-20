@@ -47,5 +47,20 @@ body {
 }
 
 /* TODO(Day13-task03): Ensure images never overflow their cards (max-width/height rules). */
+.card__img {
+  max-width: 100%;
+  height: auto;
+}
 
 /* TODO(Day13-task03): Make `.cards` responsive: 1 column default; 2 columns from min-width ~640px; 3 columns from min-width ~980px. */
+@media (min-width: 640px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

@@ -13,6 +13,7 @@
         <h1>Stabilize the renderer</h1>
         <p class="deck">
           <!-- TODO(Day16-task02): Replace with your own 1–2 sentence deck (technical tone). -->
+          This update stabilizes the renderer by addressing several performance bottlenecks and improving layout consistency across different viewport sizes.
         </p>
       </header>
 
@@ -20,11 +21,13 @@
         <h2>What changed</h2>
         <p>
           <!-- TODO(Day16-task02): Replace with a longer original paragraph (6–10 lines) so line-length behavior is observable. -->
+          The renderer has undergone significant optimizations to enhance its performance and responsiveness. By implementing a more efficient rendering pipeline, we have reduced the time it takes to process and display content, resulting in a smoother user experience. Additionally, we have introduced adaptive scaling techniques that allow the renderer to adjust dynamically based on the viewport size, ensuring that content remains legible and visually appealing across a wide range of devices. These changes not only improve the overall stability of the renderer but also contribute to better resource management, minimizing memory usage and preventing potential crashes during intensive operations.
         </p>
 
         <h2>Migration notes</h2>
         <p>
           <!-- TODO(Day16-task02): Second long original paragraph mentioning “viewport”, “clamp”, or “scale” at least once. -->
+          Developers should be aware of the new viewport scaling features introduced in this update. The renderer now utilizes the CSS clamp() function to provide fluid typography that adapts seamlessly to different screen sizes. This means that text elements will scale proportionally, maintaining readability without exceeding predefined maximum and minimum font sizes. It is important to review existing styles and ensure that any custom typography settings are compatible with the new scaling behavior. Additionally, developers may need to adjust their layout strategies to accommodate the dynamic nature of the content, taking advantage of the improved flexibility offered by the clamp() function for a more responsive design.
         </p>
       </section>
     </main>

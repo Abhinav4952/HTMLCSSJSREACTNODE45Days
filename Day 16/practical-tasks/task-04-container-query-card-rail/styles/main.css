@@ -87,8 +87,24 @@ body {
 }
 
 /* TODO(Day16-task04): Establish an inline-size container on `.rail__body` using `container-type` + `container-name` (name: `rail`). */
+.rail__body {
+  container-type: inline-size;
+  container-name: rail;
+}
 
 /* TODO(Day16-task04): Write `@container rail (min-width: …)` rules so `.card` becomes a two-column mini-layout (title/meta left, copy right) ONLY when the rail body is wide enough.
    In narrow rails, keep the card stacked (default). */
+@container rail (min-width: 500px) {
+  .card {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+  }
+}
 
 /* TODO(Day16-task04): Add a fallback comment + minimal viewport-based `@media` fallback ONLY if you must support browsers without container queries (keep it small; explain in HTML note). */
+@media (min-width: 900px) {
+  .card {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+  }
+}

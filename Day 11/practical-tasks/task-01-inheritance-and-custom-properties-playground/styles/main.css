@@ -44,13 +44,35 @@ body {
 }
 
 /* TODO(Day11-task01): Define --region-fg and --region-accent on :root as sensible defaults. */
+:root {
+  --region-fg: #1e293b;
+  --region-accent: #475569;
+}
 
 /* TODO(Day11-task01): For [data-region="marketing"], override the custom properties (pick distinct hex colors). */
+[data-region="marketing"] {
+  --region-fg: #0f172a;
+  --region-accent: #f59e0b;
+}
 
 /* TODO(Day11-task01): For [data-region="ops"], override the custom properties again (different palette). */
+[data-region="ops"] {
+  --region-fg: #0f172a;
+  --region-accent: #10b981;
+}
 
 /* TODO(Day11-task01): Set .panel color using var(--region-fg) so nested content inherits the region text color. */
+.panel {
+  color: var(--region-fg);
+}
 
 /* TODO(Day11-task01): Style .card headings with border-left: 4px solid var(--region-accent) and a comfortable padding-left. */
+.card h3 {
+  border-left: 4px solid var(--region-accent);
+  padding-left: 0.75rem;
+}
 
 /* TODO(Day11-task01): Demonstrate one non-inherited property explicitly: set .card background-color to a subtle tint using color-mix or rgba based on var(--region-accent) (no opacity on the whole card). */
+.card {
+  background-color: color-mix(in srgb, var(--region-accent) 8%, #fff);
+}

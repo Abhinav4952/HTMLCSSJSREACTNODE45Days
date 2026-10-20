@@ -45,5 +45,13 @@ body {
 }
 
 /* TODO(Day14-task02): Make the toolbar wrap (`flex-wrap`) and align wrapped rows to the end on the cross axis (end/right in LTR). Keep buttons readable (min-width ~5.5rem). */
+.toolbar {
+  flex-wrap: wrap;
+  align-content: flex-end;
+  min-width: 5.5rem;
+}
 
 /* TODO(Day14-task02): Use `order` to move "Ship" visually immediately after "Run" WITHOUT changing HTML order (document in a CSS comment how this affects focus order vs visual order). */
+.toolbar button:nth-child(3) {
+  order: 1;
+}

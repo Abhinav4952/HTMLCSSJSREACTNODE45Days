@@ -50,5 +50,21 @@ body {
 }
 
 /* TODO(Day12-task02): Style nav as horizontal on wide screens and stacked on narrow (use flex + wrap). */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 
 /* TODO(Day12-task02): Improve link colors + :focus-visible rings to meet basic contrast on dark background. */
+nav a {
+  color: #f97316;
+  text-decoration: none;
+}
+nav a:focus-visible {
+  outline: 3px solid #facc15;
+  outline-offset: 3px;
+}

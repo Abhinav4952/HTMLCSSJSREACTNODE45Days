@@ -83,11 +83,30 @@ body {
 /* TODO(Day16-task03): Fix the page-level horizontal overflow on small screens WITHOUT removing `.legacy-shell` from HTML:
    - make `.legacy-shell` fluid (`width:100%` + `max-width: …` pattern)
    - ensure overall layout uses comfortable padding at mobile widths */
+.legacy-shell {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 1rem;
+}
 
 /* TODO(Day16-task03): Fix nav wrapping/overflow: remove the footgun while keeping links usable (wrap or scroll strategy—document in changelog). */
+nav.legacy-nav {
+  flex-wrap: wrap; 
+  overflow-x: auto; 
+}
 
 /* TODO(Day16-task03): Fix hero image sizing using responsive image rules (max-width:100%, height:auto). */
+.legacy-hero__img {
+  max-width: 100%;
+  height: auto;
+}
 
 /* TODO(Day16-task03): Replace fixed 3×320px grid with a responsive grid using `minmax(0, 1fr)` tracks + a media query OR auto-fit strategy. */
+.legacy-grid {
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
 
 /* TODO(Day16-task03): Add at least one fluid `font-size` improvement using clamp() on `.legacy-hero h1` OR hero paragraph. */
+.legacy-hero h1 {
+  font-size: clamp(1.5rem, 1.2rem + 2vw, 3rem);
+}

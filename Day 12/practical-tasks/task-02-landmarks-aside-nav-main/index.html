@@ -10,14 +10,23 @@
     <header class="site-header">
       <p class="site-title">Courseware Console</p>
       <!-- TODO(Day12-task02): Add a primary nav with aria-label and at least 3 links (use your own link text/hrefs with # anchors). -->
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="#main">Lesson outline</a></li>
+          <li><a href="#modules-heading">Modules</a></li>
+          <li><a href="#resources">Related resources</a></li>
+        </ul>
+      </nav>
     </header>
 
     <div class="layout">
       <!-- TODO(Day12-task02): Add a short HTML comment (one or two sentences) explaining why `main` is ordered before `aside` in the DOM for this page. -->
+      <!-- Main comes before aside so users encounter the primary lesson content before supplementary resources in DOM order. -->
       <main class="layout__main" id="main">
         <h1>Lesson outline</h1>
         <p>
           <!-- TODO(Day12-task02): Add original paragraph copy about why landmarks help screen reader users. -->
+          Landmarks help screen reader users navigate content more efficiently by providing clear structural cues. They allow users to quickly jump to the main content, navigation, and related sections without having to read through all the page content sequentially.
         </p>
         <section aria-labelledby="modules-heading">
           <h2 id="modules-heading">Modules</h2>
@@ -31,6 +40,21 @@
 
       <aside class="layout__aside" aria-label="Related resources">
         <!-- TODO(Day12-task02): Add a short list of related links + one figure/code example block using figure/pre/code. -->
+        <h2>Related resources</h2>
+        <ul>
+          <li><a href="#main">HTML5 semantic elements</a></li>
+          <li><a href="#modules-heading">CSS Flexbox guide</a></li>
+          <li><a href="#resources">JavaScript ES6 features</a></li>
+        </ul>
+        <figure>
+          <figcaption>Example of a simple HTML structure:</figcaption>
+          <pre><code>&lt;header&gt;
+                    &lt;nav&gt;&lt;/nav&gt;
+                    &lt;/header&gt;
+                    &lt;main&gt;&lt;/main&gt;
+                    &lt;aside&gt;&lt;/aside&gt;
+          </code></pre>
+        </figure>
       </aside>
     </div>
 
