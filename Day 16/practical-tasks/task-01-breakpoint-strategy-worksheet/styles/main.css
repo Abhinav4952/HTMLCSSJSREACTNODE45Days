@@ -60,5 +60,19 @@ body {
    - at your first planned min-width: switch `.demo` to 3 columns (or 2+1) WITHOUT horizontal page scroll
    - at your second planned min-width: change spacing/typography (document which in HTML footnote)
    Use ONLY min-width media queries (mobile-first) for this task. */
+@media (min-width: 640px) {
+  .demo {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.band {
+  background-color: var(--band-1-bg);
+}
 
 /* TODO(Day16-task01): Add subtle background tints per band using custom properties declared on `:root`. */
+:root {
+  --band-1-bg: #fef3c7;
+  --band-2-bg: #dbeafe;
+  --band-3-bg: #dcfce7;
+}

@@ -22,6 +22,7 @@
           <div class="stack__content">
             <p>
               <!-- TODO(Day11-task03): Replace with your own short sentence; keep text readable (if it is not, fix CSS). -->
+              Group opacity fades the entire content layer, including this paragraph.
             </p>
           </div>
         </div>
@@ -34,6 +35,7 @@
           <div class="stack__content">
             <p>
               <!-- TODO(Day11-task03): Replace with a different sentence that mentions “alpha” or “rgba” explicitly. -->
+              An rgba background uses alpha transparency to reveal the stripes while keeping this text clear.
             </p>
           </div>
         </div>
@@ -42,7 +44,9 @@
       <section class="checklist" aria-label="Verification checklist">
         <h2>Checklist (also in TASK_INSTRUCTIONS)</h2>
         <ul>
-          <li><!-- TODO(Day11-task03): Add <code>…</code> note predicting nested opacity multiplication for Stack A. --></li>
+          <li><!-- TODO(Day11-task03): Add <code>…</code> note predicting nested opacity multiplication for Stack A. -->
+          <code>opacity: 0.5</code> on a parent and <code>opacity: 0.5</code> on a nested child produce an effective opacity of <code>0.5 × 0.5 = 0.25</code> for the child's rendered content. Alpha transparency on a background does not reduce the opacity of its text.
+          </li>
         </ul>
       </section>
     </main>

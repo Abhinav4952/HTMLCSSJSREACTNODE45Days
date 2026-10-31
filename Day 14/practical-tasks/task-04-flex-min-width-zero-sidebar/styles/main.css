@@ -42,5 +42,15 @@ body {
 /* Challenge starter: this layout commonly overflows horizontally at phone widths because the main pane can't shrink below the long unbroken token. */
 
 /* TODO(Day14-task04): Fix overflow using `min-width: 0` (or equivalent documented flex min-size fix) on the correct flex item(s), plus `overflow-wrap: anywhere` (or `break-all`) on `.mono` if needed. No horizontal page scroll at 390px wide. */
+.shell {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 
 /* TODO(Day14-task04): Add a subtle background on `.shell` using a CSS custom property `--shell-bg` declared on `:root` and referenced here. */
+:root {
+  --shell-bg: #f1f5f9;
+}
+.shell {
+  background: var(--shell-bg);
+}

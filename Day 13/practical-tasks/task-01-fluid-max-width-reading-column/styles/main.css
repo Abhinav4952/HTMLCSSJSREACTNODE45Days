@@ -17,5 +17,13 @@ body {
 }
 
 /* TODO(Day13-task01): Constrain readable measure using max-width in ch (pick a value 60–75ch) and sensible padding using clamp() for gutters. */
+.paper {
+  max-width: 65ch;
+  padding-left: clamp(1rem, 5vw, 2rem);
+  padding-right: clamp(1rem, 5vw, 2rem);
+}
 
 /* TODO(Day13-task01): Set line-height for comfortable reading (1.6–1.8) on .paper paragraphs. */
+.paper p {
+  line-height: 1.7;
+}

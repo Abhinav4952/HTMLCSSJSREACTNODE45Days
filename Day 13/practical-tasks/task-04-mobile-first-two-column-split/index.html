@@ -17,12 +17,19 @@
       <div class="shell__body">
         <aside class="shell__rail" aria-label="Filters">
           <!-- TODO(Day13-task04): Add a short filter form (no submit server): label+select with 3 options, label+checkbox group (2), all properly associated. -->
+          <label for="filter-select">Filter by:</label>
+          <select id="filter-select" name="filter">
+            <option value="all">All</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+          </select>
         </aside>
 
         <main class="shell__main" id="main">
           <h2>Live stream</h2>
           <p>
             <!-- TODO(Day13-task04): Add original paragraph copy (2–3 sentences) about responsive layout tradeoffs. -->
+            In a mobile-first two-column layout, the design prioritizes smaller screens by stacking content vertically. As the screen size increases, the layout adapts to display content side by side, enhancing usability and readability. This approach ensures that users on all devices have an optimal viewing experience without unnecessary horizontal scrolling.
           </p>
         </main>
       </div>

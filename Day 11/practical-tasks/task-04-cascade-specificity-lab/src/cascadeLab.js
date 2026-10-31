@@ -11,7 +11,26 @@
  */
 export function compoundSpecificityParts(selector) {
   // TODO(Day11-task04): Implement compoundSpecificityParts per TASK_INSTRUCTIONS.md
-  return null;
+  if (typeof selector !== "string" || selector.length === 0) {
+    return null;
+  }
+  // Initialize specificity parts
+  let ids = 0;
+  let classes = 0;
+  let types = 0;
+
+  // Check if the selector starts with a type selector
+  const typeMatch = selector.match(/^[a-z]+/);
+  if (typeMatch) {
+    types = 1;
+    selector = selector.slice(typeMatch[0].length);
+  }
+
+  // Count IDs and classes
+  ids = (selector.match(/#/g) || []).length;
+  classes = (selector.match(/\./g) || []).length;
+
+  return { ids, classes, types };
 }
 
 /**
@@ -20,6 +39,15 @@ export function compoundSpecificityParts(selector) {
  */
 export function compareSpecificityParts(a, b) {
   // TODO(Day11-task04): Implement compareSpecificityParts per TASK_INSTRUCTIONS.md
+  if (a.ids !== b.ids) {
+    return a.ids > b.ids ? 1 : -1;
+  }
+  if (a.classes !== b.classes) {
+    return a.classes > b.classes ? 1 : -1;
+  }
+  if (a.types !== b.types) {
+    return a.types > b.types ? 1 : -1;
+  }
   return 0;
 }
 
@@ -29,6 +57,12 @@ export function compareSpecificityParts(a, b) {
  */
 export function effectiveNestedOpacity(parentOpacity, childOpacity) {
   // TODO(Day11-task04): Implement effectiveNestedOpacity per TASK_INSTRUCTIONS.md
+  if (typeof parentOpacity === "number" && typeof childOpacity === "number" &&
+      isFinite(parentOpacity) && isFinite(childOpacity) &&
+      parentOpacity >= 0 && parentOpacity <= 1 &&
+      childOpacity >= 0 && childOpacity <= 1) {
+    return parentOpacity * childOpacity;
+  }
   return NaN;
 }
 
@@ -41,5 +75,20 @@ export function effectiveNestedOpacity(parentOpacity, childOpacity) {
  */
 export function blendRgbOver(bottomRgb, topRgb, topAlpha) {
   // TODO(Day11-task04): Implement blendRgbOver per TASK_INSTRUCTIONS.md
-  return null;
+  if (!Array.isArray(bottomRgb) || !Array.isArray(topRgb) ||
+      bottomRgb.length !== 3 || topRgb.length !== 3 ||
+      !bottomRgb.every(c => Number.isInteger(c) && c >= 0 && c <= 255) ||
+      !topRgb.every(c => Number.isInteger(c) && c >= 0 && c <= 255) ||
+      typeof topAlpha !== "number" || !isFinite(topAlpha) || topAlpha < 0 || topAlpha > 1) {
+    return null;
+  }
+
+  const [bottomR, bottomG, bottomB] = bottomRgb;
+  const [topR, topG, topB] = topRgb;
+
+  const blendedR = Math.round((1 - topAlpha) * bottomR + topAlpha * topR);
+  const blendedG = Math.round((1 - topAlpha) * bottomG + topAlpha * topG);
+  const blendedB = Math.round((1 - topAlpha) * bottomB + topAlpha * topB);
+
+  return [blendedR, blendedG, blendedB];
 }

@@ -8,9 +8,50 @@
   </head>
   <body>
     <!-- TODO(Day12-task01): Add a skip link as the first focusable element targeting #main (text in your own words). -->
+    <a class="skip-link" href="#main">Skip to main content</a>
 
     <!-- TODO(Day12-task01): Wrap the page in a landmark structure: header (site title), nav (primary), main (id="main"), aside (related), footer. Use real headings (h1–h3) with sane levels. -->
+    <header>
+      <h1>Daily Newsroom</h1>
+      <p>Trusted reporting and stories from our community.</p>
+    </header>
 
+    <nav aria-label="Primary navigation">
+      <ul>
+        <li><a href="#latest">Latest News</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#about">About Us</a></li>
+      </ul>
+    </nav>
+
+    <main id="main" tabindex="-1">
+      <article id="latest">
+        <h2>Local Community Launches Green Initiative</h2>
+        <p>
+          Residents and local organizations have joined forces to launch
+          a new environmental initiative focused on cleaner streets,
+          community gardens, and responsible recycling.
+        </p>
+        <p>
+          Organizers plan monthly cleanup events and educational workshops.
+          Residents are encouraged to volunteer, share ideas, and help
+          create a cleaner and healthier neighborhood.
+        </p>
+      </article>
+    </main>
+
+    <aside id="community" aria-labelledby="related-heading">
+      <h2 id="related-heading">Related Stories</h2>
+      <ul>
+        <li><a href="#latest">Community environmental initiatives</a></li>
+        <li><a href="#latest">Simple ways to improve recycling</a></li>
+        <li><a href="#about">Meet our newsroom team</a></li>
+      </ul>
+    </aside>
+
+    <footer id="about">
+      <small>&copy; 2026 Daily Newsroom. All rights reserved.</small>
+    </footer>
     <p class="placeholder">
       Replace this placeholder paragraph with your finished semantic layout in HTML (delete this paragraph when done).
     </p>

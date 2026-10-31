@@ -34,7 +34,23 @@ body {
 }
 
 /* TODO(Day12-task04): Hide `.error` by default and reveal it when the handle input is `:user-invalid` (preferred). Include a commented fallback for browsers without `:user-invalid` (e.g., rely on `:invalid` only after first form submit attempt is NOT detectable in pure CSS—document the limitation honestly in a CSS comment). */
+.error {
+  display: none;
+}
+
+:user-invalid {
+  display: block;
+}
 
 /* TODO(Day12-task04): Add `:focus-visible` ring styles for the input and button. */
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
 
 /* TODO(Day12-task04): Add a subtle border color shift on the input when `:user-valid` / `:user-invalid` is supported; keep normal border otherwise. */
+input:user-valid,
+input:user-invalid {
+  border-color: #94a3b8;
+}

@@ -15,6 +15,12 @@
 
       <form class="intake" name="intake" method="get" action="#" novalidate>
         <!-- TODO(Day12-task03): Add a proper submit button and a reset button with safe default text (your wording). -->
+         <div class="form-actions">
+          <button type="submit">Submit intake</button>
+          <button type="reset" class="reset-button">
+            Reset form
+          </button>
+        </div>
 
         <fieldset>
           <legend>Contact</legend>
@@ -22,19 +28,19 @@
           <div class="field">
             <label for="email">Work email</label>
             <!-- TODO(Day12-task03): Make this a real email field with autocomplete hint + required. -->
-            <input id="email" name="email" type="text">
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
           </div>
 
           <div class="field">
             <label for="website">Docs site</label>
             <!-- TODO(Day12-task03): Use URL input with placeholder guidance and required. -->
-            <input id="website" name="website" type="text">
+            <input id="website" name="website" type="url" placeholder="https://example.com" required>
           </div>
 
           <div class="field">
             <label for="deploy">Deploy window</label>
             <!-- TODO(Day12-task03): Use date input with reasonable min/max (pick dates in 2026) and required. -->
-            <input id="deploy" name="deploy" type="text">
+            <input id="deploy" name="deploy" type="date" min="2026-01-01" max="2026-12-31" required>
           </div>
         </fieldset>
 
@@ -44,21 +50,23 @@
           <div class="field">
             <label for="nodes">Node count</label>
             <!-- TODO(Day12-task03): Use number input: min 1 max 500 step 1 required. -->
-            <input id="nodes" name="nodes" type="text">
+            <input id="nodes" name="nodes" type="number" min="1" max="500" step="1" required>
           </div>
 
           <div class="field">
             <label for="risk">Risk index</label>
             <!-- TODO(Day12-task03): Keep type="range" min/max as given; add a concise visible hint near the label (text node or span) explaining how you will verify changing values without JavaScript (DevTools / browser UI). -->
-            <input id="risk" name="risk" type="range" min="0" max="10" value="3">
-            <p class="risk-readout" aria-live="polite">
+            <input id="risk" name="risk" type="range" min="0" max="10" value="3" aria-describedby="risk-hint">
+            <p class="risk-readout" aria-live="polite" id="risk-hint">
               <!-- TODO(Day12-task03): Replace with your own short note that includes the word "Risk" and references checking the input's current value after interaction. -->
+              Risk level can be checked by inspecting the input's value in the browser's DevTools after adjusting the slider. 
             </p>
           </div>
         </fieldset>
 
         <p class="form-footnote">
           <!-- TODO(Day12-task03): Explain in your own words why `novalidate` is present on the form for this exercise. -->
+          The `novalidate` attribute is present on the form to disable the browser's default validation behavior, allowing us to test and demonstrate custom validation techniques without interference from built-in validation messages. This is useful for learning purposes and for ensuring that we can implement our own validation logic as needed.
         </p>
       </form>
     </main>

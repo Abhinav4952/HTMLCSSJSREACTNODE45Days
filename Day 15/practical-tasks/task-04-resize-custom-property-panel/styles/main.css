@@ -61,7 +61,20 @@ body {
 }
 
 /* TODO(Day15-task04): Make `.panel` user-resizable using `resize` + appropriate `overflow` (document any browser limitations in the HTML note TODO). */
+.panel {
+  resize: both;
+  overflow: auto;
+}
 
 /* TODO(Day15-task04): Add at least TWO additional custom properties on `:root` (e.g. `--panel-shadow`, `--panel-head-bg`) and use them on `.panel` / `.panel__head` to prove token wiring. */
+:root {
+  --panel-bg: #ffffff;
+  --panel-border: #e2e8f0;
+  --panel-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --panel-head-bg: #f1f5f9;
+}
 
 /* TODO(Day15-task04): Add a smooth `box-shadow` transition on `.panel:hover` (only shadow; do not animate layout). */
+.panel:hover {
+  box-shadow: var(--panel-shadow);
+}
